@@ -295,17 +295,26 @@ export function Modal({ open, title, onClose, children, className = '' }: ModalP
 }
 
 function highlightCppToken(token: string): ReactNode {
-  if (/^\/\//.test(token)) return <span className="text-slate-500">{token}</span>;
-  if (/^["']/.test(token)) return <span className="text-brand-300">{token}</span>;
-  if (/^#/.test(token)) return <span className="text-amber-300">{token}</span>;
-  if (/^\d/.test(token)) return <span className="text-cyan-300">{token}</span>;
-  if (/^(alignas|auto|bool|break|case|char|class|const|constexpr|continue|double|else|false|for|if|int|long|namespace|nullptr|private|public|return|short|std|struct|true|using|void|while)$/.test(token)) {
-    return <span className="text-brand-300">{token}</span>;
+  if (/^\/\//.test(token)) return <span className="text-slate-500 italic">{token}</span>;
+  if (/^["']/.test(token)) return <span className="text-emerald-400 dark:text-emerald-300">{token}</span>;
+  if (/^#/.test(token)) return <span className="text-purple-400 dark:text-purple-300 font-semibold">{token}</span>;
+  if (/^\d/.test(token)) return <span className="text-amber-400 dark:text-amber-300">{token}</span>;
+  if (/^(int|float|double|char|bool|void|auto|long|short|size_t|string|vector)$/.test(token)) {
+    return <span className="text-cyan-400 dark:text-cyan-300 font-medium">{token}</span>;
+  }
+  if (/^(class|struct|namespace|template|typename|public|private|protected|virtual)$/.test(token)) {
+    return <span className="text-blue-400 dark:text-blue-300 font-semibold">{token}</span>;
+  }
+  if (/^(if|else|for|while|do|switch|case|break|continue|return|new|delete|nullptr|true|false|using|std|cout|cin|endl)$/.test(token)) {
+    return <span className="text-rose-400 dark:text-rose-300 font-semibold">{token}</span>;
+  }
+  if (/^(<<|>>|::|->|&|\*|\+|-|=)$/.test(token)) {
+    return <span className="text-slate-400 dark:text-slate-300">{token}</span>;
   }
   return token;
 }
 
-const cppTokenPattern = /(\/\/.*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|#\s*\w+|\b(?:alignas|auto|bool|break|case|char|class|const|constexpr|continue|double|else|false|for|if|int|long|namespace|nullptr|private|public|return|short|std|struct|true|using|void|while)\b|\b\d+(?:\.\d+)?\b)/g;
+const cppTokenPattern = /(\/\/.*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|#\s*\w+|\b(?:int|float|double|char|bool|void|auto|long|short|size_t|string|vector|class|struct|namespace|template|typename|public|private|protected|virtual|if|else|for|while|do|switch|case|break|continue|return|new|delete|nullptr|true|false|using|std|cout|cin|endl)\b|\b\d+(?:\.\d+)?f?\b|<<|>>|::|->)/g;
 
 export function highlightCpp(code: string): ReactNode {
   return code.split(cppTokenPattern).map((token, index) => (

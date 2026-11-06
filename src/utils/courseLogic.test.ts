@@ -5,7 +5,8 @@ import {
   filterCourseTopics,
   calculateQuizScore,
   buildDrivePreviewUrl,
-  simulateCppExecution
+  simulateCppExecution,
+  formatCppCode
 } from './courseLogic';
 import { CourseModule, QuizQuestion } from '../types';
 
@@ -108,4 +109,56 @@ test('simulateCppExecution catches missing main, unmatched braces, and executes 
   assert.equal(valid.success, true);
   assert.match(valid.output, /Hello, C\+\+ MasterClass!/);
   assert.match(valid.output, /42/);
+});
+
+test('simulateCppExecution accurately executes pointers, heap memory and avoids [val] output', () => {
+  const pointerCode = `
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        int val = 42;
+        int* ptr = &val;
+        cout << "Value directly: " << val << endl;
+        cout << "Value via pointer: " << *ptr << endl;
+        int* heapVal = new int(100);
+        cout << "Heap Value: " << *heapVal << endl;
+        delete heapVal;
+        heapVal = nullptr;
+        return 0;
+    }
+  `;
+  const result = simulateCppExecution(pointerCode);
+  assert.equal(result.success, true);
+  assert.match(result.output, /Value directly: 42/);
+  assert.match(result.output, /Value via pointer: 42/);
+  assert.match(result.output, /Heap Value: 100/);
+  assert.doesNotMatch(result.output, /\[val\]/);
+  assert.doesNotMatch(result.output, /\[\*ptr\]/);
+  assert.doesNotMatch(result.output, /\[\*heapVal\]/);
+});
+
+test('simulateCppExecution binds cin input to variable', () => {
+  const cinCode = `
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        int age;
+        cin >> age;
+        cout << "User age: " << age << endl;
+        return 0;
+    }
+  `;
+  const result = simulateCppExecution(cinCode, '25');
+  assert.equal(result.success, true);
+  assert.match(result.output, /User age: 25/);
+  assert.doesNotMatch(result.output, /\[age\]/);
+});
+
+test('formatCppCode formats indentation and braces properly', () => {
+  const unformatted = 'int main(){\nint x=1;\nif(x){\ncout<<x;\n}\nreturn 0;\n}';
+  const formatted = formatCppCode(unformatted);
+  assert.match(formatted, /    int x=1;/);
+  assert.match(formatted, /        cout<<x;/);
 });
