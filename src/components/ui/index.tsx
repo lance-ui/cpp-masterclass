@@ -45,6 +45,33 @@ export function Card({ className = '', ...props }: HTMLAttributes<HTMLDivElement
   );
 }
 
+export interface StatCardProps {
+  icon: ReactNode;
+  label: string;
+  value: ReactNode;
+  subValue?: ReactNode;
+  children?: ReactNode;
+  className?: string;
+}
+
+export function StatCard({ icon, label, value, subValue, children, className = '' }: StatCardProps) {
+  return (
+    <Card className={`p-5 flex items-start space-x-4 ${className}`}>
+      <div className="p-3 bg-brand-500/10 text-brand-600 dark:text-brand-400 rounded-xl shrink-0">
+        {icon}
+      </div>
+      <div className="min-w-0 flex-1">
+        <span className="text-xs text-slate-500 dark:text-slate-400 block truncate font-medium">{label}</span>
+        <div className="flex items-baseline space-x-1.5 mt-0.5">
+          <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{value}</span>
+          {subValue && <span className="text-xs text-slate-500 dark:text-slate-400 font-normal">{subValue}</span>}
+        </div>
+        {children}
+      </div>
+    </Card>
+  );
+}
+
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   tone?: 'brand' | 'neutral' | 'success' | 'warning';
 }

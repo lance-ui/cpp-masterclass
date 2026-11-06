@@ -101,7 +101,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   <button
                     key={tag}
                     onClick={() => setQuery(tag)}
-                    className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 rounded-full hover:bg-brand-50 dark:hover:bg-brand-950 hover:text-brand-600"
+                    className="inline-flex min-h-11 items-center px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 rounded-full hover:bg-brand-50 dark:hover:bg-brand-950 hover:text-brand-600 transition-colors"
                   >
                     {tag}
                   </button>

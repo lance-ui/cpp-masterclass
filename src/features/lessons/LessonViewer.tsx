@@ -384,6 +384,7 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
             value={userNote}
             onChange={(e) => setUserNote(e.target.value)}
             rows={10}
+            aria-label="Personal study notes for this module"
             placeholder="Write key syntax reminders, algorithm steps, questions for the instructor, or personal insights here..."
             className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 font-sans leading-relaxed"
           />

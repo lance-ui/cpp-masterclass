@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { CourseModule, User } from '@/types';
 import { calculateOverallProgress } from '@/utils/courseLogic';
-import { Card, ProgressBar } from '@/components/ui';
+import { Card, ProgressBar, StatCard } from '@/components/ui';
 
 interface StudentDashboardProps {
   currentUser: User;
@@ -48,54 +48,35 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="flex items-center space-x-4 p-5">
-          <div className="p-3 bg-brand-500/10 text-brand-600 dark:text-brand-400 rounded-xl">
-            <CheckCircle className="w-6 h-6" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <span className="text-xs text-slate-500 block">Completed Modules</span>
-            <span className="text-xl font-extrabold text-slate-900 dark:text-white">
-              {currentUser.completedModuleIds.length} <span className="text-xs font-normal text-slate-400">/ {modules.length}</span>
-            </span>
-            <ProgressBar value={completion} label="Course completion" className="mt-2" />
-          </div>
-        </Card>
+        <StatCard
+          icon={<CheckCircle className="w-6 h-6" />}
+          label="Completed Modules"
+          value={currentUser.completedModuleIds.length}
+          subValue={`/ ${modules.length}`}
+        >
+          <ProgressBar value={completion} label="Course completion" className="mt-2.5 h-1.5" />
+        </StatCard>
 
-        <Card className="flex items-center space-x-4 p-5">
-          <div className="p-3 bg-brand-500/10 text-brand-600 dark:text-brand-400 rounded-xl">
-            <Trophy className="w-6 h-6" />
-          </div>
-          <div>
-            <span className="text-xs text-slate-500 block">Average Quiz Score</span>
-            <span className="text-xl font-extrabold text-slate-900 dark:text-white">
-              {quizScores.length > 0 ? `${avgQuizScore}%` : 'No scores'}
-            </span>
-          </div>
-        </Card>
+        <StatCard
+          icon={<Trophy className="w-6 h-6 text-amber-500" />}
+          label="Average Quiz Score"
+          value={quizScores.length > 0 ? `${avgQuizScore}%` : 'N/A'}
+          subValue={quizScores.length > 0 ? `${quizScores.length} quizzes taken` : 'Take a quiz to start'}
+        />
 
-        <Card className="flex items-center space-x-4 p-5">
-          <div className="p-3 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-xl">
-            <Bookmark className="w-6 h-6" />
-          </div>
-          <div>
-            <span className="text-xs text-slate-500 block">Saved Bookmarks</span>
-            <span className="text-xl font-extrabold text-slate-900 dark:text-white">
-              {bookmarkedModules.length} Topics
-            </span>
-          </div>
-        </Card>
+        <StatCard
+          icon={<Bookmark className="w-6 h-6 text-brand-500" />}
+          label="Saved Bookmarks"
+          value={bookmarkedModules.length}
+          subValue="Topics bookmarked"
+        />
 
-        <Card className="flex items-center space-x-4 p-5">
-          <div className="p-3 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-xl">
-            <FileText className="w-6 h-6" />
-          </div>
-          <div>
-            <span className="text-xs text-slate-500 block">Notes Written</span>
-            <span className="text-xl font-extrabold text-slate-900 dark:text-white">
-              {Object.keys(currentUser.notes).length} Modules
-            </span>
-          </div>
-        </Card>
+        <StatCard
+          icon={<FileText className="w-6 h-6 text-cyan-500" />}
+          label="Notes Written"
+          value={Object.keys(currentUser.notes).length}
+          subValue="Active module notes"
+        />
       </div>
 
       {/* Main Grid: Recently Viewed & Bookmarks */}

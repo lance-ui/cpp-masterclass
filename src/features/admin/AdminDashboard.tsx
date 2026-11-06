@@ -6,7 +6,7 @@ import {
   FileText
 } from 'lucide-react';
 import { CourseModule, User, UserRole } from '@/types';
-import { Card, ProgressBar } from '@/components/ui';
+import { Card, ProgressBar, StatCard } from '@/components/ui';
 
 interface AdminDashboardProps {
   modules: CourseModule[];
@@ -42,50 +42,34 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       </div>
 
       {/* Course Stats Metrics */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <Card className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-500">Total Modules</span>
-            <Folder className="w-4 h-4 text-brand-500" />
-          </div>
-          <span className="text-2xl font-extrabold text-slate-900 dark:text-white">
-            {modules.length}
-          </span>
-          <span className="text-[11px] text-slate-400 block mt-1">Course modules</span>
-        </Card>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          icon={<Folder className="w-6 h-6 text-brand-500" />}
+          label="Total Modules"
+          value={modules.length}
+          subValue="Structured curriculum topics"
+        />
 
-        <Card className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-500">Video Tutorials</span>
-            <Video className="w-4 h-4 text-red-500" />
-          </div>
-          <span className="text-2xl font-extrabold text-slate-900 dark:text-white">
-            {totalVideos}
-          </span>
-          <span className="text-[11px] text-slate-400 block mt-1">Direct streamable MP4s</span>
-        </Card>
+        <StatCard
+          icon={<Video className="w-6 h-6 text-red-500" />}
+          label="Video Lectures"
+          value={totalVideos}
+          subValue="Direct streamable lessons"
+        />
 
-        <Card className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-500">PDF References</span>
-            <FileText className="w-4 h-4 text-blue-500" />
-          </div>
-          <span className="text-2xl font-extrabold text-slate-900 dark:text-white">
-            {totalDocs}
-          </span>
-          <span className="text-[11px] text-slate-400 block mt-1">Embedded reference slides</span>
-        </Card>
+        <StatCard
+          icon={<FileText className="w-6 h-6 text-cyan-500" />}
+          label="PDF References"
+          value={totalDocs}
+          subValue="Embedded technical slides"
+        />
 
-        <Card className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-500">Learner records</span>
-            <Users className="w-4 h-4 text-slate-500" />
-          </div>
-          <span className="text-2xl font-extrabold text-slate-900 dark:text-white">
-            {allUsers.length}
-          </span>
-          <span className="text-[11px] text-slate-400 block mt-1">Local learner records</span>
-        </Card>
+        <StatCard
+          icon={<Users className="w-6 h-6 text-purple-500" />}
+          label="Learner Records"
+          value={allUsers.length}
+          subValue="Enrolled user profiles"
+        />
       </div>
 
       {/* User Accounts Management Table */}
