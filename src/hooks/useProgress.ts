@@ -5,8 +5,8 @@ import { calculateOverallProgress } from '@/utils/courseLogic';
 
 export function useProgress(
   modules: CourseModule[],
-  currentUser: User,
-  setCurrentUser: Dispatch<SetStateAction<User>>
+  currentUser: User | null,
+  setCurrentUser: Dispatch<SetStateAction<User | null>>
 ) {
   if (modules.length === 0) throw new Error('The course must contain at least one module.');
 
@@ -20,42 +20,57 @@ export function useProgress(
     }
     setSelectedModuleId(moduleId);
     setActiveTab(tab);
-    setCurrentUser(user => ({
-      ...user,
-      recentModuleIds: [moduleId, ...user.recentModuleIds.filter(id => id !== moduleId)].slice(0, 8)
-    }));
+    setCurrentUser(user => {
+      if (!user) return null;
+      return {
+        ...user,
+        recentModuleIds: [moduleId, ...user.recentModuleIds.filter(id => id !== moduleId)].slice(0, 8)
+      };
+    });
   };
 
   const toggleComplete = (moduleId: string) => {
-    setCurrentUser(user => ({
-      ...user,
-      completedModuleIds: user.completedModuleIds.includes(moduleId)
-        ? user.completedModuleIds.filter(id => id !== moduleId)
-        : [...user.completedModuleIds, moduleId]
-    }));
+    setCurrentUser(user => {
+      if (!user) return null;
+      return {
+        ...user,
+        completedModuleIds: user.completedModuleIds.includes(moduleId)
+          ? user.completedModuleIds.filter(id => id !== moduleId)
+          : [...user.completedModuleIds, moduleId]
+      };
+    });
   };
 
   const toggleBookmark = (moduleId: string) => {
-    setCurrentUser(user => ({
-      ...user,
-      bookmarkedModuleIds: user.bookmarkedModuleIds.includes(moduleId)
-        ? user.bookmarkedModuleIds.filter(id => id !== moduleId)
-        : [...user.bookmarkedModuleIds, moduleId]
-    }));
+    setCurrentUser(user => {
+      if (!user) return null;
+      return {
+        ...user,
+        bookmarkedModuleIds: user.bookmarkedModuleIds.includes(moduleId)
+          ? user.bookmarkedModuleIds.filter(id => id !== moduleId)
+          : [...user.bookmarkedModuleIds, moduleId]
+      };
+    });
   };
 
   const saveQuizScore = (moduleId: string, score: number) => {
-    setCurrentUser(user => ({
-      ...user,
-      quizScores: { ...user.quizScores, [moduleId]: score }
-    }));
+    setCurrentUser(user => {
+      if (!user) return null;
+      return {
+        ...user,
+        quizScores: { ...user.quizScores, [moduleId]: score }
+      };
+    });
   };
 
   const saveUserNote = (moduleId: string, note: string) => {
-    setCurrentUser(user => ({
-      ...user,
-      notes: { ...user.notes, [moduleId]: note }
-    }));
+    setCurrentUser(user => {
+      if (!user) return null;
+      return {
+        ...user,
+        notes: { ...user.notes, [moduleId]: note }
+      };
+    });
   };
 
   const currentModuleIndex = modules.findIndex(module => module.id === selectedModuleId);
@@ -65,10 +80,17 @@ export function useProgress(
   const hasNext = currentModuleIndex < modules.length - 1;
   const previousModule = hasPrev ? modules.at(currentModuleIndex - 1) : undefined;
   const nextModule = hasNext ? modules.at(currentModuleIndex + 1) : undefined;
-  const progressPercentage = calculateOverallProgress(
-    currentUser.completedModuleIds,
-    modules.length
-  );
+  const progressPercentage = currentUser
+    ? calculateOverallProgress(currentUser.completedModuleIds, modules.length)
+    : 0;
+
+  const navigatePrev = () => {
+    if (previousModule) selectModule(previousModule.id, activeTab);
+  };
+
+  const navigateNext = () => {
+    if (nextModule) selectModule(nextModule.id, activeTab);
+  };
 
   return {
     selectedModuleId,
@@ -82,12 +104,8 @@ export function useProgress(
     activeModule,
     hasPrev,
     hasNext,
-    navigatePrev: () => {
-      if (previousModule) selectModule(previousModule.id);
-    },
-    navigateNext: () => {
-      if (nextModule) selectModule(nextModule.id);
-    },
+    navigatePrev,
+    navigateNext,
     progressPercentage
   };
 }

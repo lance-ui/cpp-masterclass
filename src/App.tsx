@@ -11,7 +11,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { LessonViewer } from '@/features/lessons/LessonViewer';
 import { SearchModal } from '@/components/common/SearchModal';
-import { AuthModal } from '@/components/common/AuthModal';
+import { AuthView } from '@/features/auth/AuthView';
 import { useAuth } from '@/hooks/useAuth';
 import { useProgress } from '@/hooks/useProgress';
 import { useTheme } from '@/hooks/useTheme';
@@ -29,7 +29,7 @@ const AdminDashboard = lazy(() =>
 
 function ViewLoadingState() {
   return (
-    <div className="mx-auto w-full max-w-7xl flex-1 space-y-4 p-6" role="status" aria-label="Loading view">
+    <div className="w-full flex-1 space-y-4 p-6" role="status" aria-label="Loading view">
       <Skeleton lines={1} className="max-w-sm" />
       <Skeleton lines={6} />
     </div>
@@ -41,10 +41,21 @@ export default function App() {
   const [currentView, setCurrentView] = useState<AppView>('learn');
   const [isOutlineOpen, setIsOutlineOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [isAuthOpen, setIsAuthOpen] = useState<boolean>(false);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
-  const { currentUser, setCurrentUser, allUsers, updateUserRole } = useAuth();
+  
+  const { 
+    currentUser, 
+    setCurrentUser, 
+    allUsers, 
+    login, 
+    signup, 
+    loginAsDemo, 
+    logout, 
+    updateUserRole 
+  } = useAuth();
+  
   const { isDarkMode, toggleDarkMode } = useTheme();
+
   const {
     selectedModuleId,
     activeTab,
@@ -90,32 +101,45 @@ export default function App() {
     setIsOutlineOpen(false);
   };
 
+  // Enforce authentication gate: if unauthenticated, redirect to AuthView
+  if (!currentUser) {
+    return (
+      <AuthView
+        onLogin={login}
+        onSignup={signup}
+        onDemoLogin={loginAsDemo}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={toggleDarkMode}
+      />
+    );
+  }
+
   return (
     <MotionConfig reducedMotion="user">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.2 }}
-        className="min-h-dvh bg-canvas dark:bg-canvas-dark text-ink dark:text-ink-dark flex flex-col pb-20 font-sans transition-colors lg:pb-0"
+        className="min-h-dvh bg-canvas dark:bg-canvas-dark text-ink dark:text-ink-dark flex flex-col font-sans transition-colors"
       >
-      {/* Top Navigation */}
-      <Navbar
-        currentView={currentView}
-        onSelectView={setCurrentView}
-        onOpenOutline={() => setIsOutlineOpen(true)}
-        isDarkMode={isDarkMode}
-        onToggleDarkMode={toggleDarkMode}
-        currentUser={currentUser}
-        onOpenAuthModal={() => setIsAuthOpen(true)}
-        onOpenSearchModal={() => setIsSearchOpen(true)}
-        isOnline={isOnline}
-        progressPercentage={progressPercentage}
-      />
+        {/* Top Navigation Bar */}
+        <Navbar
+          currentView={currentView}
+          onSelectView={setCurrentView}
+          onOpenOutline={() => setIsOutlineOpen(true)}
+          isDarkMode={isDarkMode}
+          onToggleDarkMode={toggleDarkMode}
+          currentUser={currentUser}
+          onOpenSearchModal={() => setIsSearchOpen(true)}
+          onLogout={logout}
+          isOnline={isOnline}
+          progressPercentage={progressPercentage}
+        />
 
-      {/* Main Display Router */}
-      <>
+        {/* Main Display Area (Full Width Fluid Layout) */}
+        <main className="flex-1 w-full flex flex-col">
           {currentView === 'learn' && (
-            <div className="flex-1 max-w-7xl w-full mx-auto flex flex-col lg:flex-row pb-28 lg:pb-0">
+            <div className="flex-1 w-full flex flex-col lg:flex-row pb-20 lg:pb-0">
               {/* Sidebar Navigation */}
               <Sidebar
                 modules={modules}
@@ -146,12 +170,12 @@ export default function App() {
           )}
 
           {currentView === 'playground' && (
-            <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6 flex-1 w-full animate-fade-in">
+            <div className="w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6 flex-1 animate-fade-in">
               <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
                 <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">
                   C++ Interactive Playground & Compiler
                 </h1>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                   Write, edit, compile, and execute modern C++ code directly in your browser. Choose templates or write custom algorithms.
                 </p>
               </div>
@@ -180,22 +204,15 @@ export default function App() {
               />
             </Suspense>
           )}
-      </>
+        </main>
 
-      {/* Global Modals */}
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        modules={modules}
-        onSelectModule={handleSelectModule}
-      />
-
-      <AuthModal
-        isOpen={isAuthOpen}
-        onClose={() => setIsAuthOpen(false)}
-        currentUser={currentUser}
-        onUpdateUser={setCurrentUser}
-      />
+        {/* Global Modals */}
+        <SearchModal
+          isOpen={isSearchOpen}
+          onClose={() => setIsSearchOpen(false)}
+          modules={modules}
+          onSelectModule={handleSelectModule}
+        />
       </motion.div>
     </MotionConfig>
   );

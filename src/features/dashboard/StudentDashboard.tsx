@@ -40,7 +40,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
     .filter((m): m is CourseModule => !!m);
 
   return (
-    <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8 animate-fade-in">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-6 space-y-8 animate-fade-in">
       <div className="border-b border-slate-200 dark:border-slate-800 pb-5">
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Learning dashboard</h1>
         <p className="text-sm text-slate-500 mt-1">Your progress is saved in this browser.</p>

@@ -104,7 +104,7 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
   ];
 
   return (
-    <main className="w-full min-w-0 max-w-6xl flex-1 space-y-8 px-4 py-6 sm:px-8 lg:px-10">
+    <main className="w-full min-w-0 flex-1 space-y-8 px-4 py-6 sm:px-8 lg:px-10">
       {/* Top Breadcrumb & Actions Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
         {/* Breadcrumb */}

@@ -3,18 +3,6 @@ import type { User, UserRole } from '@/types';
 import { DEMO_USERS } from '@/data/demoUsers';
 import { readStoredValue, writeStoredValue } from '@/utils/storage';
 
-const GUEST_USER: User = {
-  id: 'guest',
-  name: 'Guest',
-  email: '',
-  role: 'student',
-  bookmarkedModuleIds: [],
-  completedModuleIds: [],
-  quizScores: {},
-  recentModuleIds: [],
-  notes: {}
-};
-
 const LEGACY_DEMO_IDS = new Set(['student-1', 'user-2', 'user-3', 'admin-1']);
 
 const isStringArray = (value: unknown): value is string[] =>
@@ -45,47 +33,117 @@ function isUser(value: unknown): value is User {
     isStringRecord(user.notes);
 }
 
+const isNullableUser = (value: unknown): value is User | null =>
+  value === null || isUser(value);
+
 const isUserArray = (value: unknown): value is User[] =>
   Array.isArray(value) && value.every(isUser);
 
 export function useAuth() {
-  const [currentUser, setCurrentUser] = useState<User>(() => {
-    const storedUser = readStoredValue(
+  const [currentUser, setCurrentUser] = useState<User | null>(() => {
+    const storedUser = readStoredValue<User | null>(
       'current-user',
-      GUEST_USER,
-      isUser,
+      null,
+      isNullableUser,
       'cpp_masterclass_current_user'
     );
-    return LEGACY_DEMO_IDS.has(storedUser.id) ? GUEST_USER : storedUser;
+    if (!storedUser || storedUser.id === 'guest' || LEGACY_DEMO_IDS.has(storedUser.id)) {
+      return null;
+    }
+    return storedUser;
   });
 
   const [allUsers, setAllUsers] = useState<User[]>(() => {
     const storedUsers = readStoredValue(
       'users',
-      [],
+      DEMO_USERS,
       isUserArray,
       'cpp_masterclass_all_users'
     );
-    const nonDemoUsers = storedUsers.filter(user =>
-      !LEGACY_DEMO_IDS.has(user.id) &&
-      (import.meta.env.DEV || !user.id.startsWith('demo-'))
-    );
-    return import.meta.env.DEV && nonDemoUsers.length === 0
-      ? DEMO_USERS
-      : nonDemoUsers;
+    return storedUsers.length > 0 ? storedUsers : DEMO_USERS;
   });
 
-  useEffect(() => writeStoredValue('current-user', currentUser), [currentUser]);
-  useEffect(() => writeStoredValue('users', allUsers), [allUsers]);
+  useEffect(() => {
+    writeStoredValue('current-user', currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
+    writeStoredValue('users', allUsers);
+  }, [allUsers]);
+
+  const login = (email: string, _password?: string) => {
+    const trimmed = email.trim().toLowerCase();
+    const found = allUsers.find(u => u.email.toLowerCase() === trimmed);
+    if (found) {
+      setCurrentUser(found);
+      return { success: true };
+    }
+    // Auto-create learner account if first time
+    const newUser: User = {
+      id: `user-${Date.now()}`,
+      name: email.split('@')[0],
+      email: email.trim(),
+      role: 'student',
+      bookmarkedModuleIds: [],
+      completedModuleIds: [],
+      quizScores: {},
+      recentModuleIds: [],
+      notes: {}
+    };
+    setAllUsers(prev => [...prev, newUser]);
+    setCurrentUser(newUser);
+    return { success: true };
+  };
+
+  const signup = (name: string, email: string, role: UserRole, _password?: string) => {
+    const trimmed = email.trim().toLowerCase();
+    const exists = allUsers.find(u => u.email.toLowerCase() === trimmed);
+    if (exists) {
+      setCurrentUser(exists);
+      return { success: true };
+    }
+    const newUser: User = {
+      id: `user-${Date.now()}`,
+      name: name.trim(),
+      email: email.trim(),
+      role,
+      bookmarkedModuleIds: [],
+      completedModuleIds: [],
+      quizScores: {},
+      recentModuleIds: [],
+      notes: {}
+    };
+    setAllUsers(prev => [...prev, newUser]);
+    setCurrentUser(newUser);
+    return { success: true };
+  };
+
+  const loginAsDemo = (role: 'student' | 'admin') => {
+    const demo = DEMO_USERS.find(u => u.role === role) || DEMO_USERS[0];
+    setCurrentUser(demo);
+  };
+
+  const logout = () => {
+    setCurrentUser(null);
+  };
 
   const updateUserRole = (userId: string, newRole: UserRole) => {
     setAllUsers(users =>
       users.map(user => user.id === userId ? { ...user, role: newRole } : user)
     );
     setCurrentUser(user =>
-      user.id === userId ? { ...user, role: newRole } : user
+      user && user.id === userId ? { ...user, role: newRole } : user
     );
   };
 
-  return { currentUser, setCurrentUser, allUsers, updateUserRole };
+  return {
+    currentUser,
+    setCurrentUser,
+    allUsers,
+    login,
+    signup,
+    loginAsDemo,
+    logout,
+    updateUserRole
+  };
 }
