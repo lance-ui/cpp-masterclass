@@ -7,10 +7,10 @@ import {
   Terminal, 
   AlertTriangle,
   AlignLeft,
-  Sparkles,
-  RotateCcw,
   Code2,
-  CheckCircle2
+  CheckCircle2,
+  Eye,
+  Edit3
 } from 'lucide-react';
 import { simulateCppExecution, formatCppCode, CppExecutionResult } from '@/utils/courseLogic';
 import { Button, highlightCpp } from '@/components/ui';
@@ -210,9 +210,10 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({
   const [formattedNotice, setFormattedNotice] = useState<boolean>(false);
   const [selectedTemplate, setSelectedTemplate] = useState<string>('pointers');
   const [cursorPos, setCursorPos] = useState<{ line: number; col: number }>({ line: 1, col: 1 });
+  const [viewMode, setViewMode] = useState<'edit' | 'syntax'>('edit');
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const highlightedCode = useRef<HTMLPreElement>(null);
+  const gutterRef = useRef<HTMLDivElement>(null);
 
   // Sync cursor position
   const updateCursorPosition = () => {
@@ -277,36 +278,203 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({
     URL.revokeObjectURL(url);
   };
 
-  // Keyboard enhancements: Tab indentation, Shift+Alt+F to format, Ctrl/Cmd+Enter to run
+  // Synchronize scroll between textarea and line numbers gutter
+  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    if (gutterRef.current) {
+      gutterRef.current.scrollTop = e.currentTarget.scrollTop;
+    }
+  };
+
+  // Keyboard enhancements: Auto-indent, Tab indentation, Shift+Alt+F to format, Ctrl/Cmd+Enter to run
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const textarea = e.currentTarget;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const val = textarea.value;
+
+    // 1. Run shortcut: Ctrl+Enter or Cmd+Enter
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
       e.preventDefault();
       handleRunCode();
       return;
     }
 
+    // 2. Format shortcut: Shift+Alt+F
     if (e.shiftKey && e.altKey && (e.key === 'f' || e.key === 'F')) {
       e.preventDefault();
       handleFormatCode();
       return;
     }
 
-    if (e.key === 'Tab') {
+    // 3. Auto-indent on Enter
+    if (e.key === 'Enter') {
       e.preventDefault();
-      const target = e.currentTarget;
-      const start = target.selectionStart;
-      const end = target.selectionEnd;
+      const upToCursor = val.substring(0, start);
+      const currentLineStart = upToCursor.lastIndexOf('\n') + 1;
+      const currentLine = upToCursor.substring(currentLineStart);
 
-      // Insert 4 spaces
-      const newCode = code.substring(0, start) + '    ' + code.substring(end);
-      setCode(newCode);
+      // Detect leading whitespace
+      const indentMatch = currentLine.match(/^(\s*)/);
+      const currentIndent = indentMatch ? indentMatch[1] : '';
 
+      // Check if line opens a block with {
+      const trimmedLine = currentLine.trim();
+      const opensBlock = trimmedLine.endsWith('{') || (trimmedLine.includes('{') && !trimmedLine.includes('}'));
+
+      // Check if cursor is right between { and }
+      const charBefore = val[start - 1];
+      const charAfter = val[start];
+      const isBetweenBraces = charBefore === '{' && charAfter === '}';
+
+      let newText = '';
+      let newCursor = start;
+
+      if (isBetweenBraces) {
+        const innerIndent = currentIndent + '    ';
+        newText = val.substring(0, start) + '\n' + innerIndent + '\n' + currentIndent + val.substring(end);
+        newCursor = start + 1 + innerIndent.length;
+      } else if (opensBlock) {
+        const nextIndent = currentIndent + '    ';
+        newText = val.substring(0, start) + '\n' + nextIndent + val.substring(end);
+        newCursor = start + 1 + nextIndent.length;
+      } else {
+        newText = val.substring(0, start) + '\n' + currentIndent + val.substring(end);
+        newCursor = start + 1 + currentIndent.length;
+      }
+
+      setCode(newText);
       setTimeout(() => {
         if (textareaRef.current) {
-          textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start + 4;
+          textareaRef.current.selectionStart = textareaRef.current.selectionEnd = newCursor;
           updateCursorPosition();
         }
       }, 0);
+      return;
+    }
+
+    // 4. Auto-dedent on }
+    if (e.key === '}') {
+      const upToCursor = val.substring(0, start);
+      const currentLineStart = upToCursor.lastIndexOf('\n') + 1;
+      const currentLine = upToCursor.substring(currentLineStart);
+
+      // If line only contains spaces (e.g. 4 spaces indentation)
+      if (/^\s{4,}$/.test(currentLine)) {
+        e.preventDefault();
+        const dedented = currentLine.slice(4) + '}';
+        const newText = val.substring(0, currentLineStart) + dedented + val.substring(start);
+        setCode(newText);
+        const newCursor = currentLineStart + dedented.length;
+        setTimeout(() => {
+          if (textareaRef.current) {
+            textareaRef.current.selectionStart = textareaRef.current.selectionEnd = newCursor;
+            updateCursorPosition();
+          }
+        }, 0);
+        return;
+      }
+    }
+
+    // 5. Auto-closing pairs: { }, ( ), [ ], " ", ' '
+    const PAIRS: Record<string, string> = {
+      '{': '}',
+      '(': ')',
+      '[': ']',
+      '"': '"',
+      "'": "'"
+    };
+
+    if (e.key in PAIRS) {
+      const openChar = e.key;
+      const closeChar = PAIRS[openChar];
+
+      // If wrapping selected text
+      if (start !== end) {
+        e.preventDefault();
+        const selected = val.substring(start, end);
+        const newText = val.substring(0, start) + openChar + selected + closeChar + val.substring(end);
+        setCode(newText);
+        setTimeout(() => {
+          if (textareaRef.current) {
+            textareaRef.current.selectionStart = start + 1;
+            textareaRef.current.selectionEnd = end + 1;
+          }
+        }, 0);
+        return;
+      }
+
+      // If next char is already quote/bracket, step over it
+      if ((openChar === '"' || openChar === "'") && val[start] === openChar) {
+        e.preventDefault();
+        textarea.selectionStart = textarea.selectionEnd = start + 1;
+        updateCursorPosition();
+        return;
+      }
+
+      // Insert open and close
+      e.preventDefault();
+      const newText = val.substring(0, start) + openChar + closeChar + val.substring(end);
+      setCode(newText);
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start + 1;
+          updateCursorPosition();
+        }
+      }, 0);
+      return;
+    }
+
+    // 6. Tab / Shift+Tab indentation
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      if (e.shiftKey) {
+        // Dedent current line by up to 4 spaces
+        const upToCursor = val.substring(0, start);
+        const currentLineStart = upToCursor.lastIndexOf('\n') + 1;
+        const currentLine = upToCursor.substring(currentLineStart);
+        const spaceCount = (currentLine.match(/^ {1,4}/) || [''])[0].length;
+        if (spaceCount > 0) {
+          const newText = val.substring(0, currentLineStart) + currentLine.slice(spaceCount) + val.substring(start);
+          setCode(newText);
+          setTimeout(() => {
+            if (textareaRef.current) {
+              const newPos = Math.max(currentLineStart, start - spaceCount);
+              textareaRef.current.selectionStart = textareaRef.current.selectionEnd = newPos;
+              updateCursorPosition();
+            }
+          }, 0);
+        }
+      } else {
+        // Insert 4 spaces at cursor
+        const newText = val.substring(0, start) + '    ' + val.substring(end);
+        setCode(newText);
+        setTimeout(() => {
+          if (textareaRef.current) {
+            textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start + 4;
+            updateCursorPosition();
+          }
+        }, 0);
+      }
+      return;
+    }
+
+    // 7. Smart Backspace: delete 4 spaces if preceded by an indent
+    if (e.key === 'Backspace' && start === end) {
+      const upToCursor = val.substring(0, start);
+      const currentLineStart = upToCursor.lastIndexOf('\n') + 1;
+      const currentLine = upToCursor.substring(currentLineStart);
+      if (/^\s+$/.test(currentLine) && currentLine.length >= 4 && currentLine.length % 4 === 0) {
+        e.preventDefault();
+        const newText = val.substring(0, start - 4) + val.substring(start);
+        setCode(newText);
+        setTimeout(() => {
+          if (textareaRef.current) {
+            textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start - 4;
+            updateCursorPosition();
+          }
+        }, 0);
+        return;
+      }
     }
   };
 
@@ -347,6 +515,36 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({
               </option>
             ))}
           </select>
+
+          {/* Mode Switcher: Live Editor vs Syntax Preview */}
+          <div className="flex items-center bg-slate-200/80 dark:bg-slate-800 rounded-lg p-0.5 border border-slate-300 dark:border-slate-700">
+            <button
+              type="button"
+              onClick={() => setViewMode('edit')}
+              className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-all ${
+                viewMode === 'edit'
+                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+              title="Interactive code editor with auto-indent"
+            >
+              <Edit3 className="w-3.5 h-3.5" />
+              <span>Editor</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('syntax')}
+              className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-all ${
+                viewMode === 'syntax'
+                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+              title="Syntax colorized token preview"
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>Syntax View</span>
+            </button>
+          </div>
 
           {/* Format Code Button */}
           <button
@@ -403,28 +601,35 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 dark:divide-slate-800 flex-1 min-h-[460px]">
         
         {/* LEFT PANE: Professional Code Editor with Line Numbers */}
-        <div className="relative flex flex-col bg-slate-950 text-slate-100 font-mono text-xs overflow-hidden">
+        <div className="relative flex flex-col bg-slate-950 text-slate-100 overflow-hidden font-mono">
           {/* Editor Header Tab */}
           <div className="px-4 py-2 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between select-none">
             <span className="text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-              main.cpp
+              main.cpp {viewMode === 'syntax' && '(Syntax Highlighted)'}
             </span>
             <span className="text-[10px] text-slate-500 font-mono">
-              UTF-8 • Tab: 4 spaces
+              Auto-Indent Active • Tab: 4 spaces
             </span>
           </div>
 
           {/* Editor Workspace */}
           <div className="relative flex-1 flex overflow-hidden min-h-[380px]">
-            {/* Line Numbers */}
-            <div className="py-3 px-2 bg-slate-900/60 text-slate-500 select-none text-right font-mono border-r border-slate-800/80 text-[11px] w-11 shrink-0">
-              {Array.from({ length: Math.max(lineCount, 20) }, (_, i) => {
+            {/* Synchronized Line Numbers Gutter */}
+            <div 
+              ref={gutterRef}
+              aria-hidden="true"
+              className="py-3 px-2 bg-slate-900/70 text-slate-500 select-none text-right font-mono border-r border-slate-800/80 text-[12px] leading-[22px] w-12 shrink-0 overflow-hidden"
+              style={{
+                fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+              }}
+            >
+              {Array.from({ length: Math.max(lineCount, 1) }, (_, i) => {
                 const isCurrent = cursorPos.line === i + 1;
                 return (
                   <div 
                     key={i + 1} 
-                    className={`leading-5 ${isCurrent ? 'text-brand-400 font-bold bg-slate-800/40 rounded-xs' : ''}`}
+                    className={`h-[22px] ${isCurrent ? 'text-brand-400 font-bold bg-slate-800/60 rounded-xs' : ''}`}
                   >
                     {i + 1}
                   </div>
@@ -432,46 +637,51 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({
               })}
             </div>
 
-            {/* Code Input Area with Highlighting Overlay */}
-            <div className="relative min-w-0 flex-1 overflow-hidden">
-              <pre
-                ref={highlightedCode}
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 m-0 overflow-hidden whitespace-pre p-3 font-mono text-xs leading-5"
-                style={{ tabSize: 4 }}
-              >
-                {highlightCpp(code)}
-              </pre>
-
-              <textarea
-                ref={textareaRef}
-                value={code}
-                onChange={(e) => {
-                  setCode(e.target.value);
-                  updateCursorPosition();
-                }}
-                onKeyDown={handleKeyDown}
-                onClick={updateCursorPosition}
-                onKeyUp={updateCursorPosition}
-                onSelect={updateCursorPosition}
-                wrap="off"
-                onScroll={(e) => {
-                  if (!highlightedCode.current) return;
-                  highlightedCode.current.scrollTop = e.currentTarget.scrollTop;
-                  highlightedCode.current.scrollLeft = e.currentTarget.scrollLeft;
-                }}
-                aria-label="C++ source code editor"
-                spellCheck={false}
-                className="relative z-10 h-full w-full resize-none bg-transparent p-3 font-mono text-xs leading-5 text-transparent caret-cyan-400 selection:bg-brand-500/40 selection:text-transparent focus:outline-none"
-                style={{ tabSize: 4 }}
-              />
+            {/* Input or Syntax View */}
+            <div className="relative min-w-0 flex-1 flex flex-col overflow-hidden bg-slate-950">
+              {viewMode === 'syntax' ? (
+                /* Syntax Highlighted View */
+                <pre
+                  className="flex-1 m-0 p-3 overflow-auto font-mono text-[13px] leading-[22px] whitespace-pre text-slate-100 select-text"
+                  style={{
+                    tabSize: 4,
+                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+                  }}
+                >
+                  {highlightCpp(code)}
+                </pre>
+              ) : (
+                /* Interactive Code Editor (100% cursor-aligned, visible text, auto-indent) */
+                <textarea
+                  ref={textareaRef}
+                  value={code}
+                  onChange={(e) => {
+                    setCode(e.target.value);
+                    updateCursorPosition();
+                  }}
+                  onKeyDown={handleKeyDown}
+                  onClick={updateCursorPosition}
+                  onKeyUp={updateCursorPosition}
+                  onSelect={updateCursorPosition}
+                  onScroll={handleTextareaScroll}
+                  wrap="off"
+                  aria-label="C++ source code editor"
+                  spellCheck={false}
+                  className="flex-1 w-full h-full resize-none bg-transparent p-3 font-mono text-[13px] leading-[22px] text-slate-100 caret-cyan-400 selection:bg-brand-500/40 focus:outline-none border-0"
+                  style={{
+                    tabSize: 4,
+                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                    fontVariantLigatures: 'none'
+                  }}
+                />
+              )}
             </div>
           </div>
 
           {/* Editor Status Bar */}
           <div className="px-3 py-1.5 bg-slate-900/90 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-mono select-none">
             <span>Ln {cursorPos.line}, Col {cursorPos.col}</span>
-            <span>{code.length} chars</span>
+            <span>{lines.length} lines • {code.length} chars</span>
           </div>
         </div>
 

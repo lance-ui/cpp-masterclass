@@ -49,7 +49,6 @@ export default function App() {
     allUsers, 
     login, 
     signup, 
-    loginAsDemo, 
     logout, 
     updateUserRole 
   } = useAuth();
@@ -107,7 +106,6 @@ export default function App() {
       <AuthView
         onLogin={login}
         onSignup={signup}
-        onDemoLogin={loginAsDemo}
         isDarkMode={isDarkMode}
         onToggleDarkMode={toggleDarkMode}
       />

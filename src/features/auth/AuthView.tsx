@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { 
-  Terminal, 
-  UserCheck, 
-  ShieldCheck, 
   ArrowRight, 
   Eye, 
   EyeOff, 
   Sun, 
   Moon, 
-  Lock, 
-  Mail, 
-  User as UserIcon,
   CheckCircle2,
   AlertCircle
 } from 'lucide-react';
@@ -20,7 +14,6 @@ import { Button, Input } from '@/components/ui';
 interface AuthViewProps {
   onLogin: (email: string, password?: string) => { success: boolean; error?: string };
   onSignup: (name: string, email: string, role: UserRole, password?: string) => { success: boolean; error?: string };
-  onDemoLogin: (role: 'student' | 'admin') => void;
   isDarkMode: boolean;
   onToggleDarkMode: () => void;
 }
@@ -28,7 +21,6 @@ interface AuthViewProps {
 export const AuthView: React.FC<AuthViewProps> = ({
   onLogin,
   onSignup,
-  onDemoLogin,
   isDarkMode,
   onToggleDarkMode
 }) => {
@@ -167,39 +159,6 @@ export const AuthView: React.FC<AuthViewProps> = ({
               </div>
             )}
 
-            {/* Quick Demo Access (for convenience) */}
-            <div className="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
-                Instant Demo Access
-              </span>
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={() => onDemoLogin('student')}
-                  className="flex items-center justify-center space-x-1.5 py-2 px-3 rounded-lg text-xs font-semibold border bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700 transition-colors"
-                >
-                  <UserCheck className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
-                  <span>Demo Student</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onDemoLogin('admin')}
-                  className="flex items-center justify-center space-x-1.5 py-2 px-3 rounded-lg text-xs font-semibold border bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700 transition-colors"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
-                  <span>Demo Admin</span>
-                </button>
-              </div>
-            </div>
-
-            <div className="relative flex py-1 items-center">
-              <div className="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
-              <span className="flex-shrink mx-3 text-[11px] text-slate-400 uppercase tracking-wider">
-                Or sign in with email
-              </span>
-              <div className="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
-            </div>
-
             <form onSubmit={handleSubmit} className="space-y-4">
               {mode === 'signup' && (
                 <div className="space-y-1">
@@ -287,3 +246,4 @@ export const AuthView: React.FC<AuthViewProps> = ({
     </div>
   );
 };
+

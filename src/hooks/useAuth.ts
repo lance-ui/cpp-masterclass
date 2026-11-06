@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import type { User, UserRole } from '@/types';
-import { DEMO_USERS } from '@/data/demoUsers';
 import { readStoredValue, writeStoredValue } from '@/utils/storage';
 
-const LEGACY_DEMO_IDS = new Set(['student-1', 'user-2', 'user-3', 'admin-1']);
+const LEGACY_DEMO_IDS = new Set(['student-1', 'user-2', 'user-3', 'admin-1', 'demo-student', 'demo-admin']);
 
 const isStringArray = (value: unknown): value is string[] =>
   Array.isArray(value) && value.every(item => typeof item === 'string');
@@ -56,11 +55,11 @@ export function useAuth() {
   const [allUsers, setAllUsers] = useState<User[]>(() => {
     const storedUsers = readStoredValue(
       'users',
-      DEMO_USERS,
+      [] as User[],
       isUserArray,
       'cpp_masterclass_all_users'
     );
-    return storedUsers.length > 0 ? storedUsers : DEMO_USERS;
+    return storedUsers.filter(u => !LEGACY_DEMO_IDS.has(u.id));
   });
 
   useEffect(() => {
@@ -118,11 +117,6 @@ export function useAuth() {
     return { success: true };
   };
 
-  const loginAsDemo = (role: 'student' | 'admin') => {
-    const demo = DEMO_USERS.find(u => u.role === role) || DEMO_USERS[0];
-    setCurrentUser(demo);
-  };
-
   const logout = () => {
     setCurrentUser(null);
   };
@@ -142,7 +136,6 @@ export function useAuth() {
     allUsers,
     login,
     signup,
-    loginAsDemo,
     logout,
     updateUserRole
   };
