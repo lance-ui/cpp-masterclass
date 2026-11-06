@@ -1,13 +1,11 @@
 import React from 'react';
 import {
   Users, 
-  ExternalLink,
   Folder,
   Video,
   FileText
 } from 'lucide-react';
 import { CourseModule, User, UserRole } from '@/types';
-import { DRIVE_ROOT_URL } from '@/data/curriculumData';
 import { Card, ProgressBar } from '@/components/ui';
 
 interface AdminDashboardProps {
@@ -39,17 +37,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-5">
         <p className="text-sm text-slate-600 dark:text-slate-300">
-          Media is linked from Google Drive. This app does not synchronize Drive folders.
+          Course media and modules are securely managed and served within the platform.
         </p>
-        <a
-          href={DRIVE_ROOT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center space-x-1 px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-semibold text-slate-700 dark:text-slate-300 shrink-0"
-        >
-          <span>Open course folder</span>
-          <ExternalLink className="w-3 h-3" />
-        </a>
       </div>
 
       {/* Course Stats Metrics */}

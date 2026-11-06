@@ -16,7 +16,7 @@ export function PDFReader({ document }: PDFReaderProps) {
           </span>
         </div>
         <a
-          href={`https://drive.google.com/file/d/${document.driveId}/view`}
+          href={`https://drive.google.com/file/d/${document.driveId}/preview`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex min-h-11 shrink-0 items-center gap-2 rounded-control border border-slate-300 bg-white px-3 text-xs font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"

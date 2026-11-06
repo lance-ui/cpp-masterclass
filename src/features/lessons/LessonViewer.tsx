@@ -8,10 +8,8 @@ import {
   Circle, 
   Bookmark, 
   BookmarkCheck, 
-  ExternalLink, 
   ChevronLeft, 
   ChevronRight, 
-  Folder, 
   Edit3, 
   Save, 
   Check, 
@@ -151,19 +149,6 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
             {isCompleted ? <CheckCircle className="w-3.5 h-3.5" /> : <Circle className="w-3.5 h-3.5" />}
             <span>{isCompleted ? 'Completed' : 'Mark Complete'}</span>
           </button>
-
-          {/* Drive Folder Link */}
-          <a
-            href={`https://drive.google.com/drive/folders/${module.folderId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-1 px-2.5 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors"
-            title="Open original Drive folder"
-          >
-            <Folder className="w-3.5 h-3.5 text-amber-500" />
-            <span className="hidden md:inline">Drive Folder</span>
-            <ExternalLink className="w-3 h-3 text-slate-400" />
-          </a>
         </div>
       </div>
 
@@ -249,18 +234,9 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
                         {selectedVideo.title}
                       </h4>
                       <span className="text-xs text-slate-500">
-                        File: {selectedVideo.fileName} • Google Drive Stream
+                        File: {selectedVideo.fileName} • Streaming
                       </span>
                     </div>
-                    <a
-                      href={`https://drive.google.com/file/d/${selectedVideo.driveId}/view`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-1 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-medium"
-                    >
-                      <span>Open in Drive</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
                   </div>
                 )}
               </div>
