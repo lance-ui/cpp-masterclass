@@ -1,0 +1,3787 @@
+[
+  {
+    "id": "module-1",
+    "moduleNumber": 1,
+    "title": "Introduction",
+    "category": "Beginner",
+    "folderId": "1oy9XxlDLeu970jzfruHk0k0uzPn5lHpb",
+    "folderName": "1. Introduction",
+    "videosCount": 1,
+    "documentsCount": 0,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1Eb1Pq7tS5sMbh7e_DwdMuyDS1rsU5_w6",
+        "title": "Instructors Note",
+        "fileName": "1. Instructors Note.mp4",
+        "driveId": "1Eb1Pq7tS5sMbh7e_DwdMuyDS1rsU5_w6",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Eb1Pq7tS5sMbh7e_DwdMuyDS1rsU5_w6/preview"
+      }
+    ],
+    "documents": [],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Hello World in C++",
+        "description": "The classic first program demonstrating iostream, namespace, and main entrypoint.",
+        "code": "#include <iostream>\n\nint main() {\n    std::cout << \"Welcome to C++ Programming: Beginner to Advance!\" << std::endl;\n    return 0;\n}",
+        "expectedOutput": "Welcome to C++ Programming: Beginner to Advance!",
+        "explanation": "iostream allows standard input/output stream operations. std::cout sends text to the console, and std::endl adds a newline and flushes the buffer."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m1-q1",
+        "question": "Which header file is required for std::cout in C++?",
+        "options": [
+          "<stdio.h>",
+          "<iostream>",
+          "<stdlib.h>",
+          "<stream>"
+        ],
+        "correctAnswer": 1,
+        "explanation": "<iostream> is the standard C++ library header providing input/output stream capabilities."
+      },
+      {
+        "id": "m1-q2",
+        "question": "What does the return value 0 in main() typically signify?",
+        "options": [
+          "Runtime error",
+          "Successful program execution",
+          "Infinite loop",
+          "Undefined behavior"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Returning 0 from the main function tells the operating system that the program terminated cleanly without errors."
+      }
+    ],
+    "description": "Welcome to modern C++! Learn the course objectives, roadmap from syntax basics to object-oriented programming, STL, and memory management.",
+    "readingTime": "15 min"
+  },
+  {
+    "id": "module-2",
+    "moduleNumber": 2,
+    "title": "Essential Fundamentals",
+    "category": "Beginner",
+    "folderId": "1MdtSsGEhkQ_9BV4hZFHwBAt4zIiXBGxU",
+    "folderName": "2. Essential Fundamentals",
+    "videosCount": 7,
+    "documentsCount": 0,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1j0TpnCFsPzbM3fDwO9eZvm45ChKuctQ8",
+        "title": "Fundamentals",
+        "fileName": "1. Fundamentals.mp4",
+        "driveId": "1j0TpnCFsPzbM3fDwO9eZvm45ChKuctQ8",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1j0TpnCFsPzbM3fDwO9eZvm45ChKuctQ8/preview"
+      },
+      {
+        "id": "1jg5hlXSmN1tzXCmCEyD3_NvlDkTJD0rN",
+        "title": "How Computers Works",
+        "fileName": "2. How Computers Works.mp4",
+        "driveId": "1jg5hlXSmN1tzXCmCEyD3_NvlDkTJD0rN",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1jg5hlXSmN1tzXCmCEyD3_NvlDkTJD0rN/preview"
+      },
+      {
+        "id": "1lTPd9x0DeY7afupuDN9wVgjsSk2DCQkY",
+        "title": "Introduction to Number Systems",
+        "fileName": "3. Introduction to Number Systems.mp4",
+        "driveId": "1lTPd9x0DeY7afupuDN9wVgjsSk2DCQkY",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1lTPd9x0DeY7afupuDN9wVgjsSk2DCQkY/preview"
+      },
+      {
+        "id": "1CAS6YDzd3huae4U_-_Wl5JRc23Wx87Bg",
+        "title": "What is a Program",
+        "fileName": "4. What is a Program.mp4",
+        "driveId": "1CAS6YDzd3huae4U_-_Wl5JRc23Wx87Bg",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1CAS6YDzd3huae4U_-_Wl5JRc23Wx87Bg/preview"
+      },
+      {
+        "id": "1JGFfSQBcS3MuqKmC1SNF3--TSiEMeewU",
+        "title": "Low-level and High-Level Languages",
+        "fileName": "5. Low-level and High-Level Languages.mp4",
+        "driveId": "1JGFfSQBcS3MuqKmC1SNF3--TSiEMeewU",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1JGFfSQBcS3MuqKmC1SNF3--TSiEMeewU/preview"
+      },
+      {
+        "id": "1E9SxISxNUv3E81SeiPJH1cWocTDPXZoq",
+        "title": "Compiler vs Interpreter",
+        "fileName": "6. Compiler vs Interpreter.mp4",
+        "driveId": "1E9SxISxNUv3E81SeiPJH1cWocTDPXZoq",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1E9SxISxNUv3E81SeiPJH1cWocTDPXZoq/preview"
+      },
+      {
+        "id": "1znyVx8UG9K3_SBrORMclHpNizPt0hF1M",
+        "title": "What is an Operating System",
+        "fileName": "7. What is an Operating System.mp4",
+        "driveId": "1znyVx8UG9K3_SBrORMclHpNizPt0hF1M",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1znyVx8UG9K3_SBrORMclHpNizPt0hF1M/preview"
+      }
+    ],
+    "documents": [],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Essential Fundamentals Example",
+        "description": "Demonstrating essential syntax and practices for Essential Fundamentals.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Essential Fundamentals\" << endl;\n    cout << \"Module 2 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Essential Fundamentals\nModule 2 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m2-q1",
+        "question": "What is the key takeaway in the Essential Fundamentals module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Essential Fundamentals. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-3",
+    "moduleNumber": 3,
+    "title": "Program Development",
+    "category": "Beginner",
+    "folderId": "1_kA8nMMsodVXlH4mjc00KEL3ght5VH4C",
+    "folderName": "3. Program Development",
+    "videosCount": 4,
+    "documentsCount": 0,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1Fykcc81hs66f8zZg9xpE4ypCW4HLReKr",
+        "title": "Programming ParadigmsMethodologies",
+        "fileName": "1. Programming ParadigmsMethodologies.mp4",
+        "driveId": "1Fykcc81hs66f8zZg9xpE4ypCW4HLReKr",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Fykcc81hs66f8zZg9xpE4ypCW4HLReKr/preview"
+      },
+      {
+        "id": "1V11ClLF8Lzb-LhqxCdI-EBDyXYCrD3aJ",
+        "title": "What is an Algorithm",
+        "fileName": "2. What is an Algorithm.mp4",
+        "driveId": "1V11ClLF8Lzb-LhqxCdI-EBDyXYCrD3aJ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1V11ClLF8Lzb-LhqxCdI-EBDyXYCrD3aJ/preview"
+      },
+      {
+        "id": "1GFbHQzMBUoZI8Lz-xqlkbyh30nkbtfjU",
+        "title": "What is a FlowChart",
+        "fileName": "3. What is a FlowChart.mp4",
+        "driveId": "1GFbHQzMBUoZI8Lz-xqlkbyh30nkbtfjU",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1GFbHQzMBUoZI8Lz-xqlkbyh30nkbtfjU/preview"
+      },
+      {
+        "id": "1O-lcT5dwF16zrpano3a11Tyr3PDKfJIh",
+        "title": "Steps for Program Development and Execution",
+        "fileName": "4. Steps for Program Development and Execution.mp4",
+        "driveId": "1O-lcT5dwF16zrpano3a11Tyr3PDKfJIh",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1O-lcT5dwF16zrpano3a11Tyr3PDKfJIh/preview"
+      }
+    ],
+    "documents": [],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Program Development Example",
+        "description": "Demonstrating essential syntax and practices for Program Development.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Program Development\" << endl;\n    cout << \"Module 3 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Program Development\nModule 3 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m3-q1",
+        "question": "What is the key takeaway in the Program Development module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Program Development. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-4",
+    "moduleNumber": 4,
+    "title": "Compiler and IDE Setup",
+    "category": "Beginner",
+    "folderId": "1ycGlQZnIDusItzv_0s6ta9nHoSuk0BBs",
+    "folderName": "4. Compiler and IDE Setup",
+    "videosCount": 8,
+    "documentsCount": 0,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1zHfONXAx8sSRPbqNbvdlaEAL_rch3t8e",
+        "title": "Install Compiler",
+        "fileName": "1. Install Compiler.mp4",
+        "driveId": "1zHfONXAx8sSRPbqNbvdlaEAL_rch3t8e",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1zHfONXAx8sSRPbqNbvdlaEAL_rch3t8e/preview"
+      },
+      {
+        "id": "1lavzadpao_RA5gxeJIfYZ9yuRkt4RYQc",
+        "title": "Setup CodeBlocks and Settings",
+        "fileName": "2. Setup CodeBlocks and Settings.mp4",
+        "driveId": "1lavzadpao_RA5gxeJIfYZ9yuRkt4RYQc",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1lavzadpao_RA5gxeJIfYZ9yuRkt4RYQc/preview"
+      },
+      {
+        "id": "1zX7RI0EWo-JjjjVqDQJUGGvVqjkZVUOo",
+        "title": "Setup Dev-C++ and Settings",
+        "fileName": "3. Setup Dev-C++ and Settings.mp4",
+        "driveId": "1zX7RI0EWo-JjjjVqDQJUGGvVqjkZVUOo",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1zX7RI0EWo-JjjjVqDQJUGGvVqjkZVUOo/preview"
+      },
+      {
+        "id": "1PBLzVY6guB2f19nBiNbqUhb9b5hE4n6g",
+        "title": "Setup Visual Studio",
+        "fileName": "4. Setup Visual Studio.mp4",
+        "driveId": "1PBLzVY6guB2f19nBiNbqUhb9b5hE4n6g",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1PBLzVY6guB2f19nBiNbqUhb9b5hE4n6g/preview"
+      },
+      {
+        "id": "1e1tpRnVz5_rimjF3WEktsvS9mAVkLlKS",
+        "title": "Debugging in CodeBlocks",
+        "fileName": "5. Debugging in CodeBlocks.mp4",
+        "driveId": "1e1tpRnVz5_rimjF3WEktsvS9mAVkLlKS",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1e1tpRnVz5_rimjF3WEktsvS9mAVkLlKS/preview"
+      },
+      {
+        "id": "109jA-kuZNHMhRiXxx0_bRhONFyUJ7bhD",
+        "title": "Debugging in Dev-C++",
+        "fileName": "6. Debugging in Dev-C++.mp4",
+        "driveId": "109jA-kuZNHMhRiXxx0_bRhONFyUJ7bhD",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/109jA-kuZNHMhRiXxx0_bRhONFyUJ7bhD/preview"
+      },
+      {
+        "id": "1hP58YovUJEMw4C6s_Io7TQvMU6boAX3G",
+        "title": "Debugging using Visual Studio",
+        "fileName": "7. Debugging using Visual Studio.mp4",
+        "driveId": "1hP58YovUJEMw4C6s_Io7TQvMU6boAX3G",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1hP58YovUJEMw4C6s_Io7TQvMU6boAX3G/preview"
+      },
+      {
+        "id": "1WoWy8VHYPwz7qS9wqpmDSUkSk3dk8O2w",
+        "title": "Setup xcode",
+        "fileName": "8. Setup xcode.mp4",
+        "driveId": "1WoWy8VHYPwz7qS9wqpmDSUkSk3dk8O2w",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1WoWy8VHYPwz7qS9wqpmDSUkSk3dk8O2w/preview"
+      }
+    ],
+    "documents": [],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Compiler and IDE Setup Example",
+        "description": "Demonstrating essential syntax and practices for Compiler and IDE Setup.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Compiler and IDE Setup\" << endl;\n    cout << \"Module 4 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Compiler and IDE Setup\nModule 4 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m4-q1",
+        "question": "What is the key takeaway in the Compiler and IDE Setup module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Compiler and IDE Setup. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-5",
+    "moduleNumber": 5,
+    "title": "C++ Basics",
+    "category": "Beginner",
+    "folderId": "1hLJyfFrmOI2Q0FxDEoGsvw9bbVOviU_9",
+    "folderName": "5. C++ Basics",
+    "videosCount": 19,
+    "documentsCount": 5,
+    "exercisesCount": 7,
+    "videos": [
+      {
+        "id": "1anPMd0C-zbk0zDnZNS6pLLZu_FmaQGYO",
+        "title": "Skeleton of C++ Program",
+        "fileName": "1. Skeleton of C++ Program.mp4",
+        "driveId": "1anPMd0C-zbk0zDnZNS6pLLZu_FmaQGYO",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1anPMd0C-zbk0zDnZNS6pLLZu_FmaQGYO/preview"
+      },
+      {
+        "id": "1fPZjZ6cQLMbrtBGe22zA-MDpSxpHTcnU",
+        "title": "Writing My First Program",
+        "fileName": "2. Writing My First Program.mp4",
+        "driveId": "1fPZjZ6cQLMbrtBGe22zA-MDpSxpHTcnU",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1fPZjZ6cQLMbrtBGe22zA-MDpSxpHTcnU/preview"
+      },
+      {
+        "id": "1gv5kTgW3xOqjHOsg297Ss38Ka8xTemw3",
+        "title": "Demo - First Program",
+        "fileName": "3. Demo - First Program.mp4",
+        "driveId": "1gv5kTgW3xOqjHOsg297Ss38Ka8xTemw3",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1gv5kTgW3xOqjHOsg297Ss38Ka8xTemw3/preview"
+      },
+      {
+        "id": "1uheFVDQreqQBh88l30KCiIda9MPJcupp",
+        "title": "Why Data Types",
+        "fileName": "4. Why Data Types.mp4",
+        "driveId": "1uheFVDQreqQBh88l30KCiIda9MPJcupp",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1uheFVDQreqQBh88l30KCiIda9MPJcupp/preview"
+      },
+      {
+        "id": "1WLXpA0V5SbL_dHnzIA_zK8d1DZplglzx",
+        "title": "Primitive Data Types",
+        "fileName": "5. Primitive Data Types.mp4",
+        "driveId": "1WLXpA0V5SbL_dHnzIA_zK8d1DZplglzx",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1WLXpA0V5SbL_dHnzIA_zK8d1DZplglzx/preview"
+      },
+      {
+        "id": "1MRxtLPB85MUb30qPFDeUcc0p2Szihvuy",
+        "title": "Operator Precedence \\& Expressions",
+        "fileName": "6. Operator Precedence \\& Expressions.mp4",
+        "driveId": "1MRxtLPB85MUb30qPFDeUcc0p2Szihvuy",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1MRxtLPB85MUb30qPFDeUcc0p2Szihvuy/preview"
+      },
+      {
+        "id": "1df1M5asd-tf8Py2m5MEp2gIE32sW_B5-",
+        "title": "Variables",
+        "fileName": "7. Variables.mp4",
+        "driveId": "1df1M5asd-tf8Py2m5MEp2gIE32sW_B5-",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1df1M5asd-tf8Py2m5MEp2gIE32sW_B5-/preview"
+      },
+      {
+        "id": "1077Jw0FCDOkMGFc4FBILPOIo3cveiEVa",
+        "title": "Arithmetic Operators and Expressions",
+        "fileName": "8. Arithmetic Operators and Expressions.mp4",
+        "driveId": "1077Jw0FCDOkMGFc4FBILPOIo3cveiEVa",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1077Jw0FCDOkMGFc4FBILPOIo3cveiEVa/preview"
+      },
+      {
+        "id": "1HAs_0OkOwngrYJeYT7SgaOruUxIOSSZa",
+        "title": "Program using Expression",
+        "fileName": "9. Program using Expression.mp4",
+        "driveId": "1HAs_0OkOwngrYJeYT7SgaOruUxIOSSZa",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1HAs_0OkOwngrYJeYT7SgaOruUxIOSSZa/preview"
+      },
+      {
+        "id": "1-nK3O05I6UsvUKTCJUAihm4oTCqeeklE",
+        "title": "Practice Problem Sum of First N Natural Numbers",
+        "fileName": "11. Practice Problem Sum of First N Natural Numbers.mp4",
+        "driveId": "1-nK3O05I6UsvUKTCJUAihm4oTCqeeklE",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1-nK3O05I6UsvUKTCJUAihm4oTCqeeklE/preview"
+      },
+      {
+        "id": "1fVu3Fd8HHU9x1WoDEz1S5sXaNZTxdaEM",
+        "title": "Practice Problem Roots of Quadratic Equations",
+        "fileName": "13. Practice Problem Roots of Quadratic Equations.mp4",
+        "driveId": "1fVu3Fd8HHU9x1WoDEz1S5sXaNZTxdaEM",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1fVu3Fd8HHU9x1WoDEz1S5sXaNZTxdaEM/preview"
+      },
+      {
+        "id": "1nL_nwjSh-vNGYuU61cyWf3QD_CNIk7A2",
+        "title": "Demo - Expressions",
+        "fileName": "15. Demo - Expressions.mp4",
+        "driveId": "1nL_nwjSh-vNGYuU61cyWf3QD_CNIk7A2",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1nL_nwjSh-vNGYuU61cyWf3QD_CNIk7A2/preview"
+      },
+      {
+        "id": "1BgN7uOZDGDhVG6Ras9-cTXcFNLUKniY1",
+        "title": "Compound Assignment",
+        "fileName": "20. Compound Assignment.mp4",
+        "driveId": "1BgN7uOZDGDhVG6Ras9-cTXcFNLUKniY1",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1BgN7uOZDGDhVG6Ras9-cTXcFNLUKniY1/preview"
+      },
+      {
+        "id": "1C-37pnnEhVMoqxf2b9LSStxRf-e2-fmr",
+        "title": "Demo - Compound Assignment",
+        "fileName": "21. Demo - Compound Assignment.mp4",
+        "driveId": "1C-37pnnEhVMoqxf2b9LSStxRf-e2-fmr",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1C-37pnnEhVMoqxf2b9LSStxRf-e2-fmr/preview"
+      },
+      {
+        "id": "1Pnv2fFkfKZPPxol-V-lsTTFK0JU9GgJe",
+        "title": "Increment and Decrement Operators",
+        "fileName": "22. Increment and Decrement Operators.mp4",
+        "driveId": "1Pnv2fFkfKZPPxol-V-lsTTFK0JU9GgJe",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Pnv2fFkfKZPPxol-V-lsTTFK0JU9GgJe/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1aQeXbTKq-P759_3_uXZDYyxLoDFwMG7c",
+        "title": "1 First",
+        "fileName": "3.1 First.pdf",
+        "driveId": "1aQeXbTKq-P759_3_uXZDYyxLoDFwMG7c",
+        "previewUrl": "https://drive.google.com/file/d/1aQeXbTKq-P759_3_uXZDYyxLoDFwMG7c/preview"
+      },
+      {
+        "id": "1YJAEjuvH1XddeK8gK1jusGGHpJ3dyCI9",
+        "title": "1 Expression",
+        "fileName": "15.1 Expression.pdf",
+        "driveId": "1YJAEjuvH1XddeK8gK1jusGGHpJ3dyCI9",
+        "previewUrl": "https://drive.google.com/file/d/1YJAEjuvH1XddeK8gK1jusGGHpJ3dyCI9/preview"
+      },
+      {
+        "id": "1cEvOVlOik9r-TzMwUa6xEqcQrs6N2Lv7",
+        "title": "1 CompoundArithmetic",
+        "fileName": "21.1 CompoundArithmetic.pdf",
+        "driveId": "1cEvOVlOik9r-TzMwUa6xEqcQrs6N2Lv7",
+        "previewUrl": "https://drive.google.com/file/d/1cEvOVlOik9r-TzMwUa6xEqcQrs6N2Lv7/preview"
+      },
+      {
+        "id": "1q24EqpUZ7rqkYtx6KBZN5dS9yi8IBCHm",
+        "title": "1 IncDec",
+        "fileName": "23.1 IncDec.pdf",
+        "driveId": "1q24EqpUZ7rqkYtx6KBZN5dS9yi8IBCHm",
+        "previewUrl": "https://drive.google.com/file/d/1q24EqpUZ7rqkYtx6KBZN5dS9yi8IBCHm/preview"
+      },
+      {
+        "id": "1mu4JN486VBY7zmv4dhXrr7gLWD94pXyJ",
+        "title": "1 Overflow",
+        "fileName": "25.1 Overflow.pdf",
+        "driveId": "1mu4JN486VBY7zmv4dhXrr7gLWD94pXyJ",
+        "previewUrl": "https://drive.google.com/file/d/1mu4JN486VBY7zmv4dhXrr7gLWD94pXyJ/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1kpiHrtuGkcWUM5LzWn38A8iMQo5ggKNX",
+        "title": "Area of a Triangle",
+        "driveId": "1kpiHrtuGkcWUM5LzWn38A8iMQo5ggKNX",
+        "previewUrl": "https://drive.google.com/file/d/1kpiHrtuGkcWUM5LzWn38A8iMQo5ggKNX/preview"
+      },
+      {
+        "id": "1IFKOCbZNkulqNB4rE406FrBpJpf2ds3k",
+        "title": "Sum of First n Natural Number",
+        "driveId": "1IFKOCbZNkulqNB4rE406FrBpJpf2ds3k",
+        "previewUrl": "https://drive.google.com/file/d/1IFKOCbZNkulqNB4rE406FrBpJpf2ds3k/preview"
+      },
+      {
+        "id": "16355bnSDKucChSY2oKJkbcjGi-Ule_jv",
+        "title": "Finding roots of a Quadratic Equation",
+        "driveId": "16355bnSDKucChSY2oKJkbcjGi-Ule_jv",
+        "previewUrl": "https://drive.google.com/file/d/16355bnSDKucChSY2oKJkbcjGi-Ule_jv/preview"
+      },
+      {
+        "id": "1KONI0cPzZj9E0cH99ygFKlawqvv3pbgQ",
+        "title": "Calculate Distance",
+        "driveId": "1KONI0cPzZj9E0cH99ygFKlawqvv3pbgQ",
+        "previewUrl": "https://drive.google.com/file/d/1KONI0cPzZj9E0cH99ygFKlawqvv3pbgQ/preview"
+      },
+      {
+        "id": "1YPfXF_fWJzpIJcmWa6Pe8RXQe85S6WPK",
+        "title": "Calculate Simple Interest",
+        "driveId": "1YPfXF_fWJzpIJcmWa6Pe8RXQe85S6WPK",
+        "previewUrl": "https://drive.google.com/file/d/1YPfXF_fWJzpIJcmWa6Pe8RXQe85S6WPK/preview"
+      },
+      {
+        "id": "1VB-XehxJjdlnOvHAf5tzXa0CT-IzL1U6",
+        "title": "Calculate Volume of a Cylinder",
+        "driveId": "1VB-XehxJjdlnOvHAf5tzXa0CT-IzL1U6",
+        "previewUrl": "https://drive.google.com/file/d/1VB-XehxJjdlnOvHAf5tzXa0CT-IzL1U6/preview"
+      },
+      {
+        "id": "13wraQKVMDJKBSH6AMHYvjy-bFqaoU9z_",
+        "title": "Calculate Distance between 2 point",
+        "driveId": "13wraQKVMDJKBSH6AMHYvjy-bFqaoU9z_",
+        "previewUrl": "https://drive.google.com/file/d/13wraQKVMDJKBSH6AMHYvjy-bFqaoU9z_/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Area of a Triangle Calculation",
+        "description": "Calculating geometric area using floating point arithmetic and console output.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    float base = 7.5f;\n    float height = 4.0f;\n    float area = 0.5f * base * height;\n\n    cout << \"Base: \" << base << \", Height: \" << height << endl;\n    cout << \"Area of Triangle = \" << area << endl;\n    return 0;\n}",
+        "expectedOutput": "Base: 7.5, Height: 4\nArea of Triangle = 15",
+        "explanation": "Using float literals (with f suffix) performs single-precision floating point multiplication without integer truncation."
+      },
+      {
+        "title": "Compound Operators and Expressions",
+        "description": "Demonstrating +=, *=, and operator precedence.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int total = 100;\n    total += 25;\n    total *= 2;\n    cout << \"Final Total: \" << total << endl;\n    return 0;\n}",
+        "expectedOutput": "Final Total: 250",
+        "explanation": "Compound assignment operators update variable values in place efficiently."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m5-q1",
+        "question": "What is the result of integer division 7 / 2 in C++?",
+        "options": [
+          "3.5",
+          "3",
+          "4",
+          "Compilation Error"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Dividing two integers in C++ results in integer truncation, discarding the remainder."
+      },
+      {
+        "id": "m5-q2",
+        "question": "Which data type offers double-precision 64-bit IEEE floating point?",
+        "options": [
+          "float",
+          "double",
+          "long int",
+          "char"
+        ],
+        "correctAnswer": 1,
+        "explanation": "double occupies 64 bits with ~15-17 decimal digits of precision."
+      }
+    ],
+    "description": "Master fundamental C++ building blocks: primitive data types, variables, arithmetic operators, precedence, expressions, and overflow.",
+    "readingTime": "30 min"
+  },
+  {
+    "id": "module-6",
+    "moduleNumber": 6,
+    "title": "Conditional Statements",
+    "category": "Core Concepts",
+    "folderId": "1fIP5vOF5cJbQGZQfxTdxbA7MZU4AE7ET",
+    "folderName": "6. Conditional Statements",
+    "videosCount": 14,
+    "documentsCount": 5,
+    "exercisesCount": 13,
+    "videos": [
+      {
+        "id": "1QaYBw0VWBZFejTPqMOYQ51dRFhDl7z1c",
+        "title": "Conditional Statement - if",
+        "fileName": "1. Conditional Statement - if.mp4",
+        "driveId": "1QaYBw0VWBZFejTPqMOYQ51dRFhDl7z1c",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1QaYBw0VWBZFejTPqMOYQ51dRFhDl7z1c/preview"
+      },
+      {
+        "id": "1BDv3qVBOacMha9Sf5XRxW_qiG2yDHKbo",
+        "title": "Practice Problem  Finding Maximum of 2 Numbers",
+        "fileName": "2. Practice Problem  Finding Maximum of 2 Numbers.mp4",
+        "driveId": "1BDv3qVBOacMha9Sf5XRxW_qiG2yDHKbo",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1BDv3qVBOacMha9Sf5XRxW_qiG2yDHKbo/preview"
+      },
+      {
+        "id": "1G0x3ODKsRDTACum0cp1WVdos5opEiTBz",
+        "title": "Demo - Conditional Statement",
+        "fileName": "6. Demo - Conditional Statement.mp4",
+        "driveId": "1G0x3ODKsRDTACum0cp1WVdos5opEiTBz",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1G0x3ODKsRDTACum0cp1WVdos5opEiTBz/preview"
+      },
+      {
+        "id": "1KXGW8Z8uFaboxP1MPW5UYlh2PLbuyw3Z",
+        "title": "Demo - Validation",
+        "fileName": "7. Demo - Validation.mp4",
+        "driveId": "1KXGW8Z8uFaboxP1MPW5UYlh2PLbuyw3Z",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1KXGW8Z8uFaboxP1MPW5UYlh2PLbuyw3Z/preview"
+      },
+      {
+        "id": "1DQmJQALlhVjYcnQ_eHfHj0kF0qDz2M_l",
+        "title": "Logical Operators",
+        "fileName": "8. Logical Operators.mp4",
+        "driveId": "1DQmJQALlhVjYcnQ_eHfHj0kF0qDz2M_l",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1DQmJQALlhVjYcnQ_eHfHj0kF0qDz2M_l/preview"
+      },
+      {
+        "id": "1sDh179nucRj4mPb2ahMm1uCU3LbKOkAV",
+        "title": "Compound Conditional Statement",
+        "fileName": "9. Compound Conditional Statement.mp4",
+        "driveId": "1sDh179nucRj4mPb2ahMm1uCU3LbKOkAV",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1sDh179nucRj4mPb2ahMm1uCU3LbKOkAV/preview"
+      },
+      {
+        "id": "1Q_Yh8o5_9TEMtd4l4leMwqb3eX8jO4hT",
+        "title": "Practice Program using Compound Conditions",
+        "fileName": "11. Practice Program using Compound Conditions.mp4",
+        "driveId": "1Q_Yh8o5_9TEMtd4l4leMwqb3eX8jO4hT",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Q_Yh8o5_9TEMtd4l4leMwqb3eX8jO4hT/preview"
+      },
+      {
+        "id": "1DbTY9PwboZTHysDNVqGbdKdqVQ2U-OQQ",
+        "title": "Demo -Compound Condition",
+        "fileName": "14. Demo -Compound Condition.mp4",
+        "driveId": "1DbTY9PwboZTHysDNVqGbdKdqVQ2U-OQQ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1DbTY9PwboZTHysDNVqGbdKdqVQ2U-OQQ/preview"
+      },
+      {
+        "id": "12HyXcd03A1e9MsiL6TE7ysGrEXD-Ibj3",
+        "title": "Nested If",
+        "fileName": "15. Nested If.mp4",
+        "driveId": "12HyXcd03A1e9MsiL6TE7ysGrEXD-Ibj3",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/12HyXcd03A1e9MsiL6TE7ysGrEXD-Ibj3/preview"
+      },
+      {
+        "id": "1PWeNGKn7MNj0mGVzjCnm_VfnAtWpMsVv",
+        "title": "Practice Problem Finding Maximum of 3 No.",
+        "fileName": "17. Practice Problem Finding Maximum of 3 No..mp4",
+        "driveId": "1PWeNGKn7MNj0mGVzjCnm_VfnAtWpMsVv",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1PWeNGKn7MNj0mGVzjCnm_VfnAtWpMsVv/preview"
+      },
+      {
+        "id": "1Huro20N2WQmTe_4YxNsK9JyTqPCLpb5J",
+        "title": "Practice Problem Find Nature of Quadratic Roots",
+        "fileName": "18. Practice Problem Find Nature of Quadratic Roots.mp4",
+        "driveId": "1Huro20N2WQmTe_4YxNsK9JyTqPCLpb5J",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Huro20N2WQmTe_4YxNsK9JyTqPCLpb5J/preview"
+      },
+      {
+        "id": "17V0JzEedpeFChLy5P-sAuaMoQYD_fI1T",
+        "title": "Practice Problem Display Grades for Student Marks",
+        "fileName": "20. Practice Problem Display Grades for Student Marks.mp4",
+        "driveId": "17V0JzEedpeFChLy5P-sAuaMoQYD_fI1T",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/17V0JzEedpeFChLy5P-sAuaMoQYD_fI1T/preview"
+      },
+      {
+        "id": "1bDvI0MXu6rwmvBXJHpTl0KsFVqwEvKVZ",
+        "title": "else if Ladder",
+        "fileName": "23. else if Ladder.mp4",
+        "driveId": "1bDvI0MXu6rwmvBXJHpTl0KsFVqwEvKVZ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1bDvI0MXu6rwmvBXJHpTl0KsFVqwEvKVZ/preview"
+      },
+      {
+        "id": "18edJ6R7ly_8fBQaYoB641CEvxb7_Pz1-",
+        "title": "Practice Problem  Display Day name using else if ladder",
+        "fileName": "27. Practice Problem  Display Day name using else if ladder.mp4",
+        "driveId": "18edJ6R7ly_8fBQaYoB641CEvxb7_Pz1-",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/18edJ6R7ly_8fBQaYoB641CEvxb7_Pz1-/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1EpTAWE-2XVROAhn2NCRSGBFOGtl2taKc",
+        "title": "1 NotesConditional",
+        "fileName": "1.1 NotesConditional.pdf",
+        "driveId": "1EpTAWE-2XVROAhn2NCRSGBFOGtl2taKc",
+        "previewUrl": "https://drive.google.com/file/d/1EpTAWE-2XVROAhn2NCRSGBFOGtl2taKc/preview"
+      },
+      {
+        "id": "1uNEOMke_3clvYZcmz_p4fmEWL_BNLniq",
+        "title": "1 SimpleCondition",
+        "fileName": "6.1 SimpleCondition.pdf",
+        "driveId": "1uNEOMke_3clvYZcmz_p4fmEWL_BNLniq",
+        "previewUrl": "https://drive.google.com/file/d/1uNEOMke_3clvYZcmz_p4fmEWL_BNLniq/preview"
+      },
+      {
+        "id": "14BdiSXNq2fXG1EBnWPjsq6lyygTZCVyo",
+        "title": "1 Validation",
+        "fileName": "7.1 Validation.pdf",
+        "driveId": "14BdiSXNq2fXG1EBnWPjsq6lyygTZCVyo",
+        "previewUrl": "https://drive.google.com/file/d/14BdiSXNq2fXG1EBnWPjsq6lyygTZCVyo/preview"
+      },
+      {
+        "id": "1FEGmXxcngTafrq8vzKZfv0vC12-GKWl0",
+        "title": "1 CompoundCondition",
+        "fileName": "9.1 CompoundCondition.pdf",
+        "driveId": "1FEGmXxcngTafrq8vzKZfv0vC12-GKWl0",
+        "previewUrl": "https://drive.google.com/file/d/1FEGmXxcngTafrq8vzKZfv0vC12-GKWl0/preview"
+      },
+      {
+        "id": "1LQiCd8sLJF1qwk8PzJqk9Y1rlRso3P8C",
+        "title": "1 Maxof 3",
+        "fileName": "17.1 Maxof 3.pdf",
+        "driveId": "1LQiCd8sLJF1qwk8PzJqk9Y1rlRso3P8C",
+        "previewUrl": "https://drive.google.com/file/d/1LQiCd8sLJF1qwk8PzJqk9Y1rlRso3P8C/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1npIRhtheAj9Cb5RZ6PAE4_ogQjJqnEQS",
+        "title": "Maximum of 2 Numbers",
+        "driveId": "1npIRhtheAj9Cb5RZ6PAE4_ogQjJqnEQS",
+        "previewUrl": "https://drive.google.com/file/d/1npIRhtheAj9Cb5RZ6PAE4_ogQjJqnEQS/preview"
+      },
+      {
+        "id": "1zBsftfvFJ_Gh8rMd7lNvRbTvk_hgXJHU",
+        "title": "Number is Positive or Negative",
+        "driveId": "1zBsftfvFJ_Gh8rMd7lNvRbTvk_hgXJHU",
+        "previewUrl": "https://drive.google.com/file/d/1zBsftfvFJ_Gh8rMd7lNvRbTvk_hgXJHU/preview"
+      },
+      {
+        "id": "1ICb5RhGROEwfSA03j-oU_dW34qrbzpSl",
+        "title": "Check if Number is Odd or Even",
+        "driveId": "1ICb5RhGROEwfSA03j-oU_dW34qrbzpSl",
+        "previewUrl": "https://drive.google.com/file/d/1ICb5RhGROEwfSA03j-oU_dW34qrbzpSl/preview"
+      },
+      {
+        "id": "1pzZ4c94VJAlu5NCYUWvMFpFTR3yYcmld",
+        "title": "Check if Working Hours",
+        "driveId": "1pzZ4c94VJAlu5NCYUWvMFpFTR3yYcmld",
+        "previewUrl": "https://drive.google.com/file/d/1pzZ4c94VJAlu5NCYUWvMFpFTR3yYcmld/preview"
+      },
+      {
+        "id": "19dE5DKnuuD7a1F3WLU0LrRhXHWdplDHh",
+        "title": "Check Age of a person",
+        "driveId": "19dE5DKnuuD7a1F3WLU0LrRhXHWdplDHh",
+        "previewUrl": "https://drive.google.com/file/d/19dE5DKnuuD7a1F3WLU0LrRhXHWdplDHh/preview"
+      },
+      {
+        "id": "1kXyK6m0f_nQAHfCazRmlwxdBH3gHYghs",
+        "title": "Check if a person is eligible for Offer",
+        "driveId": "1kXyK6m0f_nQAHfCazRmlwxdBH3gHYghs",
+        "previewUrl": "https://drive.google.com/file/d/1kXyK6m0f_nQAHfCazRmlwxdBH3gHYghs/preview"
+      },
+      {
+        "id": "17FWPrryKI111dheD7KjuYUJq_qXleIaS",
+        "title": "Finding maximum of 3 numbers",
+        "driveId": "17FWPrryKI111dheD7KjuYUJq_qXleIaS",
+        "previewUrl": "https://drive.google.com/file/d/17FWPrryKI111dheD7KjuYUJq_qXleIaS/preview"
+      },
+      {
+        "id": "12IREUuc6P5x_NTjcrwsf9IjuD2d3rJlq",
+        "title": "Nature of Quadratic Roots",
+        "driveId": "12IREUuc6P5x_NTjcrwsf9IjuD2d3rJlq",
+        "previewUrl": "https://drive.google.com/file/d/12IREUuc6P5x_NTjcrwsf9IjuD2d3rJlq/preview"
+      },
+      {
+        "id": "1dAlX6tJg1J8Cnz9kr4f28rtRiXfvWTPJ",
+        "title": "Display  Grades for Students Marks",
+        "driveId": "1dAlX6tJg1J8Cnz9kr4f28rtRiXfvWTPJ",
+        "previewUrl": "https://drive.google.com/file/d/1dAlX6tJg1J8Cnz9kr4f28rtRiXfvWTPJ/preview"
+      },
+      {
+        "id": "1gQFMIK0tcuweQSKNeeQrPM3h9ptK4csV",
+        "title": "Calculate Discounted Bill Amount",
+        "driveId": "1gQFMIK0tcuweQSKNeeQrPM3h9ptK4csV",
+        "previewUrl": "https://drive.google.com/file/d/1gQFMIK0tcuweQSKNeeQrPM3h9ptK4csV/preview"
+      },
+      {
+        "id": "1YXFXmDWJtx2Qvh5rQrnT0FzMD59Bpe9Z",
+        "title": "Display Day name",
+        "driveId": "1YXFXmDWJtx2Qvh5rQrnT0FzMD59Bpe9Z",
+        "previewUrl": "https://drive.google.com/file/d/1YXFXmDWJtx2Qvh5rQrnT0FzMD59Bpe9Z/preview"
+      },
+      {
+        "id": "1zX2_tNnMlwPNiCVkTn4RXRBQ1dCcxnC2",
+        "title": "Display Month Name",
+        "driveId": "1zX2_tNnMlwPNiCVkTn4RXRBQ1dCcxnC2",
+        "previewUrl": "https://drive.google.com/file/d/1zX2_tNnMlwPNiCVkTn4RXRBQ1dCcxnC2/preview"
+      },
+      {
+        "id": "1HfS6orMYJeOfnOqoOtizKq2SODoLgoIf",
+        "title": "Display Digit in words",
+        "driveId": "1HfS6orMYJeOfnOqoOtizKq2SODoLgoIf",
+        "previewUrl": "https://drive.google.com/file/d/1HfS6orMYJeOfnOqoOtizKq2SODoLgoIf/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Conditional Evaluation & Grades",
+        "description": "Assigning letter grades based on percentage scores.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int score = 88;\n    char grade;\n\n    if (score >= 90) grade = 'A';\n    else if (score >= 80) grade = 'B';\n    else if (score >= 70) grade = 'C';\n    else grade = 'F';\n\n    cout << \"Score: \" << score << \" -> Grade: \" << grade << endl;\n    return 0;\n}",
+        "expectedOutput": "Score: 88 -> Grade: B",
+        "explanation": "Cascading if-else statements evaluate conditions sequentially until the first truthy condition matches."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m6-q1",
+        "question": "What happens if a switch case lacks a break statement?",
+        "options": [
+          "Syntax error",
+          "Execution falls through to subsequent cases",
+          "Program terminates",
+          "Case repeats"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Without a break statement, C++ falls through and executes following case blocks."
+      }
+    ],
+    "description": "Direct program execution flow using if, else if, nested branches, ternary operators, and switch-case statements.",
+    "readingTime": "25 min"
+  },
+  {
+    "id": "module-7",
+    "moduleNumber": 7,
+    "title": "Loops",
+    "category": "Core Concepts",
+    "folderId": "15DBGo4eRyo01LqMTGTN0uepqkA4AUqYN",
+    "folderName": "7. Loops",
+    "videosCount": 14,
+    "documentsCount": 3,
+    "exercisesCount": 5,
+    "videos": [
+      {
+        "id": "1uO9_aAnMQ95mHw8rkhOpELCcOJUFUIKL",
+        "title": "Loops - Iterative Statements",
+        "fileName": "1. Loops - Iterative Statements.mp4",
+        "driveId": "1uO9_aAnMQ95mHw8rkhOpELCcOJUFUIKL",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1uO9_aAnMQ95mHw8rkhOpELCcOJUFUIKL/preview"
+      },
+      {
+        "id": "1mfZRnJsasWgJtDg0DH4WbUgyx1U-IUGJ",
+        "title": "for Loop",
+        "fileName": "2. for Loop.mp4",
+        "driveId": "1mfZRnJsasWgJtDg0DH4WbUgyx1U-IUGJ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1mfZRnJsasWgJtDg0DH4WbUgyx1U-IUGJ/preview"
+      },
+      {
+        "id": "1Ur5AaHT4Kzv61qfy8KLZRgM8Y_FXVJbW",
+        "title": "Demo - Loops",
+        "fileName": "3. Demo - Loops.mp4",
+        "driveId": "1Ur5AaHT4Kzv61qfy8KLZRgM8Y_FXVJbW",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Ur5AaHT4Kzv61qfy8KLZRgM8Y_FXVJbW/preview"
+      },
+      {
+        "id": "151wVtOJrgKJsXE5zbCu2d77l5jLpfAZi",
+        "title": "Infinite Loop",
+        "fileName": "4. Infinite Loop.mp4",
+        "driveId": "151wVtOJrgKJsXE5zbCu2d77l5jLpfAZi",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/151wVtOJrgKJsXE5zbCu2d77l5jLpfAZi/preview"
+      },
+      {
+        "id": "1Qt_-Boe9wpGpiizEotNGLrovtSTikUIZ",
+        "title": "Practice Problem Multiplication Table",
+        "fileName": "5. Practice Problem Multiplication Table.mp4",
+        "driveId": "1Qt_-Boe9wpGpiizEotNGLrovtSTikUIZ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Qt_-Boe9wpGpiizEotNGLrovtSTikUIZ/preview"
+      },
+      {
+        "id": "1aSCcM7ej_9LE5FnapIpbSVZ0hcwf8MT4",
+        "title": "Practice Problem  Sum of N number",
+        "fileName": "6. Practice Problem  Sum of N number.mp4",
+        "driveId": "1aSCcM7ej_9LE5FnapIpbSVZ0hcwf8MT4",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1aSCcM7ej_9LE5FnapIpbSVZ0hcwf8MT4/preview"
+      },
+      {
+        "id": "1-9Q32hDe5E16Q85yf5W13_kYjTFYEfF4",
+        "title": "Practice Problem  Factorial of a number",
+        "fileName": "7. Practice Problem  Factorial of a number.mp4",
+        "driveId": "1-9Q32hDe5E16Q85yf5W13_kYjTFYEfF4",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1-9Q32hDe5E16Q85yf5W13_kYjTFYEfF4/preview"
+      },
+      {
+        "id": "1Z9e7tGokoun7RUNTAurprHt-NQTMuwcC",
+        "title": "Practice Problem Factors of a Number",
+        "fileName": "8. Practice Problem Factors of a Number.mp4",
+        "driveId": "1Z9e7tGokoun7RUNTAurprHt-NQTMuwcC",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Z9e7tGokoun7RUNTAurprHt-NQTMuwcC/preview"
+      },
+      {
+        "id": "1rK4HaIk1_1Z9ps8R4wY09_G-N4f5mz99",
+        "title": "Practice Problem  Perfect Number",
+        "fileName": "9. Practice Problem  Perfect Number.mp4",
+        "driveId": "1rK4HaIk1_1Z9ps8R4wY09_G-N4f5mz99",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1rK4HaIk1_1Z9ps8R4wY09_G-N4f5mz99/preview"
+      },
+      {
+        "id": "1Fpb2ycmc05AMS8mB4MX2_VyNaioSjX1c",
+        "title": "Practice Problem  find Prime Number",
+        "fileName": "10. Practice Problem  find Prime Number.mp4",
+        "driveId": "1Fpb2ycmc05AMS8mB4MX2_VyNaioSjX1c",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Fpb2ycmc05AMS8mB4MX2_VyNaioSjX1c/preview"
+      },
+      {
+        "id": "19JLFKH-mXjnXheySyIorPjMXzX5AI4ql",
+        "title": "Demo for Loops",
+        "fileName": "16. Demo for Loops.mp4",
+        "driveId": "19JLFKH-mXjnXheySyIorPjMXzX5AI4ql",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/19JLFKH-mXjnXheySyIorPjMXzX5AI4ql/preview"
+      },
+      {
+        "id": "1kJkjxmBfO7B_LWrS2L_3Vdigk-7gPy7X",
+        "title": "Practice Problem  Display Digits of a Number",
+        "fileName": "17. Practice Problem  Display Digits of a Number.mp4",
+        "driveId": "1kJkjxmBfO7B_LWrS2L_3Vdigk-7gPy7X",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1kJkjxmBfO7B_LWrS2L_3Vdigk-7gPy7X/preview"
+      },
+      {
+        "id": "1xTTX1tUMXYv5SbbIXNVcoS3gwcToVbmz",
+        "title": "Practice Problem  check  for Armstrong  Number",
+        "fileName": "18. Practice Problem  check  for Armstrong  Number.mp4",
+        "driveId": "1xTTX1tUMXYv5SbbIXNVcoS3gwcToVbmz",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1xTTX1tUMXYv5SbbIXNVcoS3gwcToVbmz/preview"
+      },
+      {
+        "id": "1JXNaTbKAIAmnORiQquygGrmLrqElWq-a",
+        "title": "Practice Problem  Reverse a Number",
+        "fileName": "19. Practice Problem  Reverse a Number.mp4",
+        "driveId": "1JXNaTbKAIAmnORiQquygGrmLrqElWq-a",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1JXNaTbKAIAmnORiQquygGrmLrqElWq-a/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1Z1ciGUVBjTDgJ20H_1jsD6j3exC-YbUX",
+        "title": "1 Loops",
+        "fileName": "1.1 Loops.pdf",
+        "driveId": "1Z1ciGUVBjTDgJ20H_1jsD6j3exC-YbUX",
+        "previewUrl": "https://drive.google.com/file/d/1Z1ciGUVBjTDgJ20H_1jsD6j3exC-YbUX/preview"
+      },
+      {
+        "id": "1HXIBtrexc2a0g8CVU_eyyMFvsNiL2qC_",
+        "title": "1 AllLoops",
+        "fileName": "3.1 AllLoops.pdf",
+        "driveId": "1HXIBtrexc2a0g8CVU_eyyMFvsNiL2qC_",
+        "previewUrl": "https://drive.google.com/file/d/1HXIBtrexc2a0g8CVU_eyyMFvsNiL2qC_/preview"
+      },
+      {
+        "id": "1UVKdkzpPSuTRDqkLF9Z6yROiWi5hq16W",
+        "title": "1 infiniteloop",
+        "fileName": "4.1 infiniteloop.pdf",
+        "driveId": "1UVKdkzpPSuTRDqkLF9Z6yROiWi5hq16W",
+        "previewUrl": "https://drive.google.com/file/d/1UVKdkzpPSuTRDqkLF9Z6yROiWi5hq16W/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "135Ve0gYDwiiDMrq9ThqY9OGTy8HVMvjc",
+        "title": "Sum of first N natural number",
+        "driveId": "135Ve0gYDwiiDMrq9ThqY9OGTy8HVMvjc",
+        "previewUrl": "https://drive.google.com/file/d/135Ve0gYDwiiDMrq9ThqY9OGTy8HVMvjc/preview"
+      },
+      {
+        "id": "1lFHIw_l-k7lS-YQdkbxBJFYB7KvwpEmc",
+        "title": "Find Factorial of number",
+        "driveId": "1lFHIw_l-k7lS-YQdkbxBJFYB7KvwpEmc",
+        "previewUrl": "https://drive.google.com/file/d/1lFHIw_l-k7lS-YQdkbxBJFYB7KvwpEmc/preview"
+      },
+      {
+        "id": "191MkyZ3IETnHsc-aPkDb9lR17SoAdlGV",
+        "title": "Find factors of a number",
+        "driveId": "191MkyZ3IETnHsc-aPkDb9lR17SoAdlGV",
+        "previewUrl": "https://drive.google.com/file/d/191MkyZ3IETnHsc-aPkDb9lR17SoAdlGV/preview"
+      },
+      {
+        "id": "1cixp9GgiOptNocfoIR5Mh0gJFb9UUSTB",
+        "title": "Check if a number is Perfect Number",
+        "driveId": "1cixp9GgiOptNocfoIR5Mh0gJFb9UUSTB",
+        "previewUrl": "https://drive.google.com/file/d/1cixp9GgiOptNocfoIR5Mh0gJFb9UUSTB/preview"
+      },
+      {
+        "id": "1J_8vw_evdWV-v8TYo07POjgiqLPliAL4",
+        "title": "Check if a Number is Prime number",
+        "driveId": "1J_8vw_evdWV-v8TYo07POjgiqLPliAL4",
+        "previewUrl": "https://drive.google.com/file/d/1J_8vw_evdWV-v8TYo07POjgiqLPliAL4/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Sum of First N Natural Numbers",
+        "description": "Computing cumulative sum using a for loop.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 10;\n    int sum = 0;\n    for (int i = 1; i <= n; ++i) {\n        sum += i;\n    }\n    cout << \"Sum of numbers from 1 to \" << n << \" is: \" << sum << endl;\n    return 0;\n}",
+        "expectedOutput": "Sum of numbers from 1 to 10 is: 55",
+        "explanation": "A for loop initializes the counter, evaluates the condition, and increments after each iteration."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m7-q1",
+        "question": "Which loop guarantees that the body executes at least once?",
+        "options": [
+          "for",
+          "while",
+          "do-while",
+          "foreach"
+        ],
+        "correctAnswer": 2,
+        "explanation": "do-while evaluates its condition after running the loop body, guaranteeing at least one execution."
+      }
+    ],
+    "description": "Automate repeated logic with while, do-while, and counted for loops, including break, continue, and loop optimization.",
+    "readingTime": "25 min"
+  },
+  {
+    "id": "module-8",
+    "moduleNumber": 8,
+    "title": "Arrays",
+    "category": "Core Concepts",
+    "folderId": "1xGe4qt0CXReLcbfDA3U_Jo8UcSHr0PRB",
+    "folderName": "8. Arrays",
+    "videosCount": 14,
+    "documentsCount": 5,
+    "exercisesCount": 10,
+    "videos": [
+      {
+        "id": "1wODHNV_8FtIXTLf41Y8wKi1QrP3EE-ny",
+        "title": "Arrays - Introduction",
+        "fileName": "1. Arrays - Introduction.mp4",
+        "driveId": "1wODHNV_8FtIXTLf41Y8wKi1QrP3EE-ny",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1wODHNV_8FtIXTLf41Y8wKi1QrP3EE-ny/preview"
+      },
+      {
+        "id": "1lSClG9wLH5BffcZRycX_RNaaGTsemt3R",
+        "title": "Arrays Declarations",
+        "fileName": "2. Arrays Declarations.mp4",
+        "driveId": "1lSClG9wLH5BffcZRycX_RNaaGTsemt3R",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1lSClG9wLH5BffcZRycX_RNaaGTsemt3R/preview"
+      },
+      {
+        "id": "1r_cWHbX_MQTAH9XKqHvmyhsL55FowL66",
+        "title": "For Each Loop",
+        "fileName": "3. For Each Loop.mp4",
+        "driveId": "1r_cWHbX_MQTAH9XKqHvmyhsL55FowL66",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1r_cWHbX_MQTAH9XKqHvmyhsL55FowL66/preview"
+      },
+      {
+        "id": "16NVmg87YkuquL8nu94b6-Km2ItCvN8nK",
+        "title": "Practice Problem Adding all Elements of Array",
+        "fileName": "5. Practice Problem Adding all Elements of Array.mp4",
+        "driveId": "16NVmg87YkuquL8nu94b6-Km2ItCvN8nK",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/16NVmg87YkuquL8nu94b6-Km2ItCvN8nK/preview"
+      },
+      {
+        "id": "1JR-WPM_n29fv_935qitVXvrjCWIxaxNQ",
+        "title": "Practice Problem Finding Max element from Array",
+        "fileName": "6. Practice Problem Finding Max element from Array.mp4",
+        "driveId": "1JR-WPM_n29fv_935qitVXvrjCWIxaxNQ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1JR-WPM_n29fv_935qitVXvrjCWIxaxNQ/preview"
+      },
+      {
+        "id": "1k8-dqc5lgwLMIpaOzxsHb7PH5cQJbdfh",
+        "title": "Practice Problem Linear Search",
+        "fileName": "7. Practice Problem Linear Search.mp4",
+        "driveId": "1k8-dqc5lgwLMIpaOzxsHb7PH5cQJbdfh",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1k8-dqc5lgwLMIpaOzxsHb7PH5cQJbdfh/preview"
+      },
+      {
+        "id": "1xNBeBsfQh1P5DBwoWKTUQdnfXr80T5SG",
+        "title": "Practice Problem Binary Search",
+        "fileName": "8. Practice Problem Binary Search.mp4",
+        "driveId": "1xNBeBsfQh1P5DBwoWKTUQdnfXr80T5SG",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1xNBeBsfQh1P5DBwoWKTUQdnfXr80T5SG/preview"
+      },
+      {
+        "id": "15Nz7BeyPSx1-6xqGQtCBVpuLMyGxZdOK",
+        "title": "Demo - Array Programs",
+        "fileName": "13. Demo - Array Programs.mp4",
+        "driveId": "15Nz7BeyPSx1-6xqGQtCBVpuLMyGxZdOK",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/15Nz7BeyPSx1-6xqGQtCBVpuLMyGxZdOK/preview"
+      },
+      {
+        "id": "1p100PYxL141XH3QLe6AjORsF9UAxynUd",
+        "title": "Nested Loops",
+        "fileName": "14. Nested Loops.mp4",
+        "driveId": "1p100PYxL141XH3QLe6AjORsF9UAxynUd",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1p100PYxL141XH3QLe6AjORsF9UAxynUd/preview"
+      },
+      {
+        "id": "1thweFCzwvI4eD1w6Bzmcp4CEN_blPA16",
+        "title": "Demo - Nested Loop",
+        "fileName": "15. Demo - Nested Loop.mp4",
+        "driveId": "1thweFCzwvI4eD1w6Bzmcp4CEN_blPA16",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1thweFCzwvI4eD1w6Bzmcp4CEN_blPA16/preview"
+      },
+      {
+        "id": "1_q1h6sdVnGq_MFPCqPVgHYUVWqic5TRE",
+        "title": "Practice Problem Drawing Pattern 1",
+        "fileName": "16. Practice Problem Drawing Pattern 1.mp4",
+        "driveId": "1_q1h6sdVnGq_MFPCqPVgHYUVWqic5TRE",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1_q1h6sdVnGq_MFPCqPVgHYUVWqic5TRE/preview"
+      },
+      {
+        "id": "1c9q_OXRa7oayflSbGcYfzjHVIu5gY2L0",
+        "title": "Practice Problem Drawing Pattern 2",
+        "fileName": "17. Practice Problem Drawing Pattern 2.mp4",
+        "driveId": "1c9q_OXRa7oayflSbGcYfzjHVIu5gY2L0",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1c9q_OXRa7oayflSbGcYfzjHVIu5gY2L0/preview"
+      },
+      {
+        "id": "1K-pCF-mtc9hs_D7YD5Awgc4lYjTxTSez",
+        "title": "Practice Problem Drawing Pattern 3",
+        "fileName": "18. Practice Problem Drawing Pattern 3.mp4",
+        "driveId": "1K-pCF-mtc9hs_D7YD5Awgc4lYjTxTSez",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1K-pCF-mtc9hs_D7YD5Awgc4lYjTxTSez/preview"
+      },
+      {
+        "id": "1Q2d28Oe_EdXsb1WdZ1z9iwYkM_AH4m1L",
+        "title": "Patterns using Nested Loops",
+        "fileName": "24. Patterns using Nested Loops.mp4",
+        "driveId": "1Q2d28Oe_EdXsb1WdZ1z9iwYkM_AH4m1L",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Q2d28Oe_EdXsb1WdZ1z9iwYkM_AH4m1L/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1CnNi-IfZfJ2mxEyiSqQsVh9sJtQNqd9M",
+        "title": "1 Arrays",
+        "fileName": "1.1 Arrays.pdf",
+        "driveId": "1CnNi-IfZfJ2mxEyiSqQsVh9sJtQNqd9M",
+        "previewUrl": "https://drive.google.com/file/d/1CnNi-IfZfJ2mxEyiSqQsVh9sJtQNqd9M/preview"
+      },
+      {
+        "id": "1edfdVo-uCddvz_9hype5XTJBhC5cjBFn",
+        "title": "1 ArrayDecl",
+        "fileName": "13.1 ArrayDecl.pdf",
+        "driveId": "1edfdVo-uCddvz_9hype5XTJBhC5cjBFn",
+        "previewUrl": "https://drive.google.com/file/d/1edfdVo-uCddvz_9hype5XTJBhC5cjBFn/preview"
+      },
+      {
+        "id": "1PJegDoquV_SV6rb7ROLk1diwwHuI_LIr",
+        "title": "1 ArrayPrograms",
+        "fileName": "13.1 ArrayPrograms.pdf",
+        "driveId": "1PJegDoquV_SV6rb7ROLk1diwwHuI_LIr",
+        "previewUrl": "https://drive.google.com/file/d/1PJegDoquV_SV6rb7ROLk1diwwHuI_LIr/preview"
+      },
+      {
+        "id": "1OhnzRnSafbY_39ZwbDISoFAHBfjWdFD0",
+        "title": "2 ArrayDecl",
+        "fileName": "13.2 ArrayDecl.pdf",
+        "driveId": "1OhnzRnSafbY_39ZwbDISoFAHBfjWdFD0",
+        "previewUrl": "https://drive.google.com/file/d/1OhnzRnSafbY_39ZwbDISoFAHBfjWdFD0/preview"
+      },
+      {
+        "id": "1pqLg9kVxMEIUzqRLvNJl_vLLI8wAKRLF",
+        "title": "2 ArrayPrograms",
+        "fileName": "13.2 ArrayPrograms.pdf",
+        "driveId": "1pqLg9kVxMEIUzqRLvNJl_vLLI8wAKRLF",
+        "previewUrl": "https://drive.google.com/file/d/1pqLg9kVxMEIUzqRLvNJl_vLLI8wAKRLF/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1XVnd574sfzMb7SA71GTMhjLuMcDcqOP7",
+        "title": "Display all Elements using For Each loop",
+        "driveId": "1XVnd574sfzMb7SA71GTMhjLuMcDcqOP7",
+        "previewUrl": "https://drive.google.com/file/d/1XVnd574sfzMb7SA71GTMhjLuMcDcqOP7/preview"
+      },
+      {
+        "id": "1KhqHkVzwmTiFqkmtWIaXkFA4Vt8GtzoW",
+        "title": "Sum of all Elements of Array",
+        "driveId": "1KhqHkVzwmTiFqkmtWIaXkFA4Vt8GtzoW",
+        "previewUrl": "https://drive.google.com/file/d/1KhqHkVzwmTiFqkmtWIaXkFA4Vt8GtzoW/preview"
+      },
+      {
+        "id": "1taIC57Vo7RKRDGxuIxYMfZiz8oWay-Yp",
+        "title": "Find Maximum element from Array",
+        "driveId": "1taIC57Vo7RKRDGxuIxYMfZiz8oWay-Yp",
+        "previewUrl": "https://drive.google.com/file/d/1taIC57Vo7RKRDGxuIxYMfZiz8oWay-Yp/preview"
+      },
+      {
+        "id": "1_E5LuPrc47O_4Pajl6vWdC-8zFdaJvbl",
+        "title": "Find Minimum Element in an Array",
+        "driveId": "1_E5LuPrc47O_4Pajl6vWdC-8zFdaJvbl",
+        "previewUrl": "https://drive.google.com/file/d/1_E5LuPrc47O_4Pajl6vWdC-8zFdaJvbl/preview"
+      },
+      {
+        "id": "1tZJBUvhrjp3ww54a4RzpjIxC8--d2Yrl",
+        "title": "Count number of negative and positive numbers in Array",
+        "driveId": "1tZJBUvhrjp3ww54a4RzpjIxC8--d2Yrl",
+        "previewUrl": "https://drive.google.com/file/d/1tZJBUvhrjp3ww54a4RzpjIxC8--d2Yrl/preview"
+      },
+      {
+        "id": "1I92eeVfx92b7g4G4pi3SH63SkZZ3KCOS",
+        "title": "Draw a Square of ",
+        "driveId": "1I92eeVfx92b7g4G4pi3SH63SkZZ3KCOS",
+        "previewUrl": "https://drive.google.com/file/d/1I92eeVfx92b7g4G4pi3SH63SkZZ3KCOS/preview"
+      },
+      {
+        "id": "19KXAsPTdgz08k86hHQDqjxMffSBo2mZv",
+        "title": "Draw a Lower Triangle of ",
+        "driveId": "19KXAsPTdgz08k86hHQDqjxMffSBo2mZv",
+        "previewUrl": "https://drive.google.com/file/d/19KXAsPTdgz08k86hHQDqjxMffSBo2mZv/preview"
+      },
+      {
+        "id": "1BkJMnqeOBBA8wV3_NYPYgNa6U01JzOv0",
+        "title": "Draw a Upper Triangle of ",
+        "driveId": "1BkJMnqeOBBA8wV3_NYPYgNa6U01JzOv0",
+        "previewUrl": "https://drive.google.com/file/d/1BkJMnqeOBBA8wV3_NYPYgNa6U01JzOv0/preview"
+      },
+      {
+        "id": "1Ge8c1CsDXAeHDrR-opi3A7ZeV3UhoPM6",
+        "title": "Draw cross Lower Triangle of  ",
+        "driveId": "1Ge8c1CsDXAeHDrR-opi3A7ZeV3UhoPM6",
+        "previewUrl": "https://drive.google.com/file/d/1Ge8c1CsDXAeHDrR-opi3A7ZeV3UhoPM6/preview"
+      },
+      {
+        "id": "1VEJBvMA9dS3_7x4Vvk-lMeeB0NwdEzmZ",
+        "title": "Draw cross Upper Triangle of  ",
+        "driveId": "1VEJBvMA9dS3_7x4Vvk-lMeeB0NwdEzmZ",
+        "previewUrl": "https://drive.google.com/file/d/1VEJBvMA9dS3_7x4Vvk-lMeeB0NwdEzmZ/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "2D Matrix Summation",
+        "description": "Iterating nested rows and columns in a 2x3 matrix.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int matrix[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int total = 0;\n\n    for (int r = 0; r < 2; ++r) {\n        for (int c = 0; c < 3; ++c) {\n            total += matrix[r][c];\n        }\n    }\n    cout << \"Total Sum of 2D Matrix Elements = \" << total << endl;\n    return 0;\n}",
+        "expectedOutput": "Total Sum of 2D Matrix Elements = 21",
+        "explanation": "Nested loops index multi-dimensional arrays row-major in contiguous memory."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m8-q1",
+        "question": "What is the index of the first element in a C++ array of size N?",
+        "options": [
+          "1",
+          "0",
+          "-1",
+          "N-1"
+        ],
+        "correctAnswer": 1,
+        "explanation": "C++ arrays are zero-indexed: the first element is at index 0."
+      }
+    ],
+    "description": "Manage homogeneous sequential data: fixed arrays, multi-dimensional matrices, linear search, and binary search.",
+    "readingTime": "30 min"
+  },
+  {
+    "id": "module-9",
+    "moduleNumber": 9,
+    "title": "Pointers",
+    "category": "Core Concepts",
+    "folderId": "1wQv0bMxn0xRqOW73FS8huPqxbas0QREg",
+    "folderName": "9. Pointers",
+    "videosCount": 11,
+    "documentsCount": 2,
+    "exercisesCount": 2,
+    "videos": [
+      {
+        "id": "1YJKBslmTZNa0NZP1FbmcAIp_Al2vgGik",
+        "title": "Pointers - Introduction",
+        "fileName": "1. Pointers - Introduction.mp4",
+        "driveId": "1YJKBslmTZNa0NZP1FbmcAIp_Al2vgGik",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1YJKBslmTZNa0NZP1FbmcAIp_Al2vgGik/preview"
+      },
+      {
+        "id": "1Isu89zqgSvj628u6cCmt2AWnw5oI9RBA",
+        "title": "Demo - Pointers",
+        "fileName": "2. Demo - Pointers.mp4",
+        "driveId": "1Isu89zqgSvj628u6cCmt2AWnw5oI9RBA",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Isu89zqgSvj628u6cCmt2AWnw5oI9RBA/preview"
+      },
+      {
+        "id": "14BUXLg08eTmU-kRvxRM4LP0icsFUXvVB",
+        "title": "Why Pointers",
+        "fileName": "3. Why Pointers.mp4",
+        "driveId": "14BUXLg08eTmU-kRvxRM4LP0icsFUXvVB",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/14BUXLg08eTmU-kRvxRM4LP0icsFUXvVB/preview"
+      },
+      {
+        "id": "1c5ETm2Z08L_Yeu7MTG-MrVQgxYjCTxAR",
+        "title": "Heap Memory Allocation",
+        "fileName": "4. Heap Memory Allocation.mp4",
+        "driveId": "1c5ETm2Z08L_Yeu7MTG-MrVQgxYjCTxAR",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1c5ETm2Z08L_Yeu7MTG-MrVQgxYjCTxAR/preview"
+      },
+      {
+        "id": "1Wm8gG9X5_fCtv0AdtExGj44z4k-eKd-R",
+        "title": "Demo - Dynamic Allocation",
+        "fileName": "5. Demo - Dynamic Allocation.mp4",
+        "driveId": "1Wm8gG9X5_fCtv0AdtExGj44z4k-eKd-R",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Wm8gG9X5_fCtv0AdtExGj44z4k-eKd-R/preview"
+      },
+      {
+        "id": "1kiuJ6otHAUy-Eq94t9hFG2KfbB44Zbg-",
+        "title": "Pointer Arithmetic",
+        "fileName": "6. Pointer Arithmetic.mp4",
+        "driveId": "1kiuJ6otHAUy-Eq94t9hFG2KfbB44Zbg-",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1kiuJ6otHAUy-Eq94t9hFG2KfbB44Zbg-/preview"
+      },
+      {
+        "id": "1V5jALMjbY8QnnOA3qSqv8tNJXO4gGvnM",
+        "title": "Demo - Pointer Arithmetic",
+        "fileName": "8. Demo - Pointer Arithmetic.mp4",
+        "driveId": "1V5jALMjbY8QnnOA3qSqv8tNJXO4gGvnM",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1V5jALMjbY8QnnOA3qSqv8tNJXO4gGvnM/preview"
+      },
+      {
+        "id": "1zuGzx6lGL3_aE0RkVAVTrZcHxVqII8cD",
+        "title": "Problems using Pointers",
+        "fileName": "9. Problems using Pointers.mp4",
+        "driveId": "1zuGzx6lGL3_aE0RkVAVTrZcHxVqII8cD",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1zuGzx6lGL3_aE0RkVAVTrZcHxVqII8cD/preview"
+      },
+      {
+        "id": "1fqJPr7Ytb7VEnuBdnS1Pz_4rRa80r6mX",
+        "title": "Reference",
+        "fileName": "10. Reference.mp4",
+        "driveId": "1fqJPr7Ytb7VEnuBdnS1Pz_4rRa80r6mX",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1fqJPr7Ytb7VEnuBdnS1Pz_4rRa80r6mX/preview"
+      },
+      {
+        "id": "1tXllEkN-uyClRHsw_HaWesuzuA0Q9wEW",
+        "title": "Demo - Reference",
+        "fileName": "11. Demo - Reference.mp4",
+        "driveId": "1tXllEkN-uyClRHsw_HaWesuzuA0Q9wEW",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1tXllEkN-uyClRHsw_HaWesuzuA0Q9wEW/preview"
+      },
+      {
+        "id": "1EpDvKySOpUPrSMmPpcsG9d4sOEkhXTBw",
+        "title": "Function Pointer",
+        "fileName": "12. Function Pointer.mp4",
+        "driveId": "1EpDvKySOpUPrSMmPpcsG9d4sOEkhXTBw",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1EpDvKySOpUPrSMmPpcsG9d4sOEkhXTBw/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1Rzk2aR6pElfLc70LS8JVR-1eX-hIVI7d",
+        "title": "1 PointerArithmetic",
+        "fileName": "8.1 PointerArithmetic.pdf",
+        "driveId": "1Rzk2aR6pElfLc70LS8JVR-1eX-hIVI7d",
+        "previewUrl": "https://drive.google.com/file/d/1Rzk2aR6pElfLc70LS8JVR-1eX-hIVI7d/preview"
+      },
+      {
+        "id": "1Fvuwm8jj0Np9ytfd2odYB-f31wXAs51O",
+        "title": "1 Reference",
+        "fileName": "10.1 Reference.pdf",
+        "driveId": "1Fvuwm8jj0Np9ytfd2odYB-f31wXAs51O",
+        "previewUrl": "https://drive.google.com/file/d/1Fvuwm8jj0Np9ytfd2odYB-f31wXAs51O/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1G-tLPHl-CsRGj45QQQ-b_YQvp5n06Ssu",
+        "title": "Pointer Arithmetic",
+        "driveId": "1G-tLPHl-CsRGj45QQQ-b_YQvp5n06Ssu",
+        "previewUrl": "https://drive.google.com/file/d/1G-tLPHl-CsRGj45QQQ-b_YQvp5n06Ssu/preview"
+      },
+      {
+        "id": "1l30wAyMTbeluITDqDpXuzXGAyHesM96l",
+        "title": "Quiz for Pointers",
+        "driveId": "1l30wAyMTbeluITDqDpXuzXGAyHesM96l",
+        "previewUrl": "https://drive.google.com/file/d/1l30wAyMTbeluITDqDpXuzXGAyHesM96l/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Pointer Dereferencing & Dynamic Memory",
+        "description": "Allocating an integer on the heap and releasing it with delete.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int val = 42;\n    int* ptr = &val;\n\n    cout << \"Value directly: \" << val << endl;\n    cout << \"Value via pointer: \" << *ptr << endl;\n\n    int* heapVal = new int(100);\n    cout << \"Heap Value: \" << *heapVal << endl;\n    delete heapVal;\n    heapVal = nullptr;\n\n    return 0;\n}",
+        "expectedOutput": "Value directly: 42\nValue via pointer: 42\nHeap Value: 100",
+        "explanation": "The & operator returns the memory address; * dereferences it. delete deallocates memory allocated with new to prevent memory leaks."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m9-q1",
+        "question": "What happens if dynamic memory allocated with new is never freed with delete?",
+        "options": [
+          "Segmentation fault",
+          "Memory leak",
+          "Compile error",
+          "Stack overflow"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Failing to release heap memory leads to a memory leak where unused memory remains allocated."
+      }
+    ],
+    "description": "Deep dive into memory addresses, pointer dereferencing (*), address-of (&), heap allocation with new/delete, and pointer arithmetic.",
+    "readingTime": "35 min"
+  },
+  {
+    "id": "module-10",
+    "moduleNumber": 10,
+    "title": "Strings",
+    "category": "Core Concepts",
+    "folderId": "1YyQr3HnjHWSHqPmzHc1og114JzDo2OAe",
+    "folderName": "10. Strings",
+    "videosCount": 17,
+    "documentsCount": 0,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1uFmpL-tDdm2F7CZDbJZ9AM_SaIB3V6XU",
+        "title": "Introduction to String",
+        "fileName": "1. Introduction to String.mp4",
+        "driveId": "1uFmpL-tDdm2F7CZDbJZ9AM_SaIB3V6XU",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1uFmpL-tDdm2F7CZDbJZ9AM_SaIB3V6XU/preview"
+      },
+      {
+        "id": "1N7ihGqXeLgMmghjqsxnf02lwSD0HLQdA",
+        "title": "Reading and Writing String",
+        "fileName": "2. Reading and Writing String.mp4",
+        "driveId": "1N7ihGqXeLgMmghjqsxnf02lwSD0HLQdA",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1N7ihGqXeLgMmghjqsxnf02lwSD0HLQdA/preview"
+      },
+      {
+        "id": "1cuf-GepTw0zESgMiV8W0suPyJFolEhp9",
+        "title": "String Functions - Length , Concatenate and Copy",
+        "fileName": "3. String Functions - Length , Concatenate and Copy.mp4",
+        "driveId": "1cuf-GepTw0zESgMiV8W0suPyJFolEhp9",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1cuf-GepTw0zESgMiV8W0suPyJFolEhp9/preview"
+      },
+      {
+        "id": "1iFg6VFoOdafMrB9da0dfvZez7k-WXMdk",
+        "title": "String Function - Substring and Compare",
+        "fileName": "4. String Function - Substring and Compare.mp4",
+        "driveId": "1iFg6VFoOdafMrB9da0dfvZez7k-WXMdk",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1iFg6VFoOdafMrB9da0dfvZez7k-WXMdk/preview"
+      },
+      {
+        "id": "1EfMSdGlOhiRHGBNSajl7zvFL4YLRZG5q",
+        "title": "String Functions - Tokeniser and To Integer",
+        "fileName": "5. String Functions - Tokeniser and To Integer.mp4",
+        "driveId": "1EfMSdGlOhiRHGBNSajl7zvFL4YLRZG5q",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1EfMSdGlOhiRHGBNSajl7zvFL4YLRZG5q/preview"
+      },
+      {
+        "id": "1KrvbpOsY2j9x7bor-Y67fIUO--yChYo9",
+        "title": "Class String",
+        "fileName": "6. Class String.mp4",
+        "driveId": "1KrvbpOsY2j9x7bor-Y67fIUO--yChYo9",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1KrvbpOsY2j9x7bor-Y67fIUO--yChYo9/preview"
+      },
+      {
+        "id": "1PyhbmRRCzyn_5FEdFfdHXnQT97u3EsNL",
+        "title": "Basic Functions of Class String",
+        "fileName": "7. Basic Functions of Class String.mp4",
+        "driveId": "1PyhbmRRCzyn_5FEdFfdHXnQT97u3EsNL",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1PyhbmRRCzyn_5FEdFfdHXnQT97u3EsNL/preview"
+      },
+      {
+        "id": "1nAqu-0-84aH3ajiQpaIdJkJD-opH5cwh",
+        "title": "Class String - Append and Insert Functions",
+        "fileName": "8. Class String - Append and Insert Functions.mp4",
+        "driveId": "1nAqu-0-84aH3ajiQpaIdJkJD-opH5cwh",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1nAqu-0-84aH3ajiQpaIdJkJD-opH5cwh/preview"
+      },
+      {
+        "id": "1wzBACwhVuCwUK79DSK0H32mG7gVJgS53",
+        "title": "String Class - Replace and Swap Functions",
+        "fileName": "9. String Class - Replace and Swap Functions.mp4",
+        "driveId": "1wzBACwhVuCwUK79DSK0H32mG7gVJgS53",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1wzBACwhVuCwUK79DSK0H32mG7gVJgS53/preview"
+      },
+      {
+        "id": "1m-beNtU945lm8b2Irq5RqTNX7Gi32RCJ",
+        "title": "String Class - Copy and Find Functions",
+        "fileName": "10. String Class - Copy and Find Functions.mp4",
+        "driveId": "1m-beNtU945lm8b2Irq5RqTNX7Gi32RCJ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1m-beNtU945lm8b2Irq5RqTNX7Gi32RCJ/preview"
+      },
+      {
+        "id": "1l5Kl_3S_tWloOd4lwzrOU89bHyKIG7s7",
+        "title": "String Class - Substring , Compare and Operators",
+        "fileName": "11. String Class - Substring , Compare and Operators.mp4",
+        "driveId": "1l5Kl_3S_tWloOd4lwzrOU89bHyKIG7s7",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1l5Kl_3S_tWloOd4lwzrOU89bHyKIG7s7/preview"
+      },
+      {
+        "id": "1PXqQwoeZLaQXD6LN_tfTDhS_9uij6ufP",
+        "title": "String Class - Iterator",
+        "fileName": "12. String Class - Iterator.mp4",
+        "driveId": "1PXqQwoeZLaQXD6LN_tfTDhS_9uij6ufP",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1PXqQwoeZLaQXD6LN_tfTDhS_9uij6ufP/preview"
+      },
+      {
+        "id": "1Hegy4H_LHhHzoumtHTdrzY6tlKcQve6d",
+        "title": "Practice Problem  Find Length of a String",
+        "fileName": "13. Practice Problem  Find Length of a String.mp4",
+        "driveId": "1Hegy4H_LHhHzoumtHTdrzY6tlKcQve6d",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Hegy4H_LHhHzoumtHTdrzY6tlKcQve6d/preview"
+      },
+      {
+        "id": "1exE6cZclCpR5tkugWEkT4kHOI-M65hj2",
+        "title": "Practice Problem  Change Cases of Letters",
+        "fileName": "14. Practice Problem  Change Cases of Letters.mp4",
+        "driveId": "1exE6cZclCpR5tkugWEkT4kHOI-M65hj2",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1exE6cZclCpR5tkugWEkT4kHOI-M65hj2/preview"
+      },
+      {
+        "id": "15tvPAMxBdBl08Gnhtq1Yv3g1lupeZ_yF",
+        "title": "Practice Problem  Count Vowels and Words in a String",
+        "fileName": "15. Practice Problem  Count Vowels and Words in a String.mp4",
+        "driveId": "15tvPAMxBdBl08Gnhtq1Yv3g1lupeZ_yF",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/15tvPAMxBdBl08Gnhtq1Yv3g1lupeZ_yF/preview"
+      }
+    ],
+    "documents": [],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Strings Example",
+        "description": "Demonstrating essential syntax and practices for Strings.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Strings\" << endl;\n    cout << \"Module 10 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Strings\nModule 10 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m10-q1",
+        "question": "What is the key takeaway in the Strings module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Strings. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-11",
+    "moduleNumber": 11,
+    "title": "Functions",
+    "category": "Core Concepts",
+    "folderId": "1M4mYusK05GlfkhkEUJDpqVyiwccJy6wL",
+    "folderName": "11. Functions",
+    "videosCount": 13,
+    "documentsCount": 5,
+    "exercisesCount": 6,
+    "videos": [
+      {
+        "id": "1Ax3jsJz-W2Q6okbU1b9D8xWveMH0S7e0",
+        "title": "Functions - Introduction",
+        "fileName": "1. Functions - Introduction.mp4",
+        "driveId": "1Ax3jsJz-W2Q6okbU1b9D8xWveMH0S7e0",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Ax3jsJz-W2Q6okbU1b9D8xWveMH0S7e0/preview"
+      },
+      {
+        "id": "1uDMm-hjxbHp8rNf7BI-2G_iY-0aAmu9C",
+        "title": "Demo - Functions",
+        "fileName": "2. Demo - Functions.mp4",
+        "driveId": "1uDMm-hjxbHp8rNf7BI-2G_iY-0aAmu9C",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1uDMm-hjxbHp8rNf7BI-2G_iY-0aAmu9C/preview"
+      },
+      {
+        "id": "15bilI9mnBwGAfB459Ekafr_Jg_KDr5c6",
+        "title": "Function Overloading",
+        "fileName": "6. Function Overloading.mp4",
+        "driveId": "15bilI9mnBwGAfB459Ekafr_Jg_KDr5c6",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/15bilI9mnBwGAfB459Ekafr_Jg_KDr5c6/preview"
+      },
+      {
+        "id": "1nJIJgFW-Id0r29ZRV45mJ73LUXUEtab4",
+        "title": "Demo - Function Overloading",
+        "fileName": "9. Demo - Function Overloading.mp4",
+        "driveId": "1nJIJgFW-Id0r29ZRV45mJ73LUXUEtab4",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1nJIJgFW-Id0r29ZRV45mJ73LUXUEtab4/preview"
+      },
+      {
+        "id": "12DH8MHMtr4DF3PLfpMK9KrvayaxGe0zb",
+        "title": "Function Template",
+        "fileName": "10. Function Template.mp4",
+        "driveId": "12DH8MHMtr4DF3PLfpMK9KrvayaxGe0zb",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/12DH8MHMtr4DF3PLfpMK9KrvayaxGe0zb/preview"
+      },
+      {
+        "id": "1ZaIUofG_GfOvycp2cP6fauOMVkvVHJFv",
+        "title": "Demo - Function Template",
+        "fileName": "12. Demo - Function Template.mp4",
+        "driveId": "1ZaIUofG_GfOvycp2cP6fauOMVkvVHJFv",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1ZaIUofG_GfOvycp2cP6fauOMVkvVHJFv/preview"
+      },
+      {
+        "id": "1QjMLcMmW3nsQfnmOowRv3L-FF6auErWS",
+        "title": "Default Arguments",
+        "fileName": "13. Default Arguments.mp4",
+        "driveId": "1QjMLcMmW3nsQfnmOowRv3L-FF6auErWS",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1QjMLcMmW3nsQfnmOowRv3L-FF6auErWS/preview"
+      },
+      {
+        "id": "1c9X10mHPhahfVTuAgSsNqIf34XV5jU76",
+        "title": "Demo - Default Arguments",
+        "fileName": "14. Demo - Default Arguments.mp4",
+        "driveId": "1c9X10mHPhahfVTuAgSsNqIf34XV5jU76",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1c9X10mHPhahfVTuAgSsNqIf34XV5jU76/preview"
+      },
+      {
+        "id": "1kA17XA2MzxlmQFSwoOmlPcVYjag5qIJs",
+        "title": "Parameter Passing - Pass by Value",
+        "fileName": "15. Parameter Passing - Pass by Value.mp4",
+        "driveId": "1kA17XA2MzxlmQFSwoOmlPcVYjag5qIJs",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1kA17XA2MzxlmQFSwoOmlPcVYjag5qIJs/preview"
+      },
+      {
+        "id": "1BGRMJTpOWjKd_tVo9O_gu-mh0SXZaimz",
+        "title": "Demo - Pass by Value",
+        "fileName": "16. Demo - Pass by Value.mp4",
+        "driveId": "1BGRMJTpOWjKd_tVo9O_gu-mh0SXZaimz",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1BGRMJTpOWjKd_tVo9O_gu-mh0SXZaimz/preview"
+      },
+      {
+        "id": "11DBaphgMmXE7ojYlIZQxtASG8RrjSezk",
+        "title": "Parameter Passing - Pass By Address",
+        "fileName": "17. Parameter Passing - Pass By Address.mp4",
+        "driveId": "11DBaphgMmXE7ojYlIZQxtASG8RrjSezk",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/11DBaphgMmXE7ojYlIZQxtASG8RrjSezk/preview"
+      },
+      {
+        "id": "1FDmmLB8yeeGeWHCpSyUJPhepP7240gh8",
+        "title": "Parameter Passing - Pass by Reference",
+        "fileName": "18. Parameter Passing - Pass by Reference.mp4",
+        "driveId": "1FDmmLB8yeeGeWHCpSyUJPhepP7240gh8",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1FDmmLB8yeeGeWHCpSyUJPhepP7240gh8/preview"
+      },
+      {
+        "id": "1rpS8XjvkASGQQc6qNvh9McbasABXvhJX",
+        "title": "Demo - Pass by Address and Reference",
+        "fileName": "19. Demo - Pass by Address and Reference.mp4",
+        "driveId": "1rpS8XjvkASGQQc6qNvh9McbasABXvhJX",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1rpS8XjvkASGQQc6qNvh9McbasABXvhJX/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1C3LLnJ0PiBNYhuejDhnF25R4MHMHJxAd",
+        "title": "1 Functions",
+        "fileName": "1.1 Functions.pdf",
+        "driveId": "1C3LLnJ0PiBNYhuejDhnF25R4MHMHJxAd",
+        "previewUrl": "https://drive.google.com/file/d/1C3LLnJ0PiBNYhuejDhnF25R4MHMHJxAd/preview"
+      },
+      {
+        "id": "1SclxeJmwVOyWzfuo6YOwyBnewQuCpZPd",
+        "title": "1 DefaultArguments",
+        "fileName": "14.1 DefaultArguments.pdf",
+        "driveId": "1SclxeJmwVOyWzfuo6YOwyBnewQuCpZPd",
+        "previewUrl": "https://drive.google.com/file/d/1SclxeJmwVOyWzfuo6YOwyBnewQuCpZPd/preview"
+      },
+      {
+        "id": "17QZSpJuD9ZRAqWHduhn4nRO0gUflbDiM",
+        "title": "2 PassByValue",
+        "fileName": "16.2 PassByValue.pdf",
+        "driveId": "17QZSpJuD9ZRAqWHduhn4nRO0gUflbDiM",
+        "previewUrl": "https://drive.google.com/file/d/17QZSpJuD9ZRAqWHduhn4nRO0gUflbDiM/preview"
+      },
+      {
+        "id": "1kuOYQG2LDcB9KK6BpxauceF1tQp-oxAQ",
+        "title": "1 PAssByAddress",
+        "fileName": "19.1 PAssByAddress.pdf",
+        "driveId": "1kuOYQG2LDcB9KK6BpxauceF1tQp-oxAQ",
+        "previewUrl": "https://drive.google.com/file/d/1kuOYQG2LDcB9KK6BpxauceF1tQp-oxAQ/preview"
+      },
+      {
+        "id": "1UyD1MbN9A4XwDs0NyxfTdzXeAKfxnhcM",
+        "title": "2 PassByReference",
+        "fileName": "19.2 PassByReference.pdf",
+        "driveId": "1UyD1MbN9A4XwDs0NyxfTdzXeAKfxnhcM",
+        "previewUrl": "https://drive.google.com/file/d/1UyD1MbN9A4XwDs0NyxfTdzXeAKfxnhcM/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "19s7_o1w12okzkIUWR1ylySgGDPcW62Ay",
+        "title": "Function for Adding 2 numbers",
+        "driveId": "19s7_o1w12okzkIUWR1ylySgGDPcW62Ay",
+        "previewUrl": "https://drive.google.com/file/d/19s7_o1w12okzkIUWR1ylySgGDPcW62Ay/preview"
+      },
+      {
+        "id": "1MzH2HPYBM3UUlgpEPVu9eSeak0-2kNr0",
+        "title": "Function for Finding maximum of 3 numbers",
+        "driveId": "1MzH2HPYBM3UUlgpEPVu9eSeak0-2kNr0",
+        "previewUrl": "https://drive.google.com/file/d/1MzH2HPYBM3UUlgpEPVu9eSeak0-2kNr0/preview"
+      },
+      {
+        "id": "1v7kfjgfp8sz1EN5Yz_I0lx9qEBJpNsp3",
+        "title": "Function to calculate m power n.",
+        "driveId": "1v7kfjgfp8sz1EN5Yz_I0lx9qEBJpNsp3",
+        "previewUrl": "https://drive.google.com/file/d/1v7kfjgfp8sz1EN5Yz_I0lx9qEBJpNsp3/preview"
+      },
+      {
+        "id": "1XBQXWQsWKWNxNfzo_SnkOaARHJIxVUdd",
+        "title": "Function Overloading for Sum of Numbers",
+        "driveId": "1XBQXWQsWKWNxNfzo_SnkOaARHJIxVUdd",
+        "previewUrl": "https://drive.google.com/file/d/1XBQXWQsWKWNxNfzo_SnkOaARHJIxVUdd/preview"
+      },
+      {
+        "id": "1kT0E2TFHi1HSPQ2gzqOp1tgA33aPDO2x",
+        "title": "Function Overloading for Min of Numbers",
+        "driveId": "1kT0E2TFHi1HSPQ2gzqOp1tgA33aPDO2x",
+        "previewUrl": "https://drive.google.com/file/d/1kT0E2TFHi1HSPQ2gzqOp1tgA33aPDO2x/preview"
+      },
+      {
+        "id": "1XUw302KRykDgESddozzOJkvQT3KyFZzM",
+        "title": "Function Template for Finding Maximum Number",
+        "driveId": "1XUw302KRykDgESddozzOJkvQT3KyFZzM",
+        "previewUrl": "https://drive.google.com/file/d/1XUw302KRykDgESddozzOJkvQT3KyFZzM/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Functions Example",
+        "description": "Demonstrating essential syntax and practices for Functions.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Functions\" << endl;\n    cout << \"Module 11 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Functions\nModule 11 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m11-q1",
+        "question": "What is the key takeaway in the Functions module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Functions. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-12",
+    "moduleNumber": 12,
+    "title": "Introduction to OOPS",
+    "category": "Object Oriented (OOP)",
+    "folderId": "16uXUk5wHPL1Z_bgObWpdVqTn4LASs1kD",
+    "folderName": "12. Introduction to OOPS",
+    "videosCount": 19,
+    "documentsCount": 7,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1vDep8Da5SU1TFBI6L6wZfCfTdnCVfUB9",
+        "title": "Introduction to OOPS",
+        "fileName": "1. Introduction to OOPS.mp4",
+        "driveId": "1vDep8Da5SU1TFBI6L6wZfCfTdnCVfUB9",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1vDep8Da5SU1TFBI6L6wZfCfTdnCVfUB9/preview"
+      },
+      {
+        "id": "1Hc67xtGiBeQWuykHs8LlQrtDBD8jnQAQ",
+        "title": "Principles of Object-Oriented Programming",
+        "fileName": "2. Principles of Object-Oriented Programming.mp4",
+        "driveId": "1Hc67xtGiBeQWuykHs8LlQrtDBD8jnQAQ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Hc67xtGiBeQWuykHs8LlQrtDBD8jnQAQ/preview"
+      },
+      {
+        "id": "1W6aBngQqfgJPZTLf1r_aJhguNhAaShEH",
+        "title": "Class vs Objects",
+        "fileName": "3. Class vs Objects.mp4",
+        "driveId": "1W6aBngQqfgJPZTLf1r_aJhguNhAaShEH",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1W6aBngQqfgJPZTLf1r_aJhguNhAaShEH/preview"
+      },
+      {
+        "id": "1djDFm2pI_f6KcYj3nUlC7RhRwyx4g9Sr",
+        "title": "Writing a Class in C++",
+        "fileName": "4. Writing a Class in C++.mp4",
+        "driveId": "1djDFm2pI_f6KcYj3nUlC7RhRwyx4g9Sr",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1djDFm2pI_f6KcYj3nUlC7RhRwyx4g9Sr/preview"
+      },
+      {
+        "id": "1dt4bk9uY9TBD7Xgp71zmplFwfl9eU4xr",
+        "title": "Demo - Class in C++",
+        "fileName": "5. Demo - Class in C++.mp4",
+        "driveId": "1dt4bk9uY9TBD7Xgp71zmplFwfl9eU4xr",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1dt4bk9uY9TBD7Xgp71zmplFwfl9eU4xr/preview"
+      },
+      {
+        "id": "1Qbf0gEx4wIrhVfoDwn13Ftusrh9_6xGZ",
+        "title": "Pointer to an Object in Heap",
+        "fileName": "6. Pointer to an Object in Heap.mp4",
+        "driveId": "1Qbf0gEx4wIrhVfoDwn13Ftusrh9_6xGZ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Qbf0gEx4wIrhVfoDwn13Ftusrh9_6xGZ/preview"
+      },
+      {
+        "id": "1LmufqlGXscnkzZtrtBN18wGArqvBLqgk",
+        "title": "Demo - Pointer to an Object",
+        "fileName": "7. Demo - Pointer to an Object.mp4",
+        "driveId": "1LmufqlGXscnkzZtrtBN18wGArqvBLqgk",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1LmufqlGXscnkzZtrtBN18wGArqvBLqgk/preview"
+      },
+      {
+        "id": "1hobX1jwZ__FeIurD9hJVozi3zxXsNeWH",
+        "title": "Philosophy Behind Data Hiding",
+        "fileName": "8. Philosophy Behind Data Hiding.mp4",
+        "driveId": "1hobX1jwZ__FeIurD9hJVozi3zxXsNeWH",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1hobX1jwZ__FeIurD9hJVozi3zxXsNeWH/preview"
+      },
+      {
+        "id": "1juikG7A8k6K7-9vFxSF8WXHW03OaZL3n",
+        "title": "Data Hinding in C++ (Accessors and Mutators)",
+        "fileName": "9. Data Hinding in C++ (Accessors and Mutators).mp4",
+        "driveId": "1juikG7A8k6K7-9vFxSF8WXHW03OaZL3n",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1juikG7A8k6K7-9vFxSF8WXHW03OaZL3n/preview"
+      },
+      {
+        "id": "1bRd5zSaDpQ34qYntBH5Qjpy_OwGYBsGS",
+        "title": "Demo - Accessors and Mutators",
+        "fileName": "10. Demo - Accessors and Mutators.mp4",
+        "driveId": "1bRd5zSaDpQ34qYntBH5Qjpy_OwGYBsGS",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1bRd5zSaDpQ34qYntBH5Qjpy_OwGYBsGS/preview"
+      },
+      {
+        "id": "14mr5X2Dov628NXjkhDH8h_IoN07nvi0w",
+        "title": "Philosophy Behind Constructors",
+        "fileName": "11. Philosophy Behind Constructors.mp4",
+        "driveId": "14mr5X2Dov628NXjkhDH8h_IoN07nvi0w",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/14mr5X2Dov628NXjkhDH8h_IoN07nvi0w/preview"
+      },
+      {
+        "id": "14md8Mck7KbIHaWcE8qMr4JPbwkwXP7Cr",
+        "title": "Constructors",
+        "fileName": "12. Constructors.mp4",
+        "driveId": "14md8Mck7KbIHaWcE8qMr4JPbwkwXP7Cr",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/14md8Mck7KbIHaWcE8qMr4JPbwkwXP7Cr/preview"
+      },
+      {
+        "id": "1wvXfGDvJCpy7gGvFqiHSFS-uZMmgrXdA",
+        "title": "Deep Copy Constructor",
+        "fileName": "13. Deep Copy Constructor.mp4",
+        "driveId": "1wvXfGDvJCpy7gGvFqiHSFS-uZMmgrXdA",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1wvXfGDvJCpy7gGvFqiHSFS-uZMmgrXdA/preview"
+      },
+      {
+        "id": "1RWoaOB98nPZm8Em1Ry3bAzufSa2XZAPI",
+        "title": "Demo - Constructors",
+        "fileName": "14. Demo - Constructors.mp4",
+        "driveId": "1RWoaOB98nPZm8Em1Ry3bAzufSa2XZAPI",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1RWoaOB98nPZm8Em1Ry3bAzufSa2XZAPI/preview"
+      },
+      {
+        "id": "1YBs5899HhWpgl41A8qLjnOJWpKVzci1r",
+        "title": "All Types of Functions in a Class",
+        "fileName": "15. All Types of Functions in a Class.mp4",
+        "driveId": "1YBs5899HhWpgl41A8qLjnOJWpKVzci1r",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1YBs5899HhWpgl41A8qLjnOJWpKVzci1r/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1bbPPiGygT7UbARhNHwewCkwfteWYW_mm",
+        "title": "1 OOps",
+        "fileName": "3.1 OOps.pdf",
+        "driveId": "1bbPPiGygT7UbARhNHwewCkwfteWYW_mm",
+        "previewUrl": "https://drive.google.com/file/d/1bbPPiGygT7UbARhNHwewCkwfteWYW_mm/preview"
+      },
+      {
+        "id": "1dvfJRnHBqbI3D2PpQ4Wz7SECtNbSdOdL",
+        "title": "1 FirstClass",
+        "fileName": "5.1 FirstClass.pdf",
+        "driveId": "1dvfJRnHBqbI3D2PpQ4Wz7SECtNbSdOdL",
+        "previewUrl": "https://drive.google.com/file/d/1dvfJRnHBqbI3D2PpQ4Wz7SECtNbSdOdL/preview"
+      },
+      {
+        "id": "1KfCBhfQFz_3q__8LnAgLtWSq2qMq7_Jw",
+        "title": "2 FirstClass",
+        "fileName": "5.2 FirstClass.pdf",
+        "driveId": "1KfCBhfQFz_3q__8LnAgLtWSq2qMq7_Jw",
+        "previewUrl": "https://drive.google.com/file/d/1KfCBhfQFz_3q__8LnAgLtWSq2qMq7_Jw/preview"
+      },
+      {
+        "id": "1DycTLv2zDJtSFKzbK3LBkxNtIDnWsQxO",
+        "title": "1 AllMethods",
+        "fileName": "15.1 AllMethods.pdf",
+        "driveId": "1DycTLv2zDJtSFKzbK3LBkxNtIDnWsQxO",
+        "previewUrl": "https://drive.google.com/file/d/1DycTLv2zDJtSFKzbK3LBkxNtIDnWsQxO/preview"
+      },
+      {
+        "id": "1Wnu3w9pMXsSNKDEYT0ddkJwwGsqoXz3y",
+        "title": "1 NotesForClasses",
+        "fileName": "15.1 NotesForClasses.pdf",
+        "driveId": "1Wnu3w9pMXsSNKDEYT0ddkJwwGsqoXz3y",
+        "previewUrl": "https://drive.google.com/file/d/1Wnu3w9pMXsSNKDEYT0ddkJwwGsqoXz3y/preview"
+      },
+      {
+        "id": "13Plb3bWIoRQqIK6S_YYYUqqZbvTp_XcU",
+        "title": "2 AllMethods",
+        "fileName": "15.2 AllMethods.pdf",
+        "driveId": "13Plb3bWIoRQqIK6S_YYYUqqZbvTp_XcU",
+        "previewUrl": "https://drive.google.com/file/d/13Plb3bWIoRQqIK6S_YYYUqqZbvTp_XcU/preview"
+      },
+      {
+        "id": "1yf-qwJGCYfMMhqrU_fRpp_XDdYYTx2bD",
+        "title": "2 NotesForClasses",
+        "fileName": "15.2 NotesForClasses.pdf",
+        "driveId": "1yf-qwJGCYfMMhqrU_fRpp_XDdYYTx2bD",
+        "previewUrl": "https://drive.google.com/file/d/1yf-qwJGCYfMMhqrU_fRpp_XDdYYTx2bD/preview"
+      }
+    ],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Rectangle Class with Encapsulation",
+        "description": "Defining a class with private properties, setters, getters, and member functions.",
+        "code": "#include <iostream>\nusing namespace std;\n\nclass Rectangle {\nprivate:\n    double length;\n    double breadth;\npublic:\n    Rectangle(double l, double b) : length(l), breadth(b) {}\n\n    double getArea() const {\n        return length * breadth;\n    }\n\n    double getPerimeter() const {\n        return 2 * (length + breadth);\n    }\n};\n\nint main() {\n    Rectangle rect(10.0, 5.0);\n    cout << \"Rectangle Area: \" << rect.getArea() << endl;\n    cout << \"Rectangle Perimeter: \" << rect.getPerimeter() << endl;\n    return 0;\n}",
+        "expectedOutput": "Rectangle Area: 50\nRectangle Perimeter: 30",
+        "explanation": "Classes encapsulate data within private fields and expose operations via public member methods."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m12-q1",
+        "question": "What is the default access specifier for members in a C++ class?",
+        "options": [
+          "public",
+          "protected",
+          "private",
+          "internal"
+        ],
+        "correctAnswer": 2,
+        "explanation": "In C++ classes, members default to private (unlike structs where they default to public)."
+      }
+    ],
+    "description": "Foundations of Object-Oriented Programming (OOP): classes, objects, data hiding, private vs public, accessors and mutators.",
+    "readingTime": "35 min"
+  },
+  {
+    "id": "module-13",
+    "moduleNumber": 13,
+    "title": "Operator Overloading",
+    "category": "Object Oriented (OOP)",
+    "folderId": "1kvhGPeCCZCfZNTOc68xNYFDhhIlPIhRE",
+    "folderName": "13. Operator Overloading",
+    "videosCount": 7,
+    "documentsCount": 5,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "1CLbfr0NmD2YoQj1XsLtbFaXhBTuacZ9k",
+        "title": "Operator Overloading",
+        "fileName": "1. Operator Overloading.mp4",
+        "driveId": "1CLbfr0NmD2YoQj1XsLtbFaXhBTuacZ9k",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1CLbfr0NmD2YoQj1XsLtbFaXhBTuacZ9k/preview"
+      },
+      {
+        "id": "1DoIJnnCWJH8sk9BDv7zAQ6alQuDmexmS",
+        "title": "Demo - Operator Overloading",
+        "fileName": "2. Demo - Operator Overloading.mp4",
+        "driveId": "1DoIJnnCWJH8sk9BDv7zAQ6alQuDmexmS",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1DoIJnnCWJH8sk9BDv7zAQ6alQuDmexmS/preview"
+      },
+      {
+        "id": "1hJ_2keRzG0b6XfQNCDIIv2psNehQa25b",
+        "title": "Friend Operator Overloading",
+        "fileName": "3. Friend Operator Overloading.mp4",
+        "driveId": "1hJ_2keRzG0b6XfQNCDIIv2psNehQa25b",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1hJ_2keRzG0b6XfQNCDIIv2psNehQa25b/preview"
+      },
+      {
+        "id": "1U0yb3yTQoMmhmZ8rXO7w41fcUONJ4FBB",
+        "title": "Demo - Operator Overloading using Friend functions",
+        "fileName": "4. Demo - Operator Overloading using Friend functions.mp4",
+        "driveId": "1U0yb3yTQoMmhmZ8rXO7w41fcUONJ4FBB",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1U0yb3yTQoMmhmZ8rXO7w41fcUONJ4FBB/preview"
+      },
+      {
+        "id": "1QsjeRyDZX6X_dEHvfv_lV-w4sbx8TNQ0",
+        "title": "Insertion Operator Overloading",
+        "fileName": "5. Insertion Operator Overloading.mp4",
+        "driveId": "1QsjeRyDZX6X_dEHvfv_lV-w4sbx8TNQ0",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1QsjeRyDZX6X_dEHvfv_lV-w4sbx8TNQ0/preview"
+      },
+      {
+        "id": "1hottQ2OZbJ-NccWUXKP5-4hDYnrEFtIO",
+        "title": "Demo - Insertion Operator Overloading",
+        "fileName": "6. Demo - Insertion Operator Overloading.mp4",
+        "driveId": "1hottQ2OZbJ-NccWUXKP5-4hDYnrEFtIO",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1hottQ2OZbJ-NccWUXKP5-4hDYnrEFtIO/preview"
+      },
+      {
+        "id": "1QybAyphavfc3lobhI5xhFCR3UntDKbIw",
+        "title": "Practice Student Exercise #10",
+        "fileName": "7. Practice Student Exercise #10.mp4",
+        "driveId": "1QybAyphavfc3lobhI5xhFCR3UntDKbIw",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1QybAyphavfc3lobhI5xhFCR3UntDKbIw/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "11wa-Lh-ckfYABZ2E3Ploa6zZyWFjCoqp",
+        "title": "2 OperatorOverloading",
+        "fileName": "2.2 OperatorOverloading.pdf",
+        "driveId": "11wa-Lh-ckfYABZ2E3Ploa6zZyWFjCoqp",
+        "previewUrl": "https://drive.google.com/file/d/11wa-Lh-ckfYABZ2E3Ploa6zZyWFjCoqp/preview"
+      },
+      {
+        "id": "18VXwelYNlMePOemnzw88yRDf_LWfuzmR",
+        "title": "1 OperatorUsingFriend",
+        "fileName": "4.1 OperatorUsingFriend.pdf",
+        "driveId": "18VXwelYNlMePOemnzw88yRDf_LWfuzmR",
+        "previewUrl": "https://drive.google.com/file/d/18VXwelYNlMePOemnzw88yRDf_LWfuzmR/preview"
+      },
+      {
+        "id": "1iM2rGpAXuH4HvoBilPY7iZe3u-fLwaOv",
+        "title": "2 OperatorUsingFriend",
+        "fileName": "4.2 OperatorUsingFriend.pdf",
+        "driveId": "1iM2rGpAXuH4HvoBilPY7iZe3u-fLwaOv",
+        "previewUrl": "https://drive.google.com/file/d/1iM2rGpAXuH4HvoBilPY7iZe3u-fLwaOv/preview"
+      },
+      {
+        "id": "1UxaqFhKf-rZ3YEbJ5dIoOk1OLI1DMUW5",
+        "title": "1 StreamOverloading",
+        "fileName": "6.1 StreamOverloading.pdf",
+        "driveId": "1UxaqFhKf-rZ3YEbJ5dIoOk1OLI1DMUW5",
+        "previewUrl": "https://drive.google.com/file/d/1UxaqFhKf-rZ3YEbJ5dIoOk1OLI1DMUW5/preview"
+      },
+      {
+        "id": "1zPTrr4LqL23WxQU-fSiRCSfYqw8DEGCB",
+        "title": "1 10. Retional Number",
+        "fileName": "7.1 10. Retional Number.pdf",
+        "driveId": "1zPTrr4LqL23WxQU-fSiRCSfYqw8DEGCB",
+        "previewUrl": "https://drive.google.com/file/d/1zPTrr4LqL23WxQU-fSiRCSfYqw8DEGCB/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "16EKKhRzVf-u75013aChfvfd8Ol1hgHIK",
+        "title": "Quiz for Overloading",
+        "driveId": "16EKKhRzVf-u75013aChfvfd8Ol1hgHIK",
+        "previewUrl": "https://drive.google.com/file/d/16EKKhRzVf-u75013aChfvfd8Ol1hgHIK/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Operator Overloading Example",
+        "description": "Demonstrating essential syntax and practices for Operator Overloading.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Operator Overloading\" << endl;\n    cout << \"Module 13 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Operator Overloading\nModule 13 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m13-q1",
+        "question": "What is the key takeaway in the Operator Overloading module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Operator Overloading. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-14",
+    "moduleNumber": 14,
+    "title": "Inheritance",
+    "category": "Object Oriented (OOP)",
+    "folderId": "1inVo1fc0mHxp0f0PzyeSEHKawpS-PAPS",
+    "folderName": "14. Inheritance",
+    "videosCount": 14,
+    "documentsCount": 7,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "1tASixrzqBLxqZQmWeL-F7YSZ6y-5jqPU",
+        "title": "Inheritance Introduction",
+        "fileName": "1. Inheritance Introduction.mp4",
+        "driveId": "1tASixrzqBLxqZQmWeL-F7YSZ6y-5jqPU",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1tASixrzqBLxqZQmWeL-F7YSZ6y-5jqPU/preview"
+      },
+      {
+        "id": "1jwr-ffDUuzAiUpzYc-kxJAmJXrrXqf_V",
+        "title": "Inheritance Examples",
+        "fileName": "2. Inheritance Examples.mp4",
+        "driveId": "1jwr-ffDUuzAiUpzYc-kxJAmJXrrXqf_V",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1jwr-ffDUuzAiUpzYc-kxJAmJXrrXqf_V/preview"
+      },
+      {
+        "id": "1dlUBgthKYz5xD9e4yrIXdGhSUdSu-2fc",
+        "title": "Demo - Inheritance",
+        "fileName": "3. Demo - Inheritance.mp4",
+        "driveId": "1dlUBgthKYz5xD9e4yrIXdGhSUdSu-2fc",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1dlUBgthKYz5xD9e4yrIXdGhSUdSu-2fc/preview"
+      },
+      {
+        "id": "1v7dCgcsRACzp6yeZXZQYc3MGS3dScLyB",
+        "title": "Demo - Inheritance Example",
+        "fileName": "4. Demo - Inheritance Example.mp4",
+        "driveId": "1v7dCgcsRACzp6yeZXZQYc3MGS3dScLyB",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1v7dCgcsRACzp6yeZXZQYc3MGS3dScLyB/preview"
+      },
+      {
+        "id": "1dQzaxYIKrZP4PkgdzhRpbGoKbTZr_wiA",
+        "title": "Constructors in Inheritance",
+        "fileName": "5. Constructors in Inheritance.mp4",
+        "driveId": "1dQzaxYIKrZP4PkgdzhRpbGoKbTZr_wiA",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1dQzaxYIKrZP4PkgdzhRpbGoKbTZr_wiA/preview"
+      },
+      {
+        "id": "1I4x0DTLgCtdO4lwG_qWOPkoGK6pe6UMw",
+        "title": "Demo Constructors in Inheritance",
+        "fileName": "6. Demo Constructors in Inheritance.mp4",
+        "driveId": "1I4x0DTLgCtdO4lwG_qWOPkoGK6pe6UMw",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1I4x0DTLgCtdO4lwG_qWOPkoGK6pe6UMw/preview"
+      },
+      {
+        "id": "1ZI9xl938CeL63jsy0q_MOLesoFQa1mfM",
+        "title": "isA and  hasA",
+        "fileName": "7. isA and  hasA.mp4",
+        "driveId": "1ZI9xl938CeL63jsy0q_MOLesoFQa1mfM",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1ZI9xl938CeL63jsy0q_MOLesoFQa1mfM/preview"
+      },
+      {
+        "id": "1vvwDtsUpRRrnEovqbgbSR_yTy247p4B1",
+        "title": "Access Specifiers",
+        "fileName": "8. Access Specifiers.mp4",
+        "driveId": "1vvwDtsUpRRrnEovqbgbSR_yTy247p4B1",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1vvwDtsUpRRrnEovqbgbSR_yTy247p4B1/preview"
+      },
+      {
+        "id": "1ScXoACWo3MhvkNHBiSrzGoGxPdLPp1VA",
+        "title": "Demo - Access Specifiers",
+        "fileName": "9. Demo - Access Specifiers.mp4",
+        "driveId": "1ScXoACWo3MhvkNHBiSrzGoGxPdLPp1VA",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1ScXoACWo3MhvkNHBiSrzGoGxPdLPp1VA/preview"
+      },
+      {
+        "id": "1FcTr58mZozDhNixavW10pDotpawRwqR_",
+        "title": "Types of Inheritance",
+        "fileName": "10. Types of Inheritance.mp4",
+        "driveId": "1FcTr58mZozDhNixavW10pDotpawRwqR_",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1FcTr58mZozDhNixavW10pDotpawRwqR_/preview"
+      },
+      {
+        "id": "1jI7lsihC4cRupUXMA8ySTHdVUiBBTigs",
+        "title": "Ways of Inheritance",
+        "fileName": "11. Ways of Inheritance.mp4",
+        "driveId": "1jI7lsihC4cRupUXMA8ySTHdVUiBBTigs",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1jI7lsihC4cRupUXMA8ySTHdVUiBBTigs/preview"
+      },
+      {
+        "id": "1GRfzB5j3c6xESIK0U77FS3RgloynToQk",
+        "title": "Ways of Inheritance Demo",
+        "fileName": "12. Ways of Inheritance Demo.mp4",
+        "driveId": "1GRfzB5j3c6xESIK0U77FS3RgloynToQk",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1GRfzB5j3c6xESIK0U77FS3RgloynToQk/preview"
+      },
+      {
+        "id": "1sHkyv8nP3osRoSdS9h2xXxr0-NSWOSZi",
+        "title": "Generalization and Specialization",
+        "fileName": "13. Generalization and Specialization.mp4",
+        "driveId": "1sHkyv8nP3osRoSdS9h2xXxr0-NSWOSZi",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1sHkyv8nP3osRoSdS9h2xXxr0-NSWOSZi/preview"
+      },
+      {
+        "id": "1pzNYYGCRqwtWQpRqS-LQaDA2r_PJAr7o",
+        "title": "Practice Student Exercise #11",
+        "fileName": "14. Practice Student Exercise #11.mp4",
+        "driveId": "1pzNYYGCRqwtWQpRqS-LQaDA2r_PJAr7o",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1pzNYYGCRqwtWQpRqS-LQaDA2r_PJAr7o/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1cy2N0w2VWFcgrU7Us3DDDKpnGDC1-WCt",
+        "title": "2 Inheritance",
+        "fileName": "3.2 Inheritance.pdf",
+        "driveId": "1cy2N0w2VWFcgrU7Us3DDDKpnGDC1-WCt",
+        "previewUrl": "https://drive.google.com/file/d/1cy2N0w2VWFcgrU7Us3DDDKpnGDC1-WCt/preview"
+      },
+      {
+        "id": "1sq4WSLaDdbB-vfhOdHFOcZmsVr59HnI_",
+        "title": "1 ExampleOfInheritance",
+        "fileName": "4.1 ExampleOfInheritance.pdf",
+        "driveId": "1sq4WSLaDdbB-vfhOdHFOcZmsVr59HnI_",
+        "previewUrl": "https://drive.google.com/file/d/1sq4WSLaDdbB-vfhOdHFOcZmsVr59HnI_/preview"
+      },
+      {
+        "id": "1fCaq_IYa1m5bzUPTsMePVOhdyLJw1zs3",
+        "title": "2 ConstructorInInheritance",
+        "fileName": "6.2 ConstructorInInheritance.pdf",
+        "driveId": "1fCaq_IYa1m5bzUPTsMePVOhdyLJw1zs3",
+        "previewUrl": "https://drive.google.com/file/d/1fCaq_IYa1m5bzUPTsMePVOhdyLJw1zs3/preview"
+      },
+      {
+        "id": "1nyeqbtVYTR7EachMmYXeXMsu6TJarbee",
+        "title": "1 AccessSpecifiers",
+        "fileName": "9.1 AccessSpecifiers.pdf",
+        "driveId": "1nyeqbtVYTR7EachMmYXeXMsu6TJarbee",
+        "previewUrl": "https://drive.google.com/file/d/1nyeqbtVYTR7EachMmYXeXMsu6TJarbee/preview"
+      },
+      {
+        "id": "1Z4lCrKfpI3SnEas_ZCGWQOsD0RC2tzVd",
+        "title": "2 AccessSpecifiers",
+        "fileName": "9.2 AccessSpecifiers.pdf",
+        "driveId": "1Z4lCrKfpI3SnEas_ZCGWQOsD0RC2tzVd",
+        "previewUrl": "https://drive.google.com/file/d/1Z4lCrKfpI3SnEas_ZCGWQOsD0RC2tzVd/preview"
+      },
+      {
+        "id": "1z8OF2ULS3stWoVlDRxi1MbuGQJzfcPnz",
+        "title": "1 WaysOfInheritance",
+        "fileName": "12.1 WaysOfInheritance.pdf",
+        "driveId": "1z8OF2ULS3stWoVlDRxi1MbuGQJzfcPnz",
+        "previewUrl": "https://drive.google.com/file/d/1z8OF2ULS3stWoVlDRxi1MbuGQJzfcPnz/preview"
+      },
+      {
+        "id": "1vs1LOyxzjv20d25v831huowktXO-SRZ-",
+        "title": "1 11. Inheritance",
+        "fileName": "14.1 11. Inheritance.pdf",
+        "driveId": "1vs1LOyxzjv20d25v831huowktXO-SRZ-",
+        "previewUrl": "https://drive.google.com/file/d/1vs1LOyxzjv20d25v831huowktXO-SRZ-/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1-51SZADN_7elF7kHvHfG5MhGctn_18AH",
+        "title": "Quiz for Inheritance",
+        "driveId": "1-51SZADN_7elF7kHvHfG5MhGctn_18AH",
+        "previewUrl": "https://drive.google.com/file/d/1-51SZADN_7elF7kHvHfG5MhGctn_18AH/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Base and Derived Class Inheritance",
+        "description": "Person base class extended by Student derived class.",
+        "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nclass Person {\nprotected:\n    string name;\npublic:\n    Person(string n) : name(n) {}\n    void display() { cout << \"Name: \" << name << endl; }\n};\n\nclass Student : public Person {\nprivate:\n    int rollNumber;\npublic:\n    Student(string n, int r) : Person(n), rollNumber(r) {}\n    void showDetails() {\n        display();\n        cout << \"Roll: \" << rollNumber << endl;\n    }\n};\n\nint main() {\n    Student s(\"Alex\", 101);\n    s.showDetails();\n    return 0;\n}",
+        "expectedOutput": "Name: Alex\nRoll: 101",
+        "explanation": "The derived class inherits public and protected members from the base class and initializes it via the member initialization list."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m14-q1",
+        "question": "Which access specifier allows a member to be accessed in derived classes but not outside?",
+        "options": [
+          "private",
+          "protected",
+          "public",
+          "sealed"
+        ],
+        "correctAnswer": 1,
+        "explanation": "protected members are accessible to derived subclasses, while remaining hidden from external callers."
+      }
+    ],
+    "description": "Code reuse and specialization through inheritance: base classes, derived classes, protected members, and constructor chaining.",
+    "readingTime": "30 min"
+  },
+  {
+    "id": "module-15",
+    "moduleNumber": 15,
+    "title": "Base Class Pointer Derived Class Object",
+    "category": "Object Oriented (OOP)",
+    "folderId": "10huxSbr9CTBW_Zea_DexU4APToMyA-29",
+    "folderName": "15. Base Class Pointer Derived Class Object",
+    "videosCount": 4,
+    "documentsCount": 1,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1jmH2mbOvAYOhccP-czIQz71NS0miUaAT",
+        "title": "Base Class Pointer Derived Class Object",
+        "fileName": "1. Base Class Pointer Derived Class Object.mp4",
+        "driveId": "1jmH2mbOvAYOhccP-czIQz71NS0miUaAT",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1jmH2mbOvAYOhccP-czIQz71NS0miUaAT/preview"
+      },
+      {
+        "id": "1iv43ZCM0sf54ej0CAxQ2BGmcle46OfOM",
+        "title": "Demo#1 -Base Class Pointer Derived Class Object",
+        "fileName": "2. Demo#1 -Base Class Pointer Derived Class Object.mp4",
+        "driveId": "1iv43ZCM0sf54ej0CAxQ2BGmcle46OfOM",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1iv43ZCM0sf54ej0CAxQ2BGmcle46OfOM/preview"
+      },
+      {
+        "id": "1iPmA33aBDBUzDdtuRhO7JUNC8D4k62Xw",
+        "title": "Demo #2- Base Class Pointer Derived Class Object",
+        "fileName": "3. Demo #2- Base Class Pointer Derived Class Object.mp4",
+        "driveId": "1iPmA33aBDBUzDdtuRhO7JUNC8D4k62Xw",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1iPmA33aBDBUzDdtuRhO7JUNC8D4k62Xw/preview"
+      },
+      {
+        "id": "1oVePCumfi21K5uLxF3iRSlMb1thdtYkS",
+        "title": "Demo #3 - Base Class Pointer Derived Class Object",
+        "fileName": "4. Demo #3 - Base Class Pointer Derived Class Object.mp4",
+        "driveId": "1oVePCumfi21K5uLxF3iRSlMb1thdtYkS",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1oVePCumfi21K5uLxF3iRSlMb1thdtYkS/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1R9Aq8KdZDcexo-uWBVZv39Na36CQ_MpG",
+        "title": "2 BaseClassPointer",
+        "fileName": "4.2 BaseClassPointer.pdf",
+        "driveId": "1R9Aq8KdZDcexo-uWBVZv39Na36CQ_MpG",
+        "previewUrl": "https://drive.google.com/file/d/1R9Aq8KdZDcexo-uWBVZv39Na36CQ_MpG/preview"
+      }
+    ],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Base Class Pointer Derived Class Object Example",
+        "description": "Demonstrating essential syntax and practices for Base Class Pointer Derived Class Object.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Base Class Pointer Derived Class Object\" << endl;\n    cout << \"Module 15 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Base Class Pointer Derived Class Object\nModule 15 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m15-q1",
+        "question": "What is the key takeaway in the Base Class Pointer Derived Class Object module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Base Class Pointer Derived Class Object. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-16",
+    "moduleNumber": 16,
+    "title": "Polymorphism",
+    "category": "Object Oriented (OOP)",
+    "folderId": "1cj0vv2T_zz5_I7V_QSolb8W1-pd9PtkY",
+    "folderName": "16. Polymorphism",
+    "videosCount": 10,
+    "documentsCount": 5,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "1AidA9Sjw9O6o-BO3Z8iHoVVQdk70nTL5",
+        "title": "Function Overriding",
+        "fileName": "1. Function Overriding.mp4",
+        "driveId": "1AidA9Sjw9O6o-BO3Z8iHoVVQdk70nTL5",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1AidA9Sjw9O6o-BO3Z8iHoVVQdk70nTL5/preview"
+      },
+      {
+        "id": "1Kc0LXZ1WiLMy49lXmHGdi6ToR9OLHGHW",
+        "title": "Demo Function Overriding",
+        "fileName": "2. Demo Function Overriding.mp4",
+        "driveId": "1Kc0LXZ1WiLMy49lXmHGdi6ToR9OLHGHW",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Kc0LXZ1WiLMy49lXmHGdi6ToR9OLHGHW/preview"
+      },
+      {
+        "id": "1QFipfkNyCUc7TQ_st3F6EKWhOt_nK4Co",
+        "title": "Virtual Functions",
+        "fileName": "3. Virtual Functions.mp4",
+        "driveId": "1QFipfkNyCUc7TQ_st3F6EKWhOt_nK4Co",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1QFipfkNyCUc7TQ_st3F6EKWhOt_nK4Co/preview"
+      },
+      {
+        "id": "1jjnqESn63CCfHeg9CILogBiFLQAbXwVS",
+        "title": "Demo #1 - Virtual Functions",
+        "fileName": "4. Demo #1 - Virtual Functions.mp4",
+        "driveId": "1jjnqESn63CCfHeg9CILogBiFLQAbXwVS",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1jjnqESn63CCfHeg9CILogBiFLQAbXwVS/preview"
+      },
+      {
+        "id": "1wuS-JGtSCTDOSvUN9ZAmjnBsE3Qm00ph",
+        "title": "Demo #2 - Virtual Functions",
+        "fileName": "5. Demo #2 - Virtual Functions.mp4",
+        "driveId": "1wuS-JGtSCTDOSvUN9ZAmjnBsE3Qm00ph",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1wuS-JGtSCTDOSvUN9ZAmjnBsE3Qm00ph/preview"
+      },
+      {
+        "id": "1snAvR3cZgjbockr8pE-kLmZBMfX02Yt2",
+        "title": "Runtime Polymorphism",
+        "fileName": "6. Runtime Polymorphism.mp4",
+        "driveId": "1snAvR3cZgjbockr8pE-kLmZBMfX02Yt2",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1snAvR3cZgjbockr8pE-kLmZBMfX02Yt2/preview"
+      },
+      {
+        "id": "1rPQfcIbMWMtgGbeowGOt6_Q2Fet_Qg3C",
+        "title": "Demo - Polymorphism",
+        "fileName": "7. Demo - Polymorphism.mp4",
+        "driveId": "1rPQfcIbMWMtgGbeowGOt6_Q2Fet_Qg3C",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1rPQfcIbMWMtgGbeowGOt6_Q2Fet_Qg3C/preview"
+      },
+      {
+        "id": "1LIIUnbGqLKHIFvLALJFH9qckIzlllvaF",
+        "title": "Abstract Classes",
+        "fileName": "8. Abstract Classes.mp4",
+        "driveId": "1LIIUnbGqLKHIFvLALJFH9qckIzlllvaF",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1LIIUnbGqLKHIFvLALJFH9qckIzlllvaF/preview"
+      },
+      {
+        "id": "17RmAPKqk7aLPyontWjdVlZBpsR5q5_zf",
+        "title": "Demo - Abstract Class",
+        "fileName": "9. Demo - Abstract Class.mp4",
+        "driveId": "17RmAPKqk7aLPyontWjdVlZBpsR5q5_zf",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/17RmAPKqk7aLPyontWjdVlZBpsR5q5_zf/preview"
+      },
+      {
+        "id": "16qBIkR1shXC4kWoHatdu-1tJvd6RTh55",
+        "title": "Practice Student Exercise #12",
+        "fileName": "10. Practice Student Exercise #12.mp4",
+        "driveId": "16qBIkR1shXC4kWoHatdu-1tJvd6RTh55",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/16qBIkR1shXC4kWoHatdu-1tJvd6RTh55/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1kA6iuPB2UWqCsDfFVWARGUv34zDgm9Pw",
+        "title": "2 FunctionOverriding",
+        "fileName": "2.2 FunctionOverriding.pdf",
+        "driveId": "1kA6iuPB2UWqCsDfFVWARGUv34zDgm9Pw",
+        "previewUrl": "https://drive.google.com/file/d/1kA6iuPB2UWqCsDfFVWARGUv34zDgm9Pw/preview"
+      },
+      {
+        "id": "1453UozL5CbyIdvo-uEf1AVxVCupMSmY9",
+        "title": "2 VirtualFunctions",
+        "fileName": "4.2 VirtualFunctions.pdf",
+        "driveId": "1453UozL5CbyIdvo-uEf1AVxVCupMSmY9",
+        "previewUrl": "https://drive.google.com/file/d/1453UozL5CbyIdvo-uEf1AVxVCupMSmY9/preview"
+      },
+      {
+        "id": "1sOqbb-Zz_BY_PkZs66vlz9DybZibl6Fl",
+        "title": "1 Polymorphism",
+        "fileName": "7.1 Polymorphism.pdf",
+        "driveId": "1sOqbb-Zz_BY_PkZs66vlz9DybZibl6Fl",
+        "previewUrl": "https://drive.google.com/file/d/1sOqbb-Zz_BY_PkZs66vlz9DybZibl6Fl/preview"
+      },
+      {
+        "id": "18WqESNsYGCVIjkJEIttXGUlnfanlQapm",
+        "title": "1 AbstractClass",
+        "fileName": "9.1 AbstractClass.pdf",
+        "driveId": "18WqESNsYGCVIjkJEIttXGUlnfanlQapm",
+        "previewUrl": "https://drive.google.com/file/d/18WqESNsYGCVIjkJEIttXGUlnfanlQapm/preview"
+      },
+      {
+        "id": "1A9ZsNZYJxSqlA02m7BdZY35A4ojHe_mG",
+        "title": "1 12. Polymorphism",
+        "fileName": "10.1 12. Polymorphism.pdf",
+        "driveId": "1A9ZsNZYJxSqlA02m7BdZY35A4ojHe_mG",
+        "previewUrl": "https://drive.google.com/file/d/1A9ZsNZYJxSqlA02m7BdZY35A4ojHe_mG/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1jHx-JBWCqAm7kxB3AsT_qYcgpFZM6Wzr",
+        "title": "Quiz for Polymorphism",
+        "driveId": "1jHx-JBWCqAm7kxB3AsT_qYcgpFZM6Wzr",
+        "previewUrl": "https://drive.google.com/file/d/1jHx-JBWCqAm7kxB3AsT_qYcgpFZM6Wzr/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Runtime Polymorphism with Virtual Functions",
+        "description": "Base pointer invoking overridden methods on derived classes.",
+        "code": "#include <iostream>\nusing namespace std;\n\nclass Shape {\npublic:\n    virtual void draw() {\n        cout << \"Drawing generic Shape\" << endl;\n    }\n    virtual ~Shape() {}\n};\n\nclass Circle : public Shape {\npublic:\n    void draw() override {\n        cout << \"Drawing Circle with radius\" << endl;\n    }\n};\n\nint main() {\n    Shape* shape = new Circle();\n    shape->draw();\n    delete shape;\n    return 0;\n}",
+        "expectedOutput": "Drawing Circle with radius",
+        "explanation": "Declaring a method as virtual enables dynamic dispatch at runtime based on the actual object type rather than the pointer type."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m16-q1",
+        "question": "What keyword is placed after = 0 in a virtual function declaration to make it pure virtual?",
+        "options": [
+          "abstract",
+          "virtual void f() = 0;",
+          "pure",
+          "override"
+        ],
+        "correctAnswer": 1,
+        "explanation": "= 0 indicates a pure virtual function, making the enclosing class abstract."
+      }
+    ],
+    "description": "Polymorphism, virtual functions, pure virtual functions, abstract classes, and dynamic runtime method dispatch (vtable).",
+    "readingTime": "35 min"
+  },
+  {
+    "id": "module-17",
+    "moduleNumber": 17,
+    "title": "Friend and Static Members Inner Classes",
+    "category": "Object Oriented (OOP)",
+    "folderId": "1rbF7xxhXxh9Jc2RukUvaPF6QHsIXFLQP",
+    "folderName": "17. Friend and Static Members Inner Classes",
+    "videosCount": 8,
+    "documentsCount": 3,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "13G-1YqK2ddaH0Go-6MOUOdOOl5hHrPKj",
+        "title": "Friend Function and Classes",
+        "fileName": "1. Friend Function and Classes.mp4",
+        "driveId": "13G-1YqK2ddaH0Go-6MOUOdOOl5hHrPKj",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/13G-1YqK2ddaH0Go-6MOUOdOOl5hHrPKj/preview"
+      },
+      {
+        "id": "1H0sU3-J25Gu53tcH5RLBG3tN8hq-winT",
+        "title": "Demo - Friend Function and Class",
+        "fileName": "2. Demo - Friend Function and Class.mp4",
+        "driveId": "1H0sU3-J25Gu53tcH5RLBG3tN8hq-winT",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1H0sU3-J25Gu53tcH5RLBG3tN8hq-winT/preview"
+      },
+      {
+        "id": "1XWZT4OyP0OsRu5VaZYz6BkBp0G92vYPU",
+        "title": "Static Members",
+        "fileName": "3. Static Members.mp4",
+        "driveId": "1XWZT4OyP0OsRu5VaZYz6BkBp0G92vYPU",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1XWZT4OyP0OsRu5VaZYz6BkBp0G92vYPU/preview"
+      },
+      {
+        "id": "12USFHs6SjnMWHEKl_hTG6jh36QTuE-U1",
+        "title": "Demo - Static Members",
+        "fileName": "4. Demo - Static Members.mp4",
+        "driveId": "12USFHs6SjnMWHEKl_hTG6jh36QTuE-U1",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/12USFHs6SjnMWHEKl_hTG6jh36QTuE-U1/preview"
+      },
+      {
+        "id": "1fEI2PShdrMMXj0VjAaddc9n9phKBjzPy",
+        "title": "Static Members 2",
+        "fileName": "5. Static Members 2.mp4",
+        "driveId": "1fEI2PShdrMMXj0VjAaddc9n9phKBjzPy",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1fEI2PShdrMMXj0VjAaddc9n9phKBjzPy/preview"
+      },
+      {
+        "id": "1eWIl7qUu3I57bhgTKarlGiAHVq2fUdhe",
+        "title": "Demo - Static Member Examples",
+        "fileName": "6. Demo - Static Member Examples.mp4",
+        "driveId": "1eWIl7qUu3I57bhgTKarlGiAHVq2fUdhe",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1eWIl7qUu3I57bhgTKarlGiAHVq2fUdhe/preview"
+      },
+      {
+        "id": "1dMtXWF7QWKeyqaa3u-a1FsyvkMEQgcLz",
+        "title": "InnerNested Class",
+        "fileName": "7. InnerNested Class.mp4",
+        "driveId": "1dMtXWF7QWKeyqaa3u-a1FsyvkMEQgcLz",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1dMtXWF7QWKeyqaa3u-a1FsyvkMEQgcLz/preview"
+      },
+      {
+        "id": "1x-u1mW-SaGZxNNh5EcpBh5STG9R87g3P",
+        "title": "Demo - Inner Classes",
+        "fileName": "8. Demo - Inner Classes.mp4",
+        "driveId": "1x-u1mW-SaGZxNNh5EcpBh5STG9R87g3P",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1x-u1mW-SaGZxNNh5EcpBh5STG9R87g3P/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1oUANmWCI5E-ItTZuXL32nHbLrx4giyTO",
+        "title": "2 FriendClass",
+        "fileName": "2.2 FriendClass.pdf",
+        "driveId": "1oUANmWCI5E-ItTZuXL32nHbLrx4giyTO",
+        "previewUrl": "https://drive.google.com/file/d/1oUANmWCI5E-ItTZuXL32nHbLrx4giyTO/preview"
+      },
+      {
+        "id": "1xfKroF8PZsYn8OorE04qlqZIHsawd74h",
+        "title": "3 StaticMembers",
+        "fileName": "4.3 StaticMembers.pdf",
+        "driveId": "1xfKroF8PZsYn8OorE04qlqZIHsawd74h",
+        "previewUrl": "https://drive.google.com/file/d/1xfKroF8PZsYn8OorE04qlqZIHsawd74h/preview"
+      },
+      {
+        "id": "1IAm7tgI4KiHtwH72kO8zCefGyaeE1Lhh",
+        "title": "1 StaticExample",
+        "fileName": "6.1 StaticExample.pdf",
+        "driveId": "1IAm7tgI4KiHtwH72kO8zCefGyaeE1Lhh",
+        "previewUrl": "https://drive.google.com/file/d/1IAm7tgI4KiHtwH72kO8zCefGyaeE1Lhh/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1V5GdI7j240TKO3d9rTlZAcrygxtZtiqm",
+        "title": "Quiz for Friend Functions",
+        "driveId": "1V5GdI7j240TKO3d9rTlZAcrygxtZtiqm",
+        "previewUrl": "https://drive.google.com/file/d/1V5GdI7j240TKO3d9rTlZAcrygxtZtiqm/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Friend and Static Members Inner Classes Example",
+        "description": "Demonstrating essential syntax and practices for Friend and Static Members Inner Classes.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Friend and Static Members Inner Classes\" << endl;\n    cout << \"Module 17 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Friend and Static Members Inner Classes\nModule 17 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m17-q1",
+        "question": "What is the key takeaway in the Friend and Static Members Inner Classes module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Friend and Static Members Inner Classes. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-18",
+    "moduleNumber": 18,
+    "title": "Exception Handling",
+    "category": "Advanced C++ & STL",
+    "folderId": "1-RaUa1FGfg9ZiUNz2YJ5jvVzyeA7-Emn",
+    "folderName": "18. Exception Handling",
+    "videosCount": 10,
+    "documentsCount": 2,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "1hTOe7Et65mKmq1psswIA3JXe-gza0SFW",
+        "title": "Exception Handling",
+        "fileName": "1. Exception Handling.mp4",
+        "driveId": "1hTOe7Et65mKmq1psswIA3JXe-gza0SFW",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1hTOe7Et65mKmq1psswIA3JXe-gza0SFW/preview"
+      },
+      {
+        "id": "1XM3kvZT5EcFLbSm4JXhoKeS_Sh8pE8tU",
+        "title": "Exception Handling Construct",
+        "fileName": "2. Exception Handling Construct.mp4",
+        "driveId": "1XM3kvZT5EcFLbSm4JXhoKeS_Sh8pE8tU",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1XM3kvZT5EcFLbSm4JXhoKeS_Sh8pE8tU/preview"
+      },
+      {
+        "id": "1PX7HxTmPw10baeFW89Q0y3JGDL_Bbb7b",
+        "title": "Demo - Exception Handling Construct",
+        "fileName": "3. Demo - Exception Handling Construct.mp4",
+        "driveId": "1PX7HxTmPw10baeFW89Q0y3JGDL_Bbb7b",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1PX7HxTmPw10baeFW89Q0y3JGDL_Bbb7b/preview"
+      },
+      {
+        "id": "1yGEUPbNxjmeAe548yUzVdiytERrSqNvf",
+        "title": "Throw and Catch Between Functions",
+        "fileName": "4. Throw and Catch Between Functions.mp4",
+        "driveId": "1yGEUPbNxjmeAe548yUzVdiytERrSqNvf",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1yGEUPbNxjmeAe548yUzVdiytERrSqNvf/preview"
+      },
+      {
+        "id": "14uFDj3rrWUUhq8LswF2lmXRNQk_nLG1v",
+        "title": "Demo - Throw and Catch Between Functions",
+        "fileName": "5. Demo - Throw and Catch Between Functions.mp4",
+        "driveId": "14uFDj3rrWUUhq8LswF2lmXRNQk_nLG1v",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/14uFDj3rrWUUhq8LswF2lmXRNQk_nLG1v/preview"
+      },
+      {
+        "id": "110D0BtxxicuLR-g3m2WHgiPnpZOyo23N",
+        "title": "All About Throw",
+        "fileName": "6. All About Throw.mp4",
+        "driveId": "110D0BtxxicuLR-g3m2WHgiPnpZOyo23N",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/110D0BtxxicuLR-g3m2WHgiPnpZOyo23N/preview"
+      },
+      {
+        "id": "1qy_JPiz1Ffla6g10ClYJSjCBl_M3CjQt",
+        "title": "Demo - All About Throw",
+        "fileName": "7. Demo - All About Throw.mp4",
+        "driveId": "1qy_JPiz1Ffla6g10ClYJSjCBl_M3CjQt",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1qy_JPiz1Ffla6g10ClYJSjCBl_M3CjQt/preview"
+      },
+      {
+        "id": "1KdUCnqzPGF3Xu2RyMKsdZEFtGukPxLXG",
+        "title": "All About Catch",
+        "fileName": "8. All About Catch.mp4",
+        "driveId": "1KdUCnqzPGF3Xu2RyMKsdZEFtGukPxLXG",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1KdUCnqzPGF3Xu2RyMKsdZEFtGukPxLXG/preview"
+      },
+      {
+        "id": "1jW98TIWbLSRUe88Svw72GUJfptoUzJBm",
+        "title": "Demo - All About Catch",
+        "fileName": "9. Demo - All About Catch.mp4",
+        "driveId": "1jW98TIWbLSRUe88Svw72GUJfptoUzJBm",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1jW98TIWbLSRUe88Svw72GUJfptoUzJBm/preview"
+      },
+      {
+        "id": "1Sh9BxH1ZUMITuNep4xbo88jwAR5ZjGwy",
+        "title": "Practice Student Exercise #13",
+        "fileName": "10. Practice Student Exercise #13.mp4",
+        "driveId": "1Sh9BxH1ZUMITuNep4xbo88jwAR5ZjGwy",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Sh9BxH1ZUMITuNep4xbo88jwAR5ZjGwy/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1KylDqF3x8vQlFH4e6hqP7ASqg6f7uGR9",
+        "title": "1 Exception",
+        "fileName": "4.1 Exception.pdf",
+        "driveId": "1KylDqF3x8vQlFH4e6hqP7ASqg6f7uGR9",
+        "previewUrl": "https://drive.google.com/file/d/1KylDqF3x8vQlFH4e6hqP7ASqg6f7uGR9/preview"
+      },
+      {
+        "id": "1QyO30Njo5lJnqmClqFWr_gh_kcma7x7x",
+        "title": "1 13. User-Defined Exception",
+        "fileName": "10.1 13. User-Defined Exception.pdf",
+        "driveId": "1QyO30Njo5lJnqmClqFWr_gh_kcma7x7x",
+        "previewUrl": "https://drive.google.com/file/d/1QyO30Njo5lJnqmClqFWr_gh_kcma7x7x/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1ukhysdiwUQUAdvKVVRe-P-g844pxInF-",
+        "title": "Quiz for Exception Handling",
+        "driveId": "1ukhysdiwUQUAdvKVVRe-P-g844pxInF-",
+        "previewUrl": "https://drive.google.com/file/d/1ukhysdiwUQUAdvKVVRe-P-g844pxInF-/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Safe Division with Exception Handling",
+        "description": "Throwing runtime_error on division by zero.",
+        "code": "#include <iostream>\n#include <stdexcept>\nusing namespace std;\n\ndouble safeDivide(double a, double b) {\n    if (b == 0.0) {\n        throw runtime_error(\"Division by zero error!\");\n    }\n    return a / b;\n}\n\nint main() {\n    try {\n        cout << \"Result: \" << safeDivide(10.0, 2.0) << endl;\n        cout << \"Result: \" << safeDivide(5.0, 0.0) << endl;\n    } catch (const exception& e) {\n        cout << \"Caught Exception: \" << e.what() << endl;\n    }\n    return 0;\n}",
+        "expectedOutput": "Result: 5\nCaught Exception: Division by zero error!",
+        "explanation": "Exceptions cleanly decouple error detection from error handling without cumbersome return error codes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m18-q1",
+        "question": "What method on std::exception retrieves the explanatory string?",
+        "options": [
+          "message()",
+          "what()",
+          "error()",
+          "toString()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "e.what() returns a const char* explaining the reason for the exception."
+      }
+    ],
+    "description": "Robust software resilience using try, catch, throw, standard exception hierarchies (<stdexcept>), and RAII principles.",
+    "readingTime": "25 min"
+  },
+  {
+    "id": "module-19",
+    "moduleNumber": 19,
+    "title": "Template Functions and Classes",
+    "category": "Advanced C++ & STL",
+    "folderId": "1Ntl0S_yGIdFISILXOYO_L64DRWxYV4RI",
+    "folderName": "19. Template Functions and Classes",
+    "videosCount": 2,
+    "documentsCount": 1,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "1t4SKw2UkFM9RQ5UHL0mdZDpPd9Gc-pgm",
+        "title": "Template Functions and Classes",
+        "fileName": "1. Template Functions and Classes.mp4",
+        "driveId": "1t4SKw2UkFM9RQ5UHL0mdZDpPd9Gc-pgm",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1t4SKw2UkFM9RQ5UHL0mdZDpPd9Gc-pgm/preview"
+      },
+      {
+        "id": "14yehQYYZW_dqjG7u8iVn_fQsBVRzRC_v",
+        "title": "Demo - Template Classes",
+        "fileName": "2. Demo - Template Classes.mp4",
+        "driveId": "14yehQYYZW_dqjG7u8iVn_fQsBVRzRC_v",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/14yehQYYZW_dqjG7u8iVn_fQsBVRzRC_v/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1xmEWr8UItlQbHORHYJwWW5myatUHir-Q",
+        "title": "1 TemplateClass",
+        "fileName": "2.1 TemplateClass.pdf",
+        "driveId": "1xmEWr8UItlQbHORHYJwWW5myatUHir-Q",
+        "previewUrl": "https://drive.google.com/file/d/1xmEWr8UItlQbHORHYJwWW5myatUHir-Q/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1LffojeHjo8IOWlJqygCIE3lGXLAIC5RX",
+        "title": "Quiz for Templates",
+        "driveId": "1LffojeHjo8IOWlJqygCIE3lGXLAIC5RX",
+        "previewUrl": "https://drive.google.com/file/d/1LffojeHjo8IOWlJqygCIE3lGXLAIC5RX/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Template Functions and Classes Example",
+        "description": "Demonstrating essential syntax and practices for Template Functions and Classes.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Template Functions and Classes\" << endl;\n    cout << \"Module 19 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Template Functions and Classes\nModule 19 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m19-q1",
+        "question": "What is the key takeaway in the Template Functions and Classes module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Template Functions and Classes. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-20",
+    "moduleNumber": 20,
+    "title": "Constants , Preprocessor Directives and Namespaces",
+    "category": "Advanced C++ & STL",
+    "folderId": "1lLOPQ6ZF2gC3rojsKruCuAbHHGAKXNW2",
+    "folderName": "20. Constants , Preprocessor Directives and Namespaces",
+    "videosCount": 6,
+    "documentsCount": 1,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "1ybE1RdlhGlrCEtBQ7DTo1_iVX6-2BJ8v",
+        "title": "Constant Qualifier",
+        "fileName": "1. Constant Qualifier.mp4",
+        "driveId": "1ybE1RdlhGlrCEtBQ7DTo1_iVX6-2BJ8v",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1ybE1RdlhGlrCEtBQ7DTo1_iVX6-2BJ8v/preview"
+      },
+      {
+        "id": "1rA45UYeOay6ikV7Xh7NNfHsIvgfB_yM8",
+        "title": "Demo - Constant Qualifier",
+        "fileName": "2. Demo - Constant Qualifier.mp4",
+        "driveId": "1rA45UYeOay6ikV7Xh7NNfHsIvgfB_yM8",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1rA45UYeOay6ikV7Xh7NNfHsIvgfB_yM8/preview"
+      },
+      {
+        "id": "1e_eZdRACHaViSj3qZc-nAkANrbm2X9vZ",
+        "title": "Preprocessor",
+        "fileName": "3. Preprocessor.mp4",
+        "driveId": "1e_eZdRACHaViSj3qZc-nAkANrbm2X9vZ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1e_eZdRACHaViSj3qZc-nAkANrbm2X9vZ/preview"
+      },
+      {
+        "id": "1zusk6e4BDrtopj2h_vnmndnHK_9W_bJl",
+        "title": "Demo - Preprocessor Directives",
+        "fileName": "4. Demo - Preprocessor Directives.mp4",
+        "driveId": "1zusk6e4BDrtopj2h_vnmndnHK_9W_bJl",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1zusk6e4BDrtopj2h_vnmndnHK_9W_bJl/preview"
+      },
+      {
+        "id": "18-54Q6iGKjoHn7ffTBLy2fgNxc0UDvk9",
+        "title": "Namespaces",
+        "fileName": "5. Namespaces.mp4",
+        "driveId": "18-54Q6iGKjoHn7ffTBLy2fgNxc0UDvk9",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/18-54Q6iGKjoHn7ffTBLy2fgNxc0UDvk9/preview"
+      },
+      {
+        "id": "1bR-4U9It6iYg3YApMmM5iwCR1dG3tx80",
+        "title": "Demo - Namespaces",
+        "fileName": "6. Demo - Namespaces.mp4",
+        "driveId": "1bR-4U9It6iYg3YApMmM5iwCR1dG3tx80",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1bR-4U9It6iYg3YApMmM5iwCR1dG3tx80/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1mIPdM21pQzhCpHsNhz32_BKqbj844XPA",
+        "title": "2 PreProcessor",
+        "fileName": "4.2 PreProcessor.pdf",
+        "driveId": "1mIPdM21pQzhCpHsNhz32_BKqbj844XPA",
+        "previewUrl": "https://drive.google.com/file/d/1mIPdM21pQzhCpHsNhz32_BKqbj844XPA/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1qp5Ca_-Id7V20JXtWFH8uini4eP1HPwy",
+        "title": "Quiz for Preprocessors",
+        "driveId": "1qp5Ca_-Id7V20JXtWFH8uini4eP1HPwy",
+        "previewUrl": "https://drive.google.com/file/d/1qp5Ca_-Id7V20JXtWFH8uini4eP1HPwy/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Constants , Preprocessor Directives and Namespaces Example",
+        "description": "Demonstrating essential syntax and practices for Constants , Preprocessor Directives and Namespaces.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Constants , Preprocessor Directives and Namespaces\" << endl;\n    cout << \"Module 20 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Constants , Preprocessor Directives and Namespaces\nModule 20 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m20-q1",
+        "question": "What is the key takeaway in the Constants , Preprocessor Directives and Namespaces module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Constants , Preprocessor Directives and Namespaces. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-21",
+    "moduleNumber": 21,
+    "title": "Destructor and Virtual Destructors",
+    "category": "Advanced C++ & STL",
+    "folderId": "1OraqW7Op71QNxQ9998am03MVqoduVft8",
+    "folderName": "21. Destructor and Virtual Destructors",
+    "videosCount": 4,
+    "documentsCount": 0,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "1HWg9QTwPCPt5xMf_blJNuHLij7mYs5ln",
+        "title": "Destructor",
+        "fileName": "1. Destructor.mp4",
+        "driveId": "1HWg9QTwPCPt5xMf_blJNuHLij7mYs5ln",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1HWg9QTwPCPt5xMf_blJNuHLij7mYs5ln/preview"
+      },
+      {
+        "id": "1Shhi7JGJRkKSk8M_Qany8BklwYwoSF6P",
+        "title": "Demo - Destructor",
+        "fileName": "2. Demo - Destructor.mp4",
+        "driveId": "1Shhi7JGJRkKSk8M_Qany8BklwYwoSF6P",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Shhi7JGJRkKSk8M_Qany8BklwYwoSF6P/preview"
+      },
+      {
+        "id": "1l6bSHVW_oHJsY55pvKM913YfPNi2J4dB",
+        "title": "Virtual Destructor",
+        "fileName": "3. Virtual Destructor.mp4",
+        "driveId": "1l6bSHVW_oHJsY55pvKM913YfPNi2J4dB",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1l6bSHVW_oHJsY55pvKM913YfPNi2J4dB/preview"
+      },
+      {
+        "id": "1gpfbyXDGPO6nhuLzi1zopDn5pdU4dAj_",
+        "title": "Demo - Virtual Destructor",
+        "fileName": "4. Demo - Virtual Destructor.mp4",
+        "driveId": "1gpfbyXDGPO6nhuLzi1zopDn5pdU4dAj_",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1gpfbyXDGPO6nhuLzi1zopDn5pdU4dAj_/preview"
+      }
+    ],
+    "documents": [],
+    "exercises": [
+      {
+        "id": "1NxjDV508snTkGiUTjm_Hjf21OIfy2Z12",
+        "title": "Quiz for Virtual Functions",
+        "driveId": "1NxjDV508snTkGiUTjm_Hjf21OIfy2Z12",
+        "previewUrl": "https://drive.google.com/file/d/1NxjDV508snTkGiUTjm_Hjf21OIfy2Z12/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Destructor and Virtual Destructors Example",
+        "description": "Demonstrating essential syntax and practices for Destructor and Virtual Destructors.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Destructor and Virtual Destructors\" << endl;\n    cout << \"Module 21 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Destructor and Virtual Destructors\nModule 21 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m21-q1",
+        "question": "What is the key takeaway in the Destructor and Virtual Destructors module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Destructor and Virtual Destructors. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-22",
+    "moduleNumber": 22,
+    "title": "IO Streams",
+    "category": "Advanced C++ & STL",
+    "folderId": "12U6DqgVycLps28YDRMD9Vg8T_zwDkshu",
+    "folderName": "22. IO Streams",
+    "videosCount": 9,
+    "documentsCount": 3,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "1-xnHWvNvs6BdEEj98ot3RrNt1rVL5Ast",
+        "title": "Streams",
+        "fileName": "1. Streams.mp4",
+        "driveId": "1-xnHWvNvs6BdEEj98ot3RrNt1rVL5Ast",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1-xnHWvNvs6BdEEj98ot3RrNt1rVL5Ast/preview"
+      },
+      {
+        "id": "1tu9V2V859uk3AYnmL64IXSEcW_10oZOu",
+        "title": "Writing in a File",
+        "fileName": "2. Writing in a File.mp4",
+        "driveId": "1tu9V2V859uk3AYnmL64IXSEcW_10oZOu",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1tu9V2V859uk3AYnmL64IXSEcW_10oZOu/preview"
+      },
+      {
+        "id": "18dQtH_HfjxNgZrVSyAnlunQyNeKqN1i9",
+        "title": "Demo - Writing in a File",
+        "fileName": "3. Demo - Writing in a File.mp4",
+        "driveId": "18dQtH_HfjxNgZrVSyAnlunQyNeKqN1i9",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/18dQtH_HfjxNgZrVSyAnlunQyNeKqN1i9/preview"
+      },
+      {
+        "id": "1io5ORaTw3l8GQoYM8UBBBBhIw4ZlXWDH",
+        "title": "Reading From a File",
+        "fileName": "4. Reading From a File.mp4",
+        "driveId": "1io5ORaTw3l8GQoYM8UBBBBhIw4ZlXWDH",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1io5ORaTw3l8GQoYM8UBBBBhIw4ZlXWDH/preview"
+      },
+      {
+        "id": "19b8BQD9q7cPZX5Uk3Coixkz24Lg7Netx",
+        "title": "Demo - Reading from a File",
+        "fileName": "5. Demo - Reading from a File.mp4",
+        "driveId": "19b8BQD9q7cPZX5Uk3Coixkz24Lg7Netx",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/19b8BQD9q7cPZX5Uk3Coixkz24Lg7Netx/preview"
+      },
+      {
+        "id": "1RhJehZXgkfSL4bLe4dBaMNZ9EjC3hmYr",
+        "title": "Demo - Serialization",
+        "fileName": "6. Demo - Serialization.mp4",
+        "driveId": "1RhJehZXgkfSL4bLe4dBaMNZ9EjC3hmYr",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1RhJehZXgkfSL4bLe4dBaMNZ9EjC3hmYr/preview"
+      },
+      {
+        "id": "1ucp4EitxGN4NVhzeFHKxsrGGGAikAiEw",
+        "title": "Text and Binary Files",
+        "fileName": "7. Text and Binary Files.mp4",
+        "driveId": "1ucp4EitxGN4NVhzeFHKxsrGGGAikAiEw",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1ucp4EitxGN4NVhzeFHKxsrGGGAikAiEw/preview"
+      },
+      {
+        "id": "1P93bE1qaZXSJxbJqcR34H0yQMlJUXV1N",
+        "title": "Manipulators",
+        "fileName": "8. Manipulators.mp4",
+        "driveId": "1P93bE1qaZXSJxbJqcR34H0yQMlJUXV1N",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1P93bE1qaZXSJxbJqcR34H0yQMlJUXV1N/preview"
+      },
+      {
+        "id": "1iMfCj3WDtC5vtN-QdK0y57csuFBHaQiY",
+        "title": "Student Exercise #14",
+        "fileName": "9. Student Exercise #14.mp4",
+        "driveId": "1iMfCj3WDtC5vtN-QdK0y57csuFBHaQiY",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1iMfCj3WDtC5vtN-QdK0y57csuFBHaQiY/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "195Jp3TEtXxB1OdrFQx3u9efmMnIiiU_p",
+        "title": "1 WritingandReadingFile",
+        "fileName": "5.1 WritingandReadingFile.pdf",
+        "driveId": "195Jp3TEtXxB1OdrFQx3u9efmMnIiiU_p",
+        "previewUrl": "https://drive.google.com/file/d/195Jp3TEtXxB1OdrFQx3u9efmMnIiiU_p/preview"
+      },
+      {
+        "id": "1vrHdOFhULAc8wfdO6cU5B3QNXmFt-5n9",
+        "title": "1 Serialization",
+        "fileName": "6.1 Serialization.pdf",
+        "driveId": "1vrHdOFhULAc8wfdO6cU5B3QNXmFt-5n9",
+        "previewUrl": "https://drive.google.com/file/d/1vrHdOFhULAc8wfdO6cU5B3QNXmFt-5n9/preview"
+      },
+      {
+        "id": "1b8Wgw37N0w912S8P7adQWP1R6GEvYhAL",
+        "title": "1 14. Storing Items",
+        "fileName": "9.1 14. Storing Items.pdf",
+        "driveId": "1b8Wgw37N0w912S8P7adQWP1R6GEvYhAL",
+        "previewUrl": "https://drive.google.com/file/d/1b8Wgw37N0w912S8P7adQWP1R6GEvYhAL/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1pX31aeDmHZClw17T4ffGM20qcS7Sx-7A",
+        "title": "Quiz for Streams",
+        "driveId": "1pX31aeDmHZClw17T4ffGM20qcS7Sx-7A",
+        "previewUrl": "https://drive.google.com/file/d/1pX31aeDmHZClw17T4ffGM20qcS7Sx-7A/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "IO Streams Example",
+        "description": "Demonstrating essential syntax and practices for IO Streams.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: IO Streams\" << endl;\n    cout << \"Module 22 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: IO Streams\nModule 22 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m22-q1",
+        "question": "What is the key takeaway in the IO Streams module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring IO Streams. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-23",
+    "moduleNumber": 23,
+    "title": "STL",
+    "category": "Advanced C++ & STL",
+    "folderId": "1WicjIE1FU5H4rEhEvjkqmIO0ByczuPTF",
+    "folderName": "23. STL",
+    "videosCount": 8,
+    "documentsCount": 1,
+    "exercisesCount": 1,
+    "videos": [
+      {
+        "id": "145uxCxNbRdnfiRjZbhjOEOGLqCpU6T2W",
+        "title": "Why STL",
+        "fileName": "1. Why STL.mp4",
+        "driveId": "145uxCxNbRdnfiRjZbhjOEOGLqCpU6T2W",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/145uxCxNbRdnfiRjZbhjOEOGLqCpU6T2W/preview"
+      },
+      {
+        "id": "1GAQBQEF3Ie_IbwhQ8gpjYopCmfg0tQDI",
+        "title": "Types of Data Structures",
+        "fileName": "2. Types of Data Structures.mp4",
+        "driveId": "1GAQBQEF3Ie_IbwhQ8gpjYopCmfg0tQDI",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1GAQBQEF3Ie_IbwhQ8gpjYopCmfg0tQDI/preview"
+      },
+      {
+        "id": "18LrqXTz9QNBqS7731aa9YkI4136DMpM8",
+        "title": "STL Classes",
+        "fileName": "3. STL Classes.mp4",
+        "driveId": "18LrqXTz9QNBqS7731aa9YkI4136DMpM8",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/18LrqXTz9QNBqS7731aa9YkI4136DMpM8/preview"
+      },
+      {
+        "id": "1oooUDIzizY6Y3bR5dBmhgpPZDXwBJVrs",
+        "title": "STL Classes",
+        "fileName": "3. STL Classes.mp4",
+        "driveId": "1oooUDIzizY6Y3bR5dBmhgpPZDXwBJVrs",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1oooUDIzizY6Y3bR5dBmhgpPZDXwBJVrs/preview"
+      },
+      {
+        "id": "1M0YEZPpjaIjnajuIupcuAEcBWnDTq0i9",
+        "title": "Using STL Classes",
+        "fileName": "4. Using STL Classes.mp4",
+        "driveId": "1M0YEZPpjaIjnajuIupcuAEcBWnDTq0i9",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1M0YEZPpjaIjnajuIupcuAEcBWnDTq0i9/preview"
+      },
+      {
+        "id": "1jnoLhGtIt3zDUm0akhRNNysRSuMUgTLG",
+        "title": "Demo - STL Classes",
+        "fileName": "5. Demo - STL Classes.mp4",
+        "driveId": "1jnoLhGtIt3zDUm0akhRNNysRSuMUgTLG",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1jnoLhGtIt3zDUm0akhRNNysRSuMUgTLG/preview"
+      },
+      {
+        "id": "1scLZp1kowP5FX-N1a_JrxMn6foKDa5vZ",
+        "title": "Map Classes",
+        "fileName": "6. Map Classes.mp4",
+        "driveId": "1scLZp1kowP5FX-N1a_JrxMn6foKDa5vZ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1scLZp1kowP5FX-N1a_JrxMn6foKDa5vZ/preview"
+      },
+      {
+        "id": "1070lbR4K6-Bc16FvsY75rEQ1MmsMp4wG",
+        "title": "Practice Student Exercise #15",
+        "fileName": "7. Practice Student Exercise #15.mp4",
+        "driveId": "1070lbR4K6-Bc16FvsY75rEQ1MmsMp4wG",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1070lbR4K6-Bc16FvsY75rEQ1MmsMp4wG/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1JJvNYWw7JeRCEENukJC010u7rjTc7YyB",
+        "title": "1 15. Items using Vector",
+        "fileName": "7.1 15. Items using Vector.pdf",
+        "driveId": "1JJvNYWw7JeRCEENukJC010u7rjTc7YyB",
+        "previewUrl": "https://drive.google.com/file/d/1JJvNYWw7JeRCEENukJC010u7rjTc7YyB/preview"
+      }
+    ],
+    "exercises": [
+      {
+        "id": "1YbOEDM9YhacFeU5qoWupgMvnFzqM8UOp",
+        "title": "Quiz for STL",
+        "driveId": "1YbOEDM9YhacFeU5qoWupgMvnFzqM8UOp",
+        "previewUrl": "https://drive.google.com/file/d/1YbOEDM9YhacFeU5qoWupgMvnFzqM8UOp/preview"
+      }
+    ],
+    "codeSnippets": [
+      {
+        "title": "Vectors and STL Algorithms",
+        "description": "Dynamically growing array with std::sort and range-based loops.",
+        "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    vector<int> numbers = {45, 12, 85, 32, 89, 39, 69, 44, 42, 1, 6, 8};\n    sort(numbers.begin(), numbers.end());\n\n    cout << \"Sorted Vector: \";\n    for (int n : numbers) {\n        cout << n << \" \";\n    }\n    cout << endl;\n    cout << \"Total elements: \" << numbers.size() << endl;\n    return 0;\n}",
+        "expectedOutput": "Sorted Vector: 1 6 8 12 32 39 42 44 45 69 85 89\nTotal elements: 12",
+        "explanation": "std::vector handles dynamic resizing automatically and works seamlessly with STL algorithms like std::sort."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m23-q1",
+        "question": "What is the average time complexity of push_back on a std::vector?",
+        "options": [
+          "O(N)",
+          "Amortized O(1)",
+          "O(log N)",
+          "O(N^2)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Vector push_back takes amortized constant O(1) time because it doubles capacity geometrically."
+      }
+    ],
+    "description": "The C++ Standard Template Library: containers (vector, list, map, set), iterators, and standard algorithms (sort, find).",
+    "readingTime": "40 min"
+  },
+  {
+    "id": "module-24",
+    "moduleNumber": 24,
+    "title": "C++ 11",
+    "category": "Advanced C++ & STL",
+    "folderId": "1STHv2e5KmQViCQ_r0D3S1Q2EC_FD1cqq",
+    "folderName": "24. C++ 11",
+    "videosCount": 9,
+    "documentsCount": 1,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1ClIVynczyFDCuLSrCsGKISQxVTEUjhJw",
+        "title": "Auto",
+        "fileName": "1. Auto.mp4",
+        "driveId": "1ClIVynczyFDCuLSrCsGKISQxVTEUjhJw",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1ClIVynczyFDCuLSrCsGKISQxVTEUjhJw/preview"
+      },
+      {
+        "id": "1Gypze24G14YpKFAsrKZNPZKx_3f1PfSf",
+        "title": "Final Keyword",
+        "fileName": "2. Final Keyword.mp4",
+        "driveId": "1Gypze24G14YpKFAsrKZNPZKx_3f1PfSf",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Gypze24G14YpKFAsrKZNPZKx_3f1PfSf/preview"
+      },
+      {
+        "id": "1WXd9yzLdygQTar-r864obFmgU8dRDIeR",
+        "title": "Lambda Expressions",
+        "fileName": "3. Lambda Expressions.mp4",
+        "driveId": "1WXd9yzLdygQTar-r864obFmgU8dRDIeR",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1WXd9yzLdygQTar-r864obFmgU8dRDIeR/preview"
+      },
+      {
+        "id": "1JLx77Yo95mKLkArdrAI4sVS3FHyqsBq4",
+        "title": "Demo - Lambda Expressions",
+        "fileName": "4. Demo - Lambda Expressions.mp4",
+        "driveId": "1JLx77Yo95mKLkArdrAI4sVS3FHyqsBq4",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1JLx77Yo95mKLkArdrAI4sVS3FHyqsBq4/preview"
+      },
+      {
+        "id": "11PmRyF_LbpWkdY9MR9IticRMNL-VJnz3",
+        "title": "Smart Pointers",
+        "fileName": "5. Smart Pointers.mp4",
+        "driveId": "11PmRyF_LbpWkdY9MR9IticRMNL-VJnz3",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/11PmRyF_LbpWkdY9MR9IticRMNL-VJnz3/preview"
+      },
+      {
+        "id": "1tMtRjNOJDxxqOG_0JWOnmetVac7RR-9w",
+        "title": "Demo - Smart Pointers",
+        "fileName": "6. Demo - Smart Pointers.mp4",
+        "driveId": "1tMtRjNOJDxxqOG_0JWOnmetVac7RR-9w",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1tMtRjNOJDxxqOG_0JWOnmetVac7RR-9w/preview"
+      },
+      {
+        "id": "1V1HxPQ7WP51KQNh3XjLI6YRmahg2_1q8",
+        "title": "InClass Initializer and Delegation of Constructors",
+        "fileName": "7. InClass Initializer and Delegation of Constructors.mp4",
+        "driveId": "1V1HxPQ7WP51KQNh3XjLI6YRmahg2_1q8",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1V1HxPQ7WP51KQNh3XjLI6YRmahg2_1q8/preview"
+      },
+      {
+        "id": "1y7gYAZVRvE0ImkVJ2bAMG57LP6AyNIlX",
+        "title": "Ellipsis",
+        "fileName": "8. Ellipsis.mp4",
+        "driveId": "1y7gYAZVRvE0ImkVJ2bAMG57LP6AyNIlX",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1y7gYAZVRvE0ImkVJ2bAMG57LP6AyNIlX/preview"
+      },
+      {
+        "id": "1FPcS-a5jyt11_vWiDcs1i1CW8ArpVy68",
+        "title": "Demo - Ellipsis",
+        "fileName": "9. Demo - Ellipsis.mp4",
+        "driveId": "1FPcS-a5jyt11_vWiDcs1i1CW8ArpVy68",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1FPcS-a5jyt11_vWiDcs1i1CW8ArpVy68/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1axZTiBF5qjccY4JIwDxAua-6znXCQ_Cx",
+        "title": "1 Ellipsis",
+        "fileName": "9.1 Ellipsis.pdf",
+        "driveId": "1axZTiBF5qjccY4JIwDxAua-6znXCQ_Cx",
+        "previewUrl": "https://drive.google.com/file/d/1axZTiBF5qjccY4JIwDxAua-6znXCQ_Cx/preview"
+      }
+    ],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "C++ 11 Example",
+        "description": "Demonstrating essential syntax and practices for C++ 11.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: C++ 11\" << endl;\n    cout << \"Module 24 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: C++ 11\nModule 24 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m24-q1",
+        "question": "What is the key takeaway in the C++ 11 module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring C++ 11. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-25",
+    "moduleNumber": 25,
+    "title": "Student Project - Banking System",
+    "category": "Projects & Deep Dives",
+    "folderId": "1yhEQtSf6SjkyWrPlqd7t8Z-o9TwUkIWX",
+    "folderName": "25. Student Project - Banking System",
+    "videosCount": 1,
+    "documentsCount": 1,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1Q4V0u3L0N1AqzrIl7Whgd4ceKL5rH9QZ",
+        "title": "Student Project - Banking System",
+        "fileName": "1. Student Project - Banking System.mp4",
+        "driveId": "1Q4V0u3L0N1AqzrIl7Whgd4ceKL5rH9QZ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1Q4V0u3L0N1AqzrIl7Whgd4ceKL5rH9QZ/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "17WaO8iWk87gd6ZM75-hJDvgjvo7wTvge",
+        "title": "1 Banking System",
+        "fileName": "1.1 Banking System.pdf",
+        "driveId": "17WaO8iWk87gd6ZM75-hJDvgjvo7wTvge",
+        "previewUrl": "https://drive.google.com/file/d/17WaO8iWk87gd6ZM75-hJDvgjvo7wTvge/preview"
+      }
+    ],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Banking System Account Class",
+        "description": "Encapsulating account balance, deposit, withdraw, and transaction logs.",
+        "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nclass BankAccount {\nprivate:\n    string accountNumber;\n    string ownerName;\n    double balance;\npublic:\n    BankAccount(string acc, string name, double initial)\n        : accountNumber(acc), ownerName(name), balance(initial) {}\n\n    void deposit(double amount) {\n        balance += amount;\n        cout << \"Deposited $\" << amount << \". New Balance: $\" << balance << endl;\n    }\n\n    bool withdraw(double amount) {\n        if (amount > balance) {\n            cout << \"Insufficient funds!\" << endl;\n            return false;\n        }\n        balance -= amount;\n        cout << \"Withdrew $\" << amount << \". Remaining: $\" << balance << endl;\n        return true;\n    }\n};\n\nint main() {\n    BankAccount myAccount(\"ACC-9042\", \"Taylor Swift\", 500.0);\n    myAccount.deposit(250.0);\n    myAccount.withdraw(120.0);\n    return 0;\n}",
+        "expectedOutput": "Deposited $250. New Balance: $750\nWithdrew $120. Remaining: $630",
+        "explanation": "Demonstrates production architecture combining classes, validation, and state maintenance."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m25-q1",
+        "question": "Why should bank account balances always be marked private in an OOP system?",
+        "options": [
+          "To save RAM",
+          "To prevent unauthorized direct modification from outside",
+          "To speed up compilation",
+          "To make it static"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Encapsulation prevents corrupting states and enforces validation through methods."
+      }
+    ],
+    "description": "Comprehensive capstone project: building a complete Object-Oriented Banking Management System with file persistence and accounts.",
+    "readingTime": "45 min"
+  },
+  {
+    "id": "module-26",
+    "moduleNumber": 26,
+    "title": "Number Systems - Conversions",
+    "category": "Projects & Deep Dives",
+    "folderId": "103s_GEW0K7MxexadpZeDmCvySnxd0qQd",
+    "folderName": "26. Number Systems - Conversions",
+    "videosCount": 5,
+    "documentsCount": 0,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1OrRuDbCkhAZeyo-TGU2T3XMrWfoOH085",
+        "title": "Number Systems",
+        "fileName": "1. Number Systems.mp4",
+        "driveId": "1OrRuDbCkhAZeyo-TGU2T3XMrWfoOH085",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1OrRuDbCkhAZeyo-TGU2T3XMrWfoOH085/preview"
+      },
+      {
+        "id": "1_CuzqTvlwb1KLarW1sejr1UZtCV64Jkq",
+        "title": "Decimal to Binary , Octal and HexaDecimal Conversion",
+        "fileName": "2. Decimal to Binary , Octal and HexaDecimal Conversion.mp4",
+        "driveId": "1_CuzqTvlwb1KLarW1sejr1UZtCV64Jkq",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1_CuzqTvlwb1KLarW1sejr1UZtCV64Jkq/preview"
+      },
+      {
+        "id": "1UWORp6c0UI5nOOAXUSgVO25Xe2HAI8rJ",
+        "title": "Binary, Octal and HexaDecimal to Decimal Conversion",
+        "fileName": "3. Binary, Octal and HexaDecimal to Decimal Conversion.mp4",
+        "driveId": "1UWORp6c0UI5nOOAXUSgVO25Xe2HAI8rJ",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1UWORp6c0UI5nOOAXUSgVO25Xe2HAI8rJ/preview"
+      },
+      {
+        "id": "1lStSBArhOXqpgY1MjxyhkhoJoKNe823Q",
+        "title": "Octal and HexaDecimal to Binary Conversion",
+        "fileName": "4. Octal and HexaDecimal to Binary Conversion.mp4",
+        "driveId": "1lStSBArhOXqpgY1MjxyhkhoJoKNe823Q",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1lStSBArhOXqpgY1MjxyhkhoJoKNe823Q/preview"
+      },
+      {
+        "id": "1jMM1x5LffHaHb3i2E9pKn4pSs52kV7X7",
+        "title": "Octal to HexaDecimal Conversion",
+        "fileName": "5. Octal to HexaDecimal Conversion.mp4",
+        "driveId": "1jMM1x5LffHaHb3i2E9pKn4pSs52kV7X7",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1jMM1x5LffHaHb3i2E9pKn4pSs52kV7X7/preview"
+      }
+    ],
+    "documents": [],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "Number Systems - Conversions Example",
+        "description": "Demonstrating essential syntax and practices for Number Systems - Conversions.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: Number Systems - Conversions\" << endl;\n    cout << \"Module 26 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: Number Systems - Conversions\nModule 26 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m26-q1",
+        "question": "What is the key takeaway in the Number Systems - Conversions module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring Number Systems - Conversions. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  },
+  {
+    "id": "module-27",
+    "moduleNumber": 27,
+    "title": "All about Data Type",
+    "category": "Projects & Deep Dives",
+    "folderId": "1PxqJCeI6-kZ_uEGiLUALDnBX7LVIurej",
+    "folderName": "27. All about Data Type",
+    "videosCount": 6,
+    "documentsCount": 1,
+    "exercisesCount": 0,
+    "videos": [
+      {
+        "id": "1iTVB9NIMoCd_xhIXK5jU7qoxEAi_dq8N",
+        "title": "Data Types #1",
+        "fileName": "1. Data Types #1.mp4",
+        "driveId": "1iTVB9NIMoCd_xhIXK5jU7qoxEAi_dq8N",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1iTVB9NIMoCd_xhIXK5jU7qoxEAi_dq8N/preview"
+      },
+      {
+        "id": "10G35BKQavYmbovZw0eDs2lPipt2ZK_He",
+        "title": "Data Types #2",
+        "fileName": "2. Data Types #2.mp4",
+        "driveId": "10G35BKQavYmbovZw0eDs2lPipt2ZK_He",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/10G35BKQavYmbovZw0eDs2lPipt2ZK_He/preview"
+      },
+      {
+        "id": "1B0xDH4D_8KYlR5O90I9qG_gfhZ7ivSKd",
+        "title": "Sizes and Range of Datatypes",
+        "fileName": "3. Sizes and Range of Datatypes.mp4",
+        "driveId": "1B0xDH4D_8KYlR5O90I9qG_gfhZ7ivSKd",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1B0xDH4D_8KYlR5O90I9qG_gfhZ7ivSKd/preview"
+      },
+      {
+        "id": "18-UziZUgkyYgcvoI_ZrbsiawqQ6bBmGl",
+        "title": "Variables and Literals",
+        "fileName": "4. Variables and Literals.mp4",
+        "driveId": "18-UziZUgkyYgcvoI_ZrbsiawqQ6bBmGl",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/18-UziZUgkyYgcvoI_ZrbsiawqQ6bBmGl/preview"
+      },
+      {
+        "id": "15UcUlUHHAN-adRmAVe_UAssqqIzHaEBO",
+        "title": "Demo - Variables and Literals",
+        "fileName": "5. Demo - Variables and Literals.mp4",
+        "driveId": "15UcUlUHHAN-adRmAVe_UAssqqIzHaEBO",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/15UcUlUHHAN-adRmAVe_UAssqqIzHaEBO/preview"
+      },
+      {
+        "id": "1WMzimrVLwOkBV0tt5BJ7fqLaet3Gs1QS",
+        "title": "Constructor in Inheritance Examples",
+        "fileName": "6. Constructor in Inheritance Examples.mp4",
+        "driveId": "1WMzimrVLwOkBV0tt5BJ7fqLaet3Gs1QS",
+        "duration": "8-15 min",
+        "previewUrl": "https://drive.google.com/file/d/1WMzimrVLwOkBV0tt5BJ7fqLaet3Gs1QS/preview"
+      }
+    ],
+    "documents": [
+      {
+        "id": "1ZAFdvZR_4FV8b2y6Ik67mum8kY5ycxqU",
+        "title": "1 VariableLiteralls",
+        "fileName": "5.1 VariableLiteralls.pdf",
+        "driveId": "1ZAFdvZR_4FV8b2y6Ik67mum8kY5ycxqU",
+        "previewUrl": "https://drive.google.com/file/d/1ZAFdvZR_4FV8b2y6Ik67mum8kY5ycxqU/preview"
+      }
+    ],
+    "exercises": [],
+    "codeSnippets": [
+      {
+        "title": "All about Data Type Example",
+        "description": "Demonstrating essential syntax and practices for All about Data Type.",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Learning: All about Data Type\" << endl;\n    cout << \"Module 27 in C++ MasterClass\" << endl;\n    return 0;\n}",
+        "expectedOutput": "Learning: All about Data Type\nModule 27 in C++ MasterClass",
+        "explanation": "Covers the core conventions and syntax patterns discussed in the video lectures and PDF notes."
+      }
+    ],
+    "quiz": [
+      {
+        "id": "m27-q1",
+        "question": "What is the key takeaway in the All about Data Type module?",
+        "options": [
+          "Understanding practical C++ application and memory safety",
+          "Deprecating standard libraries",
+          "Removing compilation flags",
+          "Disabling type checks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Modern C++ emphasizes safe, efficient software engineering patterns and standard compliance."
+      }
+    ],
+    "description": "In-depth module exploring All about Data Type. Includes step-by-step video tutorials from Google Drive, comprehensive PDF reference sheets, code examples, and practice challenges.",
+    "readingTime": "20 min"
+  }
+]
