@@ -1,32 +1,52 @@
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
-import path from 'node:path';
-import {defineConfig} from 'vite';
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import path from "node:path";
+import { defineConfig } from "vite";
 
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(import.meta.dirname, 'src'),
+        "@": path.resolve(import.meta.dirname, "src"),
+      },
+    },
+    server: {
+      host: true,
+      allowedHosts: true,
+      proxy: {
+        "/api": {
+          target: "http://127.0.0.1:8787",
+          changeOrigin: true,
+          ws: true,
+        },
+      },
+    },
+    preview: {
+      proxy: {
+        "/api": {
+          target: "http://127.0.0.1:8787",
+          changeOrigin: true,
+          ws: true,
+        },
       },
     },
     build: {
       rollupOptions: {
         output: {
           manualChunks(id) {
-            if (id.includes('courseModules.json')) {
-              return 'curriculum-data';
+            if (id.includes("courseModules.json")) {
+              return "curriculum-data";
             }
-            if (id.includes('node_modules/lucide-react')) {
-              return 'lucide-icons';
+            if (id.includes("node_modules/lucide-react")) {
+              return "lucide-icons";
             }
-            if (id.includes('node_modules/motion')) {
-              return 'motion-vendor';
+            if (id.includes("node_modules/motion")) {
+              return "motion-vendor";
             }
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   };
 });

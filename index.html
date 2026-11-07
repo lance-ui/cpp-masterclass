@@ -2,21 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>C++ MasterClass: Beginner to Advance</title>
-    <meta name="description" content="A practical C++ course with guided lessons, code examples, quizzes, and progress tracking." />
-    <meta property="og:title" content="C++ MasterClass: Beginner to Advance" />
-    <meta property="og:description" content="A practical C++ course with guided lessons, code examples, quizzes, and progress tracking." />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>C++ MasterClass — Learn C++ by writing and running real code</title>
+    <meta
+      name="description"
+      content="Learn C++ by writing and running real code. 27 modules, quizzes, and a real g++ (C++20) sandbox with an interactive console."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="C++ MasterClass — Learn C++ by writing and running real code" />
+    <meta
+      property="og:description"
+      content="Learn C++ by writing and running real code. 27 modules, quizzes, and a real g++ (C++20) sandbox with an interactive console."
+    />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og.svg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#ad4b31" />
+    <meta name="twitter:title" content="C++ MasterClass" />
+    <meta
+      name="twitter:description"
+      content="Learn C++ by writing and running real code. 27 modules, quizzes, and a real g++ sandbox."
+    />
+    <meta name="twitter:image" content="/og.svg" />
+    <meta name="theme-color" content="#f8f9fb" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var key = "cpp-masterclass:v1:dark-mode";
+          var stored = localStorage.getItem(key);
+          var dark;
+          if (stored === "true" || stored === "false") {
+            dark = stored === "true";
+          } else {
+            dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          }
+          document.documentElement.classList.toggle("dark", dark);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", dark ? "#0c111b" : "#f8f9fb");
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-canvas text-ink dark:bg-canvas-dark dark:text-ink-dark antialiased">
+  <body class="bg-canvas text-ink antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

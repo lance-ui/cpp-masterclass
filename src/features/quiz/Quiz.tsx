@@ -137,7 +137,7 @@ export const Quiz: React.FC<QuizProps> = ({
               }`}
             >
               <div className="flex items-start justify-between gap-2 mb-3">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <span className="text-xs font-medium text-[var(--app-tertiary)]">
                   Question {qIndex + 1} of {questions.length}
                 </span>
                 {submitted && (

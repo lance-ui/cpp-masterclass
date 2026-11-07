@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { ActiveTab, CourseModule, User } from '@/types';
 import { calculateOverallProgress } from '@/utils/courseLogic';
+import { recordActivity } from '@/utils/activity';
 
 export function useProgress(
   modules: CourseModule[],
@@ -22,6 +23,7 @@ export function useProgress(
     setActiveTab(tab);
     setCurrentUser(user => {
       if (!user) return null;
+      recordActivity(user.id);
       return {
         ...user,
         recentModuleIds: [moduleId, ...user.recentModuleIds.filter(id => id !== moduleId)].slice(0, 8)
@@ -32,6 +34,7 @@ export function useProgress(
   const toggleComplete = (moduleId: string) => {
     setCurrentUser(user => {
       if (!user) return null;
+      recordActivity(user.id);
       return {
         ...user,
         completedModuleIds: user.completedModuleIds.includes(moduleId)
@@ -56,6 +59,7 @@ export function useProgress(
   const saveQuizScore = (moduleId: string, score: number) => {
     setCurrentUser(user => {
       if (!user) return null;
+      recordActivity(user.id);
       return {
         ...user,
         quizScores: { ...user.quizScores, [moduleId]: score }

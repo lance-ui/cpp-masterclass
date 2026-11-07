@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="C++ MasterClass">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c111b"/>
+      <stop offset="100%" stop-color="#1d2939"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="220" fill="#b8f000" fill-opacity="0.12"/>
+  <circle cx="160" cy="520" r="180" fill="#b8f000" fill-opacity="0.08"/>
+  <rect x="72" y="72" width="72" height="72" rx="14" fill="#b8f000"/>
+  <text x="108" y="118" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="22" font-weight="600" fill="#101828">C++</text>
+  <text x="72" y="220" font-family="IBM Plex Sans, ui-sans-serif, system-ui, sans-serif" font-size="56" font-weight="600" fill="#f2f4f7">C++ MasterClass</text>
+  <text x="72" y="290" font-family="IBM Plex Sans, ui-sans-serif, system-ui, sans-serif" font-size="28" fill="#98a2b3">Learn C++ by writing and running real code</text>
+  <text x="72" y="520" font-family="IBM Plex Sans, ui-sans-serif, system-ui, sans-serif" font-size="22" fill="#d4ef8a">27 modules · Quizzes · Real g++ (C++20)</text>
+</svg>

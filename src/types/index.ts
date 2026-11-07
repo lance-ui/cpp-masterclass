@@ -1,4 +1,4 @@
-export type UserRole = 'student' | 'admin';
+export type UserRole = "student" | "admin";
 
 export interface User {
   id: string;
@@ -7,9 +7,11 @@ export interface User {
   role: UserRole;
   bookmarkedModuleIds: string[];
   completedModuleIds: string[];
-  quizScores: Record<string, number>; // moduleId -> percentage
+  quizScores: Record<string, number>;
   recentModuleIds: string[];
-  notes: Record<string, string>; // moduleId -> user private note
+  notes: Record<string, string>;
+  avatarUrl?: string;
+  authProvider?: "local" | "google";
 }
 
 export interface VideoLesson {
@@ -56,7 +58,12 @@ export interface CourseModule {
   id: string;
   moduleNumber: number;
   title: string;
-  category: 'Beginner' | 'Core Concepts' | 'Object Oriented (OOP)' | 'Advanced C++ & STL' | 'Projects & Deep Dives';
+  category:
+    | "Beginner"
+    | "Core Concepts"
+    | "Object Oriented (OOP)"
+    | "Advanced C++ & STL"
+    | "Projects & Deep Dives";
   description: string;
   folderId: string;
   folderName: string;
@@ -71,5 +78,21 @@ export interface CourseModule {
   readingTime: string;
 }
 
-export type ActiveTab = 'overview' | 'video' | 'pdf' | 'code' | 'quiz' | 'notes';
-export type AppView = 'learn' | 'playground' | 'dashboard' | 'admin';
+export type ActiveTab =
+  | "overview"
+  | "video"
+  | "pdf"
+  | "code"
+  | "quiz";
+export type AppView =
+  | "landing"
+  | "login"
+  | "signup"
+  | "learn"
+  | "playground"
+  | "dashboard"
+  | "admin"
+  | "community"
+  | "design"
+  | "terms"
+  | "privacy";

@@ -1,30 +1,72 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { 
-  Play, 
-  Copy, 
-  Check, 
-  Download, 
-  Terminal, 
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Play,
+  Copy,
+  Check,
+  Download,
+  Terminal,
   AlertTriangle,
   AlignLeft,
   Code2,
   CheckCircle2,
-  Eye,
-  Edit3
-} from 'lucide-react';
-import { simulateCppExecution, formatCppCode, CppExecutionResult } from '@/utils/courseLogic';
-import { Button, highlightCpp } from '@/components/ui';
+} from "lucide-react";
+import { EditorState } from "@codemirror/state";
+import {
+  EditorView,
+  keymap,
+  lineNumbers,
+  highlightActiveLine,
+  highlightActiveLineGutter,
+} from "@codemirror/view";
+import {
+  defaultKeymap,
+  history,
+  historyKeymap,
+  indentWithTab,
+} from "@codemirror/commands";
+import {
+  bracketMatching,
+  foldGutter,
+  indentOnInput,
+  indentUnit,
+} from "@codemirror/language";
+import { cpp } from "@codemirror/lang-cpp";
+import { formatCppCode } from "@/utils/courseLogic";
+import { Button } from "@/components/ui";
+import { readStoredValue, writeStoredValue } from "@/utils/storage";
+import {
+  cppEditorTheme,
+  cppSyntaxHighlighting,
+} from "@/features/playground/cppEditorTheme";
+import {
+  runCppOnServer,
+  signalLabel,
+  type CompileDiagnostic,
+  type RunApiResponse,
+} from "@/utils/runApi";
+import {
+  InteractiveRunSession,
+  type ConsoleChunk,
+} from "@/utils/runSession";
 
 interface CodePlaygroundProps {
   initialCode?: string;
   initialTitle?: string;
+  /** When set (lesson Code tab), becomes the default template. */
+  lessonExample?: { title: string; code: string };
   onCodeRun?: () => void;
 }
 
-const TEMPLATES: { name: string; title: string; code: string; defaultStdin?: string }[] = [
+type RunPhase = "idle" | "compiling" | "running";
+
+const TEMPLATES: {
+  name: string;
+  title: string;
+  code: string;
+}[] = [
   {
-    name: 'pointers',
-    title: 'Pointers & Dynamic Memory',
+    name: "pointers",
+    title: "Pointers & Dynamic Memory",
     code: `#include <iostream>
 using namespace std;
 
@@ -42,12 +84,11 @@ int main() {
     heapVal = nullptr;
 
     return 0;
-}`
+}`,
   },
   {
-    name: 'stdin',
-    title: 'Interactive User Input (cin >>)',
-    defaultStdin: '24',
+    name: "stdin",
+    title: "Interactive User Input (cin >>)",
     code: `#include <iostream>
 using namespace std;
 
@@ -64,23 +105,23 @@ int main() {
     }
 
     return 0;
-}`
+}`,
   },
   {
-    name: 'hello',
-    title: 'Hello World (Basics)',
+    name: "hello",
+    title: "Hello World (Basics)",
     code: `#include <iostream>
 using namespace std;
 
 int main() {
     cout << "Welcome to C++ MasterClass IDE!" << endl;
-    cout << "Compiler: Modern C++20 Sandbox" << endl;
+    cout << "Compiler: real g++ C++20 (sandboxed)" << endl;
     return 0;
-}`
+}`,
   },
   {
-    name: 'triangle',
-    title: 'Area of a Triangle (Expressions)',
+    name: "triangle",
+    title: "Area of a Triangle (Expressions)",
     code: `#include <iostream>
 using namespace std;
 
@@ -92,11 +133,11 @@ int main() {
     cout << "Base: " << base << " | Height: " << height << endl;
     cout << "Area of Triangle = " << area << " sq units" << endl;
     return 0;
-}`
+}`,
   },
   {
-    name: 'loops',
-    title: 'Sum of N Numbers (Loops)',
+    name: "loops",
+    title: "Sum of N Numbers (Loops)",
     code: `#include <iostream>
 using namespace std;
 
@@ -110,11 +151,11 @@ int main() {
 
     cout << "Sum of numbers 1 to " << n << " is: " << sum << endl;
     return 0;
-}`
+}`,
   },
   {
-    name: 'oop',
-    title: 'Class & Encapsulation (OOP)',
+    name: "oop",
+    title: "Class & Encapsulation (OOP)",
     code: `#include <iostream>
 #include <string>
 using namespace std;
@@ -135,11 +176,11 @@ int main() {
     Student s1("Example Student", 94);
     s1.display();
     return 0;
-}`
+}`,
   },
   {
-    name: 'stl',
-    title: 'STL Vector & Sorting',
+    name: "stl",
+    title: "STL Vector & Sorting",
     code: `#include <iostream>
 #include <vector>
 #include <algorithm>
@@ -155,11 +196,11 @@ int main() {
     }
     cout << endl;
     return 0;
-}`
+}`,
   },
   {
-    name: 'banking',
-    title: 'Banking System Project',
+    name: "banking",
+    title: "Banking System Project",
     code: `#include <iostream>
 #include <string>
 using namespace std;
@@ -191,591 +232,732 @@ int main() {
     acc.deposit(150.0);
     acc.withdraw(80.0);
     return 0;
-}`
-  }
+}`,
+  },
 ];
+
+const SYMBOLS = ["{", "}", "(", ")", ";", "*", "&", "#", "<", ">"] as const;
+const isNumber = (v: unknown): v is number =>
+  typeof v === "number" && Number.isFinite(v);
 
 export const CodePlayground: React.FC<CodePlaygroundProps> = ({
   initialCode,
   initialTitle,
-  onCodeRun
+  lessonExample,
+  onCodeRun,
 }) => {
-  const [code, setCode] = useState<string>(
-    initialCode || TEMPLATES[0].code
+  const defaultCode =
+    lessonExample?.code || initialCode || TEMPLATES[0].code;
+  const [code, setCode] = useState(defaultCode);
+  const [phase, setPhase] = useState<RunPhase>("idle");
+  const [apiResult, setApiResult] = useState<RunApiResponse | null>(null);
+  const [runError, setRunError] = useState<string | null>(null);
+  const [diagnostics, setDiagnostics] = useState<CompileDiagnostic[]>([]);
+  const [consoleChunks, setConsoleChunks] = useState<ConsoleChunk[]>([]);
+  const [liveExit, setLiveExit] = useState<{
+    code: number | null;
+    signal: string | null;
+    timedOut: boolean;
+    durationMs: number;
+    truncated?: boolean;
+  } | null>(null);
+  const [stdinLine, setStdinLine] = useState("");
+  const [memoryChecks, setMemoryChecks] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [formattedNotice, setFormattedNotice] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState(
+    lessonExample ? "lesson" : "hello",
   );
-  const [stdinInput, setStdinInput] = useState<string>('');
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [result, setResult] = useState<CppExecutionResult | null>(null);
-  const [copied, setCopied] = useState<boolean>(false);
-  const [formattedNotice, setFormattedNotice] = useState<boolean>(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('pointers');
-  const [cursorPos, setCursorPos] = useState<{ line: number; col: number }>({ line: 1, col: 1 });
-  const [viewMode, setViewMode] = useState<'edit' | 'syntax'>('edit');
+  const [cursorPos, setCursorPos] = useState({ line: 1, col: 1 });
+  const [mobilePane, setMobilePane] = useState<"code" | "output">("code");
+  const [splitPct, setSplitPct] = useState(() =>
+    readStoredValue("sandbox-split", 55, isNumber),
+  );
 
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const gutterRef = useRef<HTMLDivElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
+  const viewRef = useRef<EditorView | null>(null);
+  const consoleEndRef = useRef<HTMLDivElement>(null);
+  const stdinRef = useRef<HTMLInputElement>(null);
+  const codeRef = useRef(code);
+  const runRef = useRef<() => void>(() => undefined);
+  const formatRef = useRef<() => void>(() => undefined);
+  const dragging = useRef(false);
+  const splitRef = useRef(splitPct);
+  const abortRef = useRef<AbortController | null>(null);
+  const sessionRef = useRef<InteractiveRunSession | null>(null);
+  const baselineRef = useRef(defaultCode);
 
-  // Sync cursor position
-  const updateCursorPosition = () => {
-    if (!textareaRef.current) return;
-    const pos = textareaRef.current.selectionStart;
-    const textUpToCursor = textareaRef.current.value.substring(0, pos);
-    const lines = textUpToCursor.split('\n');
-    setCursorPos({
-      line: lines.length,
-      col: lines[lines.length - 1].length + 1
+  codeRef.current = code;
+  splitRef.current = splitPct;
+  const isRunning = phase !== "idle";
+
+  useEffect(() => {
+    consoleEndRef.current?.scrollIntoView({ block: "end" });
+  }, [consoleChunks, phase]);
+
+  useEffect(() => {
+    if (phase === "running") {
+      stdinRef.current?.focus();
+    }
+  }, [phase]);
+
+  const jumpToDiagnostic = useCallback((d: CompileDiagnostic) => {
+    const view = viewRef.current;
+    if (!view) return;
+    const lineNo = Math.max(1, Math.min(d.line, view.state.doc.lines));
+    const line = view.state.doc.line(lineNo);
+    const col = Math.max(1, d.col);
+    const pos = Math.min(line.from + col - 1, line.to);
+    view.dispatch({
+      selection: { anchor: pos },
+      effects: EditorView.scrollIntoView(pos, { y: "center" }),
     });
-  };
+    view.focus();
+    setMobilePane("code");
+  }, []);
 
-  const handleRunCode = () => {
-    setIsRunning(true);
-    setResult(null);
+  const handleRunCode = useCallback(() => {
+    abortRef.current?.abort();
+    sessionRef.current?.kill();
+    sessionRef.current = null;
 
-    // Fast simulation latency
-    setTimeout(() => {
-      const res = simulateCppExecution(code, stdinInput);
-      setResult(res);
-      setIsRunning(false);
-      if (onCodeRun) onCodeRun();
-    }, 180);
-  };
+    setPhase("compiling");
+    setApiResult(null);
+    setLiveExit(null);
+    setRunError(null);
+    setDiagnostics([]);
+    setConsoleChunks([]);
+    setStdinLine("");
+    setMobilePane("output");
 
-  const handleFormatCode = () => {
-    const formatted = formatCppCode(code);
+    const session = new InteractiveRunSession({
+      onCompile: (msg) => {
+        setDiagnostics(msg.diagnostics || []);
+        if (msg.ok) {
+          setPhase("running");
+          setConsoleChunks((prev) => [
+            ...prev,
+            { kind: "system", text: "Compiled. Running…\n" },
+          ]);
+        } else {
+          setPhase("idle");
+          setDiagnostics(msg.diagnostics || []);
+        }
+      },
+      onChunk: (chunk) => {
+        setConsoleChunks((prev) => [...prev, chunk]);
+      },
+      onExit: (msg) => {
+        setLiveExit({
+          code: msg.code,
+          signal: msg.signal,
+          timedOut: msg.timedOut,
+          durationMs: msg.durationMs,
+          truncated: msg.truncated,
+        });
+        setPhase("idle");
+        sessionRef.current = null;
+        onCodeRun?.();
+      },
+      onError: (message) => {
+        setRunError(message);
+        setPhase("idle");
+        sessionRef.current = null;
+      },
+    });
+    sessionRef.current = session;
+
+    void (async () => {
+      try {
+        await session.start(codeRef.current, { memoryChecks });
+      } catch {
+        // WebSocket unavailable — fall back to non-interactive POST
+        const ac = new AbortController();
+        abortRef.current = ac;
+        setConsoleChunks((prev) => [
+          ...prev,
+          {
+            kind: "system",
+            text: "Live console unavailable — using one-shot run (no interactive cin).\n",
+          },
+        ]);
+        try {
+          const res = await runCppOnServer(
+            { code: codeRef.current, stdin: "", memoryChecks },
+            { signal: ac.signal },
+          );
+          if (ac.signal.aborted) return;
+          setApiResult(res);
+          setDiagnostics(res.compile.diagnostics);
+          if (res.compile.ok && res.run) {
+            const chunks: ConsoleChunk[] = [];
+            if (res.run.stdout)
+              chunks.push({ kind: "stdout", text: res.run.stdout });
+            if (res.run.stderr)
+              chunks.push({ kind: "stderr", text: res.run.stderr });
+            setConsoleChunks((prev) => [...prev, ...chunks]);
+            setLiveExit({
+              code: res.run.exitCode,
+              signal: res.run.signal,
+              timedOut: res.run.timedOut,
+              durationMs: res.run.durationMs,
+              truncated: res.run.truncated,
+            });
+          }
+          setPhase("idle");
+          onCodeRun?.();
+        } catch (err) {
+          if (ac.signal.aborted) return;
+          const msg =
+            err && typeof err === "object" && "error" in err
+              ? String((err as { error: string }).error)
+              : "Network error — is the API running?";
+          setRunError(msg);
+          setPhase("idle");
+        }
+      }
+    })();
+  }, [memoryChecks, onCodeRun]);
+
+  const handleCancelRun = useCallback(() => {
+    abortRef.current?.abort();
+    abortRef.current = null;
+    sessionRef.current?.kill();
+    sessionRef.current = null;
+    setPhase("idle");
+    setConsoleChunks((prev) => [
+      ...prev,
+      { kind: "system", text: "\n[cancelled]\n" },
+    ]);
+  }, []);
+
+  const handleStdinSubmit = useCallback(() => {
+    if (phase !== "running" || !sessionRef.current) return;
+    const line = stdinLine;
+    setStdinLine("");
+    sessionRef.current.sendStdin(line);
+  }, [phase, stdinLine]);
+
+  const handleFormatCode = useCallback(() => {
+    const formatted = formatCppCode(codeRef.current);
     setCode(formatted);
     setFormattedNotice(true);
-    setTimeout(() => setFormattedNotice(false), 1600);
+    window.setTimeout(() => setFormattedNotice(false), 1600);
+  }, []);
+
+  runRef.current = handleRunCode;
+  formatRef.current = handleFormatCode;
+
+  useEffect(() => {
+    if (!hostRef.current) return;
+
+    const updateListener = EditorView.updateListener.of((update) => {
+      if (update.docChanged) {
+        const next = update.state.doc.toString();
+        codeRef.current = next;
+        setCode(next);
+      }
+      if (update.selectionSet || update.docChanged) {
+        const head = update.state.selection.main.head;
+        const line = update.state.doc.lineAt(head);
+        setCursorPos({
+          line: line.number,
+          col: head - line.from + 1,
+        });
+      }
+    });
+
+    const runKeymap = keymap.of([
+      {
+        key: "Mod-Enter",
+        run: () => {
+          runRef.current();
+          return true;
+        },
+      },
+      {
+        key: "Shift-Alt-f",
+        run: () => {
+          formatRef.current();
+          return true;
+        },
+      },
+    ]);
+
+    const state = EditorState.create({
+      doc: codeRef.current,
+      extensions: [
+        lineNumbers(),
+        highlightActiveLine(),
+        highlightActiveLineGutter(),
+        foldGutter(),
+        history(),
+        bracketMatching(),
+        indentOnInput(),
+        indentUnit.of("    "),
+        cpp(),
+        cppEditorTheme,
+        cppSyntaxHighlighting,
+        keymap.of([...defaultKeymap, ...historyKeymap, indentWithTab]),
+        runKeymap,
+        updateListener,
+      ],
+    });
+
+    const view = new EditorView({ state, parent: hostRef.current });
+    viewRef.current = view;
+    return () => {
+      view.destroy();
+      viewRef.current = null;
+    };
+  }, []);
+
+  // Sync external code changes (templates / format) into the editor
+  useEffect(() => {
+    const view = viewRef.current;
+    if (!view) return;
+    const current = view.state.doc.toString();
+    if (current === code) return;
+    view.dispatch({
+      changes: { from: 0, to: current.length, insert: code },
+    });
+  }, [code]);
+
+  // Reconfigure theme when light/dark class toggles
+  useEffect(() => {
+    const root = document.documentElement;
+    const obs = new MutationObserver(() => {
+      viewRef.current?.dispatch({});
+    });
+    obs.observe(root, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+
+  const insertSymbol = (symbol: string) => {
+    const view = viewRef.current;
+    if (!view) {
+      setCode((c) => c + symbol);
+      return;
+    }
+    const { from, to } = view.state.selection.main;
+    view.dispatch({
+      changes: { from, to, insert: symbol },
+      selection: { anchor: from + symbol.length },
+    });
+    view.focus();
+    setMobilePane("code");
   };
 
   const handleTemplateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
-    setSelectedTemplate(val);
-    const tmpl = TEMPLATES.find(t => t.name === val);
-    if (tmpl) {
-      setCode(tmpl.code);
-      setStdinInput(tmpl.defaultStdin || '');
-      setResult(null);
+    const nextCode =
+      val === "lesson" && lessonExample
+        ? lessonExample.code
+        : TEMPLATES.find((t) => t.name === val)?.code;
+    if (!nextCode) return;
+
+    if (code !== baselineRef.current) {
+      const ok = window.confirm(
+        "Replace the editor with this template? Unsaved edits will be lost.",
+      );
+      if (!ok) {
+        e.target.value = selectedTemplate;
+        return;
+      }
     }
+
+    setSelectedTemplate(val);
+    setCode(nextCode);
+    baselineRef.current = nextCode;
+    setApiResult(null);
+    setLiveExit(null);
+    setConsoleChunks([]);
+    setDiagnostics([]);
+    setRunError(null);
   };
 
   const handleCopyCode = async () => {
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      window.setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopied(false);
     }
   };
 
   const handleDownload = () => {
-    const blob = new Blob([code], { type: 'text/x-c++src' });
+    const blob = new Blob([code], { type: "text/x-c++src" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'main.cpp';
+    a.download = "main.cpp";
     a.click();
     URL.revokeObjectURL(url);
   };
 
-  // Synchronize scroll between textarea and line numbers gutter
-  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
-    if (gutterRef.current) {
-      gutterRef.current.scrollTop = e.currentTarget.scrollTop;
-    }
-  };
-
-  // Keyboard enhancements: Auto-indent, Tab indentation, Shift+Alt+F to format, Ctrl/Cmd+Enter to run
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    const textarea = e.currentTarget;
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const val = textarea.value;
-
-    // 1. Run shortcut: Ctrl+Enter or Cmd+Enter
-    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
-      e.preventDefault();
-      handleRunCode();
-      return;
-    }
-
-    // 2. Format shortcut: Shift+Alt+F
-    if (e.shiftKey && e.altKey && (e.key === 'f' || e.key === 'F')) {
-      e.preventDefault();
-      handleFormatCode();
-      return;
-    }
-
-    // 3. Auto-indent on Enter
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      const upToCursor = val.substring(0, start);
-      const currentLineStart = upToCursor.lastIndexOf('\n') + 1;
-      const currentLine = upToCursor.substring(currentLineStart);
-
-      // Detect leading whitespace
-      const indentMatch = currentLine.match(/^(\s*)/);
-      const currentIndent = indentMatch ? indentMatch[1] : '';
-
-      // Check if line opens a block with {
-      const trimmedLine = currentLine.trim();
-      const opensBlock = trimmedLine.endsWith('{') || (trimmedLine.includes('{') && !trimmedLine.includes('}'));
-
-      // Check if cursor is right between { and }
-      const charBefore = val[start - 1];
-      const charAfter = val[start];
-      const isBetweenBraces = charBefore === '{' && charAfter === '}';
-
-      let newText = '';
-      let newCursor = start;
-
-      if (isBetweenBraces) {
-        const innerIndent = currentIndent + '    ';
-        newText = val.substring(0, start) + '\n' + innerIndent + '\n' + currentIndent + val.substring(end);
-        newCursor = start + 1 + innerIndent.length;
-      } else if (opensBlock) {
-        const nextIndent = currentIndent + '    ';
-        newText = val.substring(0, start) + '\n' + nextIndent + val.substring(end);
-        newCursor = start + 1 + nextIndent.length;
-      } else {
-        newText = val.substring(0, start) + '\n' + currentIndent + val.substring(end);
-        newCursor = start + 1 + currentIndent.length;
-      }
-
-      setCode(newText);
-      setTimeout(() => {
-        if (textareaRef.current) {
-          textareaRef.current.selectionStart = textareaRef.current.selectionEnd = newCursor;
-          updateCursorPosition();
-        }
-      }, 0);
-      return;
-    }
-
-    // 4. Auto-dedent on }
-    if (e.key === '}') {
-      const upToCursor = val.substring(0, start);
-      const currentLineStart = upToCursor.lastIndexOf('\n') + 1;
-      const currentLine = upToCursor.substring(currentLineStart);
-
-      // If line only contains spaces (e.g. 4 spaces indentation)
-      if (/^\s{4,}$/.test(currentLine)) {
-        e.preventDefault();
-        const dedented = currentLine.slice(4) + '}';
-        const newText = val.substring(0, currentLineStart) + dedented + val.substring(start);
-        setCode(newText);
-        const newCursor = currentLineStart + dedented.length;
-        setTimeout(() => {
-          if (textareaRef.current) {
-            textareaRef.current.selectionStart = textareaRef.current.selectionEnd = newCursor;
-            updateCursorPosition();
-          }
-        }, 0);
-        return;
-      }
-    }
-
-    // 5. Auto-closing pairs: { }, ( ), [ ], " ", ' '
-    const PAIRS: Record<string, string> = {
-      '{': '}',
-      '(': ')',
-      '[': ']',
-      '"': '"',
-      "'": "'"
+  useEffect(() => {
+    const onMove = (e: MouseEvent | TouchEvent) => {
+      if (!dragging.current) return;
+      const shell = document.getElementById("sandbox-split-shell");
+      if (!shell) return;
+      const clientX =
+        "touches" in e ? e.touches[0]?.clientX : e.clientX;
+      if (clientX == null) return;
+      const rect = shell.getBoundingClientRect();
+      const next = Math.min(
+        75,
+        Math.max(30, ((clientX - rect.left) / rect.width) * 100),
+      );
+      splitRef.current = next;
+      setSplitPct(next);
     };
+    const onUp = () => {
+      if (!dragging.current) return;
+      dragging.current = false;
+      writeStoredValue("sandbox-split", splitRef.current);
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchmove", onMove, { passive: true });
+    window.addEventListener("touchend", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchmove", onMove);
+      window.removeEventListener("touchend", onUp);
+    };
+  }, []);
 
-    if (e.key in PAIRS) {
-      const openChar = e.key;
-      const closeChar = PAIRS[openChar];
+  const lines = code.split("\n").length;
 
-      // If wrapping selected text
-      if (start !== end) {
-        e.preventDefault();
-        const selected = val.substring(start, end);
-        const newText = val.substring(0, start) + openChar + selected + closeChar + val.substring(end);
-        setCode(newText);
-        setTimeout(() => {
-          if (textareaRef.current) {
-            textareaRef.current.selectionStart = start + 1;
-            textareaRef.current.selectionEnd = end + 1;
-          }
-        }, 0);
-        return;
-      }
-
-      // If next char is already quote/bracket, step over it
-      if ((openChar === '"' || openChar === "'") && val[start] === openChar) {
-        e.preventDefault();
-        textarea.selectionStart = textarea.selectionEnd = start + 1;
-        updateCursorPosition();
-        return;
-      }
-
-      // Insert open and close
-      e.preventDefault();
-      const newText = val.substring(0, start) + openChar + closeChar + val.substring(end);
-      setCode(newText);
-      setTimeout(() => {
-        if (textareaRef.current) {
-          textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start + 1;
-          updateCursorPosition();
-        }
-      }, 0);
-      return;
-    }
-
-    // 6. Tab / Shift+Tab indentation
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      if (e.shiftKey) {
-        // Dedent current line by up to 4 spaces
-        const upToCursor = val.substring(0, start);
-        const currentLineStart = upToCursor.lastIndexOf('\n') + 1;
-        const currentLine = upToCursor.substring(currentLineStart);
-        const spaceCount = (currentLine.match(/^ {1,4}/) || [''])[0].length;
-        if (spaceCount > 0) {
-          const newText = val.substring(0, currentLineStart) + currentLine.slice(spaceCount) + val.substring(start);
-          setCode(newText);
-          setTimeout(() => {
-            if (textareaRef.current) {
-              const newPos = Math.max(currentLineStart, start - spaceCount);
-              textareaRef.current.selectionStart = textareaRef.current.selectionEnd = newPos;
-              updateCursorPosition();
+  const exitMeta = liveExit;
+  const consolePanel = (
+    <div className="flex min-h-0 flex-1 flex-col bg-[var(--app-code-bg)] text-[var(--app-code-fg)]">
+      <div className="flex items-center justify-between border-b border-[var(--app-border)] px-3 py-2">
+        <span className="flex items-center gap-1.5 font-mono text-[11px]">
+          <Terminal className="size-3.5 text-[var(--app-accent)]" />
+          console
+        </span>
+        {exitMeta && (
+          <span
+            className={`border px-2 py-0.5 font-mono text-[10px] ${
+              !exitMeta.timedOut && exitMeta.code === 0
+                ? "border-emerald-700 text-emerald-600 dark:text-emerald-400"
+                : "border-red-700 text-red-600 dark:text-red-400"
+            }`}
+          >
+            exit {exitMeta.code ?? "—"}
+            {exitMeta.signal ? ` · ${exitMeta.signal}` : ""} ·{" "}
+            {exitMeta.durationMs}ms
+          </span>
+        )}
+      </div>
+      <div className="min-h-0 flex-1 overflow-y-auto p-3 font-mono text-sm leading-relaxed">
+        {phase === "compiling" && (
+          <p className="animate-pulse text-[var(--app-accent)]">
+            Compiling… g++ -std=c++20
+            {memoryChecks ? " -fsanitize=address,undefined" : ""}
+          </p>
+        )}
+        {runError && (
+          <div className="mb-2 border border-amber-700 bg-amber-950/20 p-3 text-xs text-amber-800 dark:text-amber-200">
+            {runError}
+          </div>
+        )}
+        {!isRunning && consoleChunks.length === 0 && !runError && (
+          <p className="text-xs text-[var(--app-muted)]">
+            Live terminal: run a program, then type when it prompts for{" "}
+            <code className="text-[var(--app-accent)]">cin</code> input.
+          </p>
+        )}
+        {diagnostics.length > 0 && (
+          <div className="mb-2 space-y-1 border border-red-700/60 bg-red-950/15 p-2 text-xs">
+            <div className="mb-1 flex items-center gap-1.5 font-bold text-red-600 dark:text-red-300">
+              <AlertTriangle className="size-3.5" />
+              diagnostics
+            </div>
+            {diagnostics.map((d, i) => (
+              <button
+                key={`${d.line}-${d.col}-${i}`}
+                type="button"
+                onClick={() => jumpToDiagnostic(d)}
+                className={`block w-full truncate text-left hover:underline ${
+                  d.severity === "warning"
+                    ? "text-amber-700 dark:text-amber-300"
+                    : "text-red-600 dark:text-red-300"
+                }`}
+              >
+                L{d.line}:{d.col} {d.severity}: {d.message}
+              </button>
+            ))}
+          </div>
+        )}
+        <pre className="whitespace-pre-wrap break-words">
+          {consoleChunks.map((chunk, i) => (
+            <span
+              key={i}
+              className={
+                chunk.kind === "stdin"
+                  ? "text-cyan-700 dark:text-cyan-400"
+                  : chunk.kind === "stderr"
+                    ? "text-red-600 dark:text-red-400"
+                    : chunk.kind === "system"
+                      ? "text-[var(--app-tertiary)]"
+                      : "text-[var(--cm-string)]"
+              }
+            >
+              {chunk.text}
+            </span>
+          ))}
+        </pre>
+        {exitMeta?.timedOut && (
+          <p className="mt-2 border border-amber-700 p-2 text-xs text-amber-800 dark:text-amber-200">
+            Timed out (wall-clock or idle waiting for input).
+          </p>
+        )}
+        {exitMeta && signalLabel(exitMeta.signal) && (
+          <p className="mt-2 border border-red-700 p-2 text-xs text-red-600 dark:text-red-300">
+            {signalLabel(exitMeta.signal)}
+          </p>
+        )}
+        {exitMeta?.truncated && (
+          <p className="mt-2 text-xs text-[var(--app-muted)]">Output truncated.</p>
+        )}
+        <div ref={consoleEndRef} />
+      </div>
+      <div className="flex items-center gap-2 border-t border-[var(--app-border)] bg-[color-mix(in_srgb,var(--app-code-bg)_90%,black)] px-3 py-2">
+        <span
+          className={`shrink-0 font-mono text-xs font-bold ${
+            phase === "running"
+              ? "text-cyan-700 dark:text-cyan-400"
+              : "text-[var(--app-disabled)]"
+          }`}
+        >
+          {">"}
+        </span>
+        <input
+          ref={stdinRef}
+          type="text"
+          value={stdinLine}
+          disabled={phase !== "running"}
+          onChange={(e) => setStdinLine(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleStdinSubmit();
             }
-          }, 0);
-        }
-      } else {
-        // Insert 4 spaces at cursor
-        const newText = val.substring(0, start) + '    ' + val.substring(end);
-        setCode(newText);
-        setTimeout(() => {
-          if (textareaRef.current) {
-            textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start + 4;
-            updateCursorPosition();
+            if (e.key === "d" && e.ctrlKey) {
+              e.preventDefault();
+              sessionRef.current?.sendEof();
+            }
+          }}
+          placeholder={
+            phase === "running"
+              ? "Type input and press Enter"
+              : "Run a program to type input"
           }
-        }, 0);
-      }
-      return;
-    }
-
-    // 7. Smart Backspace: delete 4 spaces if preceded by an indent
-    if (e.key === 'Backspace' && start === end) {
-      const upToCursor = val.substring(0, start);
-      const currentLineStart = upToCursor.lastIndexOf('\n') + 1;
-      const currentLine = upToCursor.substring(currentLineStart);
-      if (/^\s+$/.test(currentLine) && currentLine.length >= 4 && currentLine.length % 4 === 0) {
-        e.preventDefault();
-        const newText = val.substring(0, start - 4) + val.substring(start);
-        setCode(newText);
-        setTimeout(() => {
-          if (textareaRef.current) {
-            textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start - 4;
-            updateCursorPosition();
-          }
-        }, 0);
-        return;
-      }
-    }
-  };
-
-  const lines = code.split('\n');
-  const lineCount = lines.length;
+          aria-label="Program standard input"
+          className="min-h-10 min-w-0 flex-1 border-0 bg-transparent font-mono text-sm text-[var(--app-ink)] placeholder:text-[var(--app-disabled)] focus:outline-none disabled:cursor-not-allowed"
+        />
+      </div>
+    </div>
+  );
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg overflow-hidden flex flex-col transition-colors">
-      {/* IDE Top Command Bar */}
-      <div className="px-4 py-3 bg-slate-50 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center space-x-2.5">
-          <div className="p-1.5 rounded-lg bg-brand-500/10 text-brand-600 dark:text-brand-400">
-            <Code2 className="w-4 h-4" />
+    <div className="flex h-full min-h-0 flex-col overflow-hidden border border-[var(--app-border)] bg-[var(--app-surface)] shadow-[var(--shadow-card)]">
+      <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 border-b border-[var(--app-border)] px-3 py-2.5 sm:px-4">
+        <div className="flex min-w-0 items-center gap-2.5">
+          <div className="grid size-9 place-items-center border border-[var(--app-border-strong)] bg-brand-300 text-slate-950">
+            <Code2 className="size-4" />
           </div>
-          <div>
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              {initialTitle || 'C++ Interactive IDE'}
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300">
-                C++20 GCC
-              </span>
+          <div className="min-w-0">
+            <h3 className="truncate font-display text-sm font-bold">
+              {initialTitle || "C++ sandbox"}
             </h3>
-            <span className="text-[11px] text-slate-500 font-mono">Modern in-browser compiler & runtime</span>
+            <span className="font-mono text-[11px] text-[var(--app-muted)]">
+              Real g++ · C++20 · sandboxed
+            </span>
           </div>
         </div>
 
-        {/* Action Controls */}
         <div className="flex flex-wrap items-center gap-2">
-          {/* Template Selector */}
           <select
             value={selectedTemplate}
             onChange={handleTemplateChange}
             aria-label="Choose a C++ code template"
-            className="min-h-10 px-2.5 py-1 text-xs bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-brand-500 font-medium"
+            className="min-h-10 max-w-[11rem] border border-[var(--app-border)] bg-[var(--app-surface)] px-2 font-mono text-[11px] sm:max-w-none sm:text-xs"
           >
-            {TEMPLATES.map(t => (
+            {lessonExample && (
+              <option value="lesson">
+                This lesson&apos;s example
+                {lessonExample.title ? ` — ${lessonExample.title}` : ""}
+              </option>
+            )}
+            {TEMPLATES.map((t) => (
               <option key={t.name} value={t.name}>
-                Template: {t.title}
+                {t.title}
               </option>
             ))}
           </select>
 
-          {/* Mode Switcher: Live Editor vs Syntax Preview */}
-          <div className="flex items-center bg-slate-200/80 dark:bg-slate-800 rounded-lg p-0.5 border border-slate-300 dark:border-slate-700">
-            <button
-              type="button"
-              onClick={() => setViewMode('edit')}
-              className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-all ${
-                viewMode === 'edit'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-              title="Interactive code editor with auto-indent"
-            >
-              <Edit3 className="w-3.5 h-3.5" />
-              <span>Editor</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('syntax')}
-              className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-all ${
-                viewMode === 'syntax'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-              title="Syntax colorized token preview"
-            >
-              <Eye className="w-3.5 h-3.5" />
-              <span>Syntax View</span>
-            </button>
-          </div>
+          <label className="flex min-h-10 cursor-pointer items-center gap-1.5 border border-[var(--app-border)] px-2 font-mono text-[10px] sm:text-[11px]">
+            <input
+              type="checkbox"
+              checked={memoryChecks}
+              onChange={(e) => setMemoryChecks(e.target.checked)}
+              className="accent-[var(--app-accent)]"
+            />
+            ASan
+          </label>
 
-          {/* Format Code Button */}
           <button
             type="button"
             onClick={handleFormatCode}
-            aria-label="Format C++ code (Shift+Alt+F)"
-            title="Format Code (Shift+Alt+F)"
-            className="flex min-h-10 items-center space-x-1.5 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors"
+            aria-label="Format C++ code"
+            className="flex min-h-10 items-center gap-1.5 border border-[var(--app-border)] px-3 font-mono text-xs font-semibold"
           >
             {formattedNotice ? (
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+              <CheckCircle2 className="size-3.5 text-emerald-500" />
             ) : (
-              <AlignLeft className="w-3.5 h-3.5 text-brand-500" />
+              <AlignLeft className="size-3.5" />
             )}
-            <span>{formattedNotice ? 'Formatted' : 'Format'}</span>
+            {formattedNotice ? "Ok" : "Format"}
           </button>
 
-          {/* Copy Code */}
           <button
             type="button"
             onClick={handleCopyCode}
-            aria-label={copied ? 'Code copied' : 'Copy C++ code'}
-            className="grid size-10 place-items-center rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-            title="Copy Code"
+            aria-label={copied ? "Code copied" : "Copy C++ code"}
+            className="grid size-10 place-items-center border border-[var(--app-border)]"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+            {copied ? (
+              <Check className="size-4 text-emerald-500" />
+            ) : (
+              <Copy className="size-4" />
+            )}
           </button>
 
-          {/* Download main.cpp */}
           <button
             type="button"
             onClick={handleDownload}
-            aria-label="Download main.cpp source"
-            className="grid size-10 place-items-center rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-            title="Download main.cpp"
+            aria-label="Download main.cpp"
+            className="grid size-10 place-items-center border border-[var(--app-border)]"
           >
-            <Download className="w-4 h-4" />
+            <Download className="size-4" />
           </button>
 
-          {/* Run Code Button */}
-          <Button
-            onClick={handleRunCode}
-            disabled={isRunning}
-            variant="primary"
-            className="min-h-10 rounded-lg px-4 text-xs font-bold shadow-sm"
-          >
-            <Play className={`w-3.5 h-3.5 fill-current ${isRunning ? 'animate-spin' : ''}`} />
-            <span>{isRunning ? 'Compiling...' : 'Run Code (Ctrl+Enter)'}</span>
-          </Button>
+          {isRunning ? (
+            <Button
+              onClick={handleCancelRun}
+              variant="secondary"
+              className="min-h-10 px-4 text-xs font-bold"
+            >
+              Cancel
+            </Button>
+          ) : (
+            <Button
+              onClick={handleRunCode}
+              variant="primary"
+              className="min-h-10 px-4 text-xs font-bold"
+            >
+              <Play className="size-3.5 fill-current" />
+              Run
+            </Button>
+          )}
         </div>
       </div>
 
-      {/* Editor & Console Split Panes */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 dark:divide-slate-800 flex-1 min-h-[460px]">
-        
-        {/* LEFT PANE: Professional Code Editor with Line Numbers */}
-        <div className="relative flex flex-col bg-slate-950 text-slate-100 overflow-hidden font-mono">
-          {/* Editor Header Tab */}
-          <div className="px-4 py-2 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between select-none">
-            <span className="text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-              main.cpp {viewMode === 'syntax' && '(Syntax Highlighted)'}
-            </span>
-            <span className="text-[10px] text-slate-500 font-mono">
-              Auto-Indent Active • Tab: 4 spaces
-            </span>
-          </div>
+      {/* Mobile tabs */}
+      <div
+        role="tablist"
+        aria-label="Sandbox panels"
+        className="grid shrink-0 grid-cols-2 border-b border-[var(--app-border)] lg:hidden"
+      >
+        {(
+          [
+            ["code", "Code"],
+            ["output", "Console"],
+          ] as const
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            aria-selected={mobilePane === id}
+            onClick={() => setMobilePane(id)}
+            className={`min-h-11 font-mono text-xs font-semibold ${
+              mobilePane === id
+                ? "bg-slate-900 text-brand-300 dark:bg-slate-950"
+                : "text-[var(--app-muted)]"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
-          {/* Editor Workspace */}
-          <div className="relative flex-1 flex overflow-hidden min-h-[380px]">
-            {/* Synchronized Line Numbers Gutter */}
-            <div 
-              ref={gutterRef}
-              aria-hidden="true"
-              className="py-3 px-2 bg-slate-900/70 text-slate-500 select-none text-right font-mono border-r border-slate-800/80 text-[12px] leading-[22px] w-12 shrink-0 overflow-hidden"
-              style={{
-                fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
-              }}
-            >
-              {Array.from({ length: Math.max(lineCount, 1) }, (_, i) => {
-                const isCurrent = cursorPos.line === i + 1;
-                return (
-                  <div 
-                    key={i + 1} 
-                    className={`h-[22px] ${isCurrent ? 'text-brand-400 font-bold bg-slate-800/60 rounded-xs' : ''}`}
-                  >
-                    {i + 1}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Input or Syntax View */}
-            <div className="relative min-w-0 flex-1 flex flex-col overflow-hidden bg-slate-950">
-              {viewMode === 'syntax' ? (
-                /* Syntax Highlighted View */
-                <pre
-                  className="flex-1 m-0 p-3 overflow-auto font-mono text-[13px] leading-[22px] whitespace-pre text-slate-100 select-text"
-                  style={{
-                    tabSize: 4,
-                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
-                  }}
-                >
-                  {highlightCpp(code)}
-                </pre>
-              ) : (
-                /* Interactive Code Editor (100% cursor-aligned, visible text, auto-indent) */
-                <textarea
-                  ref={textareaRef}
-                  value={code}
-                  onChange={(e) => {
-                    setCode(e.target.value);
-                    updateCursorPosition();
-                  }}
-                  onKeyDown={handleKeyDown}
-                  onClick={updateCursorPosition}
-                  onKeyUp={updateCursorPosition}
-                  onSelect={updateCursorPosition}
-                  onScroll={handleTextareaScroll}
-                  wrap="off"
-                  aria-label="C++ source code editor"
-                  spellCheck={false}
-                  className="flex-1 w-full h-full resize-none bg-transparent p-3 font-mono text-[13px] leading-[22px] text-slate-100 caret-cyan-400 selection:bg-brand-500/40 focus:outline-none border-0"
-                  style={{
-                    tabSize: 4,
-                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-                    fontVariantLigatures: 'none'
-                  }}
-                />
-              )}
-            </div>
-          </div>
-
-          {/* Editor Status Bar */}
-          <div className="px-3 py-1.5 bg-slate-900/90 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-mono select-none">
-            <span>Ln {cursorPos.line}, Col {cursorPos.col}</span>
-            <span>{lines.length} lines • {code.length} chars</span>
-          </div>
-        </div>
-
-        {/* RIGHT PANE: Output Terminal & Interactive STDIN */}
-        <div className="flex flex-col bg-slate-900 text-slate-100 min-h-[380px]">
-          {/* Terminal Tab Bar */}
-          <div className="px-4 py-2 bg-slate-950/90 border-b border-slate-800 flex items-center justify-between select-none">
-            <span className="text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
-              <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Console Output (stdout)</span>
-            </span>
-            {result && (
-              <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
-                result.success 
-                  ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' 
-                  : 'bg-red-950 text-red-400 border border-red-800'
-              }`}>
-                Exit Code: {result.success ? '0' : '1'} ({result.executionTimeMs}ms)
-              </span>
-            )}
-          </div>
-
-          {/* Terminal Screen Body */}
-          <div className="flex-1 p-4 font-mono text-xs overflow-y-auto max-h-[360px] space-y-3">
-            {isRunning && (
-              <div className="text-brand-400 flex items-center space-x-2">
-                <span className="animate-pulse">Compiling g++ -O2 -std=c++20 main.cpp...</span>
-              </div>
-            )}
-
-            {!isRunning && !result && (
-              <div className="text-slate-500 italic space-y-1">
-                <p>Press &quot;Run Code (Ctrl+Enter)&quot; to compile and execute in the sandbox.</p>
-                <p className="text-[11px] text-slate-600">Standard input below will be fed to cin &gt;&gt; if requested.</p>
-              </div>
-            )}
-
-            {!isRunning && result && (
-              <div className="space-y-3">
-                {result.compileError ? (
-                  <div className="p-3 bg-red-950/50 border border-red-800 rounded-xl text-red-300 whitespace-pre-wrap">
-                    <div className="flex items-center space-x-1.5 font-bold text-red-400 mb-1">
-                      <AlertTriangle className="w-4 h-4 shrink-0" />
-                      <span>Compilation / Linker Error:</span>
-                    </div>
-                    {result.compileError}
-                  </div>
-                ) : (
-                  <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800/80">
-                    <pre className="text-emerald-300 whitespace-pre-wrap leading-relaxed font-mono text-xs">
-                      {result.output}
-                    </pre>
-                  </div>
-                )}
-
-                {result.warnings && (
-                  <div className="p-2.5 bg-amber-950/30 border border-amber-900/60 rounded-xl text-amber-300 text-[11px]">
-                    {result.warnings.map((w, idx) => (
-                      <p key={idx}>{w}</p>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Interactive STDIN Input Strip */}
-          <div className="p-3 bg-slate-950 border-t border-slate-800 flex items-center space-x-2.5">
-            <span className="text-xs font-mono font-bold text-cyan-400 shrink-0">cin &gt;&gt;</span>
-            <input
-              type="text"
-              value={stdinInput}
-              onChange={(e) => setStdinInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleRunCode();
-                }
-              }}
-              placeholder="Standard input (e.g. 42 or user text for cin)"
-              aria-label="Standard input stream (cin)"
-              className="flex-1 bg-slate-900 text-xs px-3 py-1.5 rounded-lg text-slate-100 border border-slate-700/80 focus:outline-none focus:border-brand-500 font-mono"
-            />
-            {stdinInput && (
+      <div
+        id="sandbox-split-shell"
+        className="sandbox-split flex min-h-0 flex-1 flex-col lg:flex-row"
+        style={
+          {
+            ["--sandbox-split" as string]: `${splitPct}%`,
+          } as React.CSSProperties
+        }
+      >
+        {/* Editor */}
+        <div
+          className={`sandbox-editor min-h-0 w-full flex-col lg:border-r lg:border-[var(--app-border)] ${
+            mobilePane === "code" ? "flex" : "hidden"
+          } lg:flex`}
+        >
+          <div className="no-scrollbar flex gap-1 overflow-x-auto border-b border-[var(--app-border)] px-2 py-1.5 lg:hidden">
+            {SYMBOLS.map((sym) => (
               <button
+                key={sym}
                 type="button"
-                onClick={() => setStdinInput('')}
-                className="text-[11px] text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 font-mono"
+                onClick={() => insertSymbol(sym)}
+                className="grid size-10 shrink-0 place-items-center border border-[var(--app-border)] bg-[var(--app-surface)] font-mono text-sm font-bold"
+                aria-label={`Insert ${sym}`}
               >
-                Clear
+                {sym}
               </button>
-            )}
+            ))}
+          </div>
+          <div ref={hostRef} className="min-h-0 flex-1 overflow-hidden" />
+          <div className="flex shrink-0 items-center justify-between border-t border-[var(--app-border)] px-3 py-1.5 font-mono text-[11px] text-[var(--app-muted)]">
+            <span>
+              Ln {cursorPos.line}, Col {cursorPos.col}
+            </span>
+            <span>
+              {lines} lines · {code.length} chars
+            </span>
           </div>
         </div>
 
+        {/* Resize handle — desktop */}
+        <button
+          type="button"
+          aria-label="Resize editor and console"
+          className="hidden w-1.5 shrink-0 cursor-col-resize bg-[var(--app-border)] hover:bg-brand-300 lg:block"
+          onMouseDown={() => {
+            dragging.current = true;
+            document.body.style.cursor = "col-resize";
+            document.body.style.userSelect = "none";
+          }}
+        />
+
+        {/* Console */}
+        <div
+          className={`sandbox-console min-h-0 w-full flex-1 flex-col ${
+            mobilePane === "output" ? "flex" : "hidden"
+          } lg:flex`}
+        >
+          {consolePanel}
+        </div>
       </div>
     </div>
   );
