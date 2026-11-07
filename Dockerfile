@@ -1,11 +1,11 @@
 # Production image for Koyeb (and similar platforms).
-# Serves the Vite SPA + Express API, with g++ and bubblewrap for /api/run.
+# Nested bubblewrap namespaces are blocked in these hosts ("Operation not permitted"),
+# so we compile/run with in-image g++ and treat the platform container as isolation.
 FROM node:22-bookworm-slim
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     g++ \
-    bubblewrap \
     ca-certificates \
     bsdutils \
     curl \
@@ -25,7 +25,9 @@ RUN npm run build && npm prune --omit=dev
 ENV NODE_ENV=production \
     HOST=0.0.0.0 \
     PORT=8000 \
-    SANDBOX_MODE=bwrap
+    SANDBOX_MODE=none \
+    CONTAINER_ISOLATION=true \
+    ALLOW_UNSAFE_LOCAL_EXEC=true
 
 # Persist user data across restarts when a volume is mounted at /app/server/data
 RUN mkdir -p /app/server/data

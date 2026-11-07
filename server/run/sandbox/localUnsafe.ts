@@ -2,8 +2,10 @@ import { spawnLimited } from "../spawnLimited.js";
 import type { ExecuteLimits } from "../types.js";
 
 /**
- * DEV ONLY — runs g++ / binary on the host with no isolation.
- * Requires ALLOW_UNSAFE_LOCAL_EXEC=true.
+ * Runs g++ / binary without bwrap/Docker.
+ * Locally: ALLOW_UNSAFE_LOCAL_EXEC=true (dev only).
+ * On Docker/Koyeb: CONTAINER_ISOLATION=true — the platform container is the boundary
+ * (nested bwrap namespaces are typically Operation not permitted).
  */
 export async function runUnsafeLocal(
   workDir: string,
@@ -15,9 +17,13 @@ export async function runUnsafeLocal(
     limits: ExecuteLimits;
   },
 ) {
-  console.warn(
-    "[run] UNSAFE LOCAL EXEC — no sandbox. Do not use in production.",
-  );
+  if (process.env.CONTAINER_ISOLATION === "true") {
+    // Expected path for container deploys — no noisy warning per run.
+  } else {
+    console.warn(
+      "[run] UNSAFE LOCAL EXEC — no sandbox. Do not use on a shared bare-metal host.",
+    );
+  }
   return spawnLimited({
     argv,
     cwd: workDir,

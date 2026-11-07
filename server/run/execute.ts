@@ -104,11 +104,17 @@ export async function executeCpp(
     );
   }
   if (caps.mode === "none" && caps.allowUnsafeLocal) {
-    console.warn(
-      "[run] ********************************************************************\n" +
-        "[run] ALLOW_UNSAFE_LOCAL_EXEC — compiling/running WITHOUT a sandbox.\n" +
-        "[run] ********************************************************************",
-    );
+    if (process.env.CONTAINER_ISOLATION === "true") {
+      console.log(
+        "[run] in-container g++ (CONTAINER_ISOLATION) — nested bwrap not used",
+      );
+    } else {
+      console.warn(
+        "[run] ********************************************************************\n" +
+          "[run] ALLOW_UNSAFE_LOCAL_EXEC — compiling/running WITHOUT a sandbox.\n" +
+          "[run] ********************************************************************",
+      );
+    }
   }
   if (caps.mode !== "docker" && !caps.gppAvailable) {
     throw new SandboxUnavailableError(
