@@ -29,6 +29,10 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 8787);
+/** Bind address — production/containers must use 0.0.0.0 so platform health checks can reach the process. */
+const HOST =
+  process.env.HOST ||
+  (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
 /** Public site origin — OAuth redirect_uri is always `${APP_URL}${GOOGLE_OAUTH_CALLBACK_PATH}`. */
 const APP_URL = normalizeAppUrl(process.env.APP_URL);
 const GOOGLE_REDIRECT_URI = googleOAuthRedirectUri(APP_URL);
@@ -365,8 +369,12 @@ attachRunWebSocket({
   rateLimiter: runControllers.rateLimiter,
 });
 
-server.listen(PORT, "127.0.0.1", () => {
-  console.log(`[server] listening on http://127.0.0.1:${PORT}`);
+app.get("/api/health", (_req, res) => {
+  res.status(200).json({ ok: true });
+});
+
+server.listen(PORT, HOST, () => {
+  console.log(`[server] listening on http://${HOST}:${PORT}`);
   console.log(`[server] APP_URL=${APP_URL}`);
   console.log(`Google OAuth redirect URI: ${GOOGLE_REDIRECT_URI}`);
   console.log(`[run] interactive WebSocket at /api/run/ws`);
