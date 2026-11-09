@@ -1,25 +1,10 @@
 import { PublicHeader } from "@/features/marketing/PublicHeader";
 import { HeroDemo } from "@/features/marketing/HeroDemo";
 import { AuthForm, type AuthMode } from "@/features/auth/AuthForm";
-import type { UserRole } from "@/types";
 
 interface AuthPageProps {
   mode: AuthMode;
   onModeChange: (mode: AuthMode) => void;
-  onLogin: (
-    email: string,
-    password?: string,
-  ) =>
-    | Promise<{ success: boolean; error?: string }>
-    | { success: boolean; error?: string };
-  onSignup: (
-    name: string,
-    email: string,
-    role: UserRole,
-    password?: string,
-  ) =>
-    | Promise<{ success: boolean; error?: string }>
-    | { success: boolean; error?: string };
   isDarkMode: boolean;
   onToggleDarkMode: () => void;
   googleEnabled?: boolean;
@@ -32,8 +17,6 @@ interface AuthPageProps {
 export function AuthPage({
   mode,
   onModeChange,
-  onLogin,
-  onSignup,
   isDarkMode,
   onToggleDarkMode,
   googleEnabled = false,
@@ -74,8 +57,6 @@ export function AuthPage({
                 <AuthForm
                   mode={mode}
                   onModeChange={onModeChange}
-                  onLogin={onLogin}
-                  onSignup={onSignup}
                   googleEnabled={googleEnabled}
                   authError={authError}
                   nextPath={nextPath}

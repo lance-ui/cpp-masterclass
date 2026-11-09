@@ -21,7 +21,7 @@ This starts:
 - Vite on `http://localhost:3000` (UI)
 - API on `http://localhost:8787` (proxied as `/api` — auth + compiler)
 
-Open the Vite URL. Email/password works without Google credentials.
+Open the Vite URL. Sign-in is Google OAuth only — set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in `.env` (see below).
 
 ## Real compiler sandbox (`POST /api/run`)
 

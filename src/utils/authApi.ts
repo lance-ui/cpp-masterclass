@@ -148,50 +148,6 @@ export async function fetchSessionUser(): Promise<SessionUser | null> {
   }
 }
 
-export async function apiLogin(email: string, password?: string) {
-  const res = await apiFetch("/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password: password || "" }),
-  });
-  const data = await parseJson<{ user?: SessionUser; error?: string }>(res);
-  if (!res.ok || !data.user) {
-    return { success: false as const, error: data.error || "Sign-in failed." };
-  }
-  return {
-    success: true as const,
-    user: { ...data.user, ...normalizeProgress(data.user) },
-  };
-}
-
-export async function apiSignup(
-  name: string,
-  email: string,
-  password?: string,
-) {
-  const res = await apiFetch("/api/auth/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, email, password: password || "" }),
-  });
-  const data = await parseJson<{
-    user?: SessionUser;
-    error?: string;
-    notice?: string;
-  }>(res);
-  if (!res.ok || !data.user) {
-    return {
-      success: false as const,
-      error: data.error || "Could not create account.",
-    };
-  }
-  return {
-    success: true as const,
-    user: { ...data.user, ...normalizeProgress(data.user) },
-    notice: data.notice,
-  };
-}
-
 export async function apiLogout() {
   try {
     await apiFetch("/api/auth/logout", { method: "POST" });

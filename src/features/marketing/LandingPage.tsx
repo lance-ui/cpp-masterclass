@@ -90,8 +90,8 @@ const FAQ = [
     a: "Completion, bookmarks, and quiz scores are saved on your account on the server, so they stay with you across sessions and devices when you sign in.",
   },
   {
-    q: "Do I need Google to sign in?",
-    a: "No. You can create an account with email and password. Google sign-in is available when it is configured on the server.",
+    q: "How do I sign in?",
+    a: "Sign-in uses Google only. Use Continue with Google on the sign-in page — email and password accounts are not supported.",
   },
   {
     q: "Does it work on a phone?",

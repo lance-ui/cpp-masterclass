@@ -2,10 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { User, UserRole } from "@/types";
 import { readStoredValue, writeStoredValue } from "@/utils/storage";
 import {
-  apiLogin,
   apiLogout,
   apiSaveProgress,
-  apiSignup,
   fetchAdminUsers,
   fetchAuthConfig,
   fetchSessionUser,
@@ -179,62 +177,6 @@ export function useAuth() {
     };
   }, []);
 
-  const login = useCallback(async (email: string, password?: string) => {
-    try {
-      const res = await apiLogin(email, password);
-      if (!res.success) return { success: false, error: res.error };
-      const { user, needsMigrate } = applySessionUser(
-        res.user,
-        readLocalUsers(),
-      );
-      lastSyncedProgressKey.current = needsMigrate
-        ? null
-        : progressKey(progressFromUser(user));
-      setCurrentUser(user);
-      setAllUsers((prev) => upsertLocalUser(prev, user));
-      if (user.role === "admin") {
-        const remoteUsers = await fetchAdminUsers();
-        if (remoteUsers.length > 0) setAllUsers(remoteUsers);
-      }
-      return { success: true };
-    } catch {
-      return {
-        success: false,
-        error: "Could not reach the auth server. Is it running?",
-      };
-    }
-  }, []);
-
-  const signup = useCallback(
-    async (
-      name: string,
-      email: string,
-      _role: UserRole,
-      password?: string,
-    ) => {
-      try {
-        const res = await apiSignup(name, email, password);
-        if (!res.success) return { success: false, error: res.error };
-        const { user, needsMigrate } = applySessionUser(
-          res.user,
-          readLocalUsers(),
-        );
-        lastSyncedProgressKey.current = needsMigrate
-          ? null
-          : progressKey(progressFromUser(user));
-        setCurrentUser(user);
-        setAllUsers((prev) => upsertLocalUser(prev, user));
-        return { success: true };
-      } catch {
-        return {
-          success: false,
-          error: "Could not reach the auth server. Is it running?",
-        };
-      }
-    },
-    [],
-  );
-
   const logout = useCallback(async () => {
     if (progressSyncTimer.current) {
       window.clearTimeout(progressSyncTimer.current);
@@ -269,8 +211,6 @@ export function useAuth() {
     currentUser,
     setCurrentUser,
     allUsers,
-    login,
-    signup,
     logout,
     updateUserRole,
     authReady,

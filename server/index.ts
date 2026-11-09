@@ -8,7 +8,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { OAuth2Client } from "google-auth-library";
 import {
-  createLocalUser,
   dataDir,
   findById,
   googleConfigured,
@@ -18,7 +17,6 @@ import {
   updateRole,
   updateUserProgress,
   upsertGoogleUser,
-  verifyLocalLogin,
   type PublicUser,
 } from "./usersStore.js";
 import { FileSessionStore } from "./sessionStore.js";
@@ -141,59 +139,16 @@ app.get("/api/auth/me", (req, res) => {
   res.json({ user });
 });
 
-app.post("/api/auth/login", async (req, res) => {
-  try {
-    const email = String(req.body?.email || "");
-    const password = String(req.body?.password || "");
-    if (!email.trim()) {
-      res.status(400).json({ error: "Email is required." });
-      return;
-    }
-    const result = await verifyLocalLogin(email, password);
-    if (!result.user) {
-      res.status(401).json({ error: result.error || "Sign-in failed." });
-      return;
-    }
-    req.session.userId = result.user.id;
-    res.json({ user: result.user });
-  } catch (error) {
-    console.error("[auth/login]", error);
-    res.status(500).json({ error: "Could not sign in. Try again." });
-  }
+app.post("/api/auth/login", (_req, res) => {
+  res.status(410).json({
+    error: "Email and password sign-in is disabled. Use Google sign-in.",
+  });
 });
 
-app.post("/api/auth/signup", async (req, res) => {
-  try {
-    const name = String(req.body?.name || "");
-    const email = String(req.body?.email || "");
-    const password = String(req.body?.password || "");
-    if (!name.trim() || !email.trim()) {
-      res.status(400).json({ error: "Name and email are required." });
-      return;
-    }
-    if (
-      !password ||
-      password.length < 8 ||
-      !/[A-Za-z]/.test(password) ||
-      !/\d/.test(password)
-    ) {
-      res.status(400).json({
-        error:
-          "Password needs at least 8 characters, including a letter and a number.",
-      });
-      return;
-    }
-    const result = await createLocalUser({
-      name,
-      email,
-      password,
-    });
-    req.session.userId = result.user.id;
-    res.json({ user: result.user, notice: result.error });
-  } catch (error) {
-    console.error("[auth/signup]", error);
-    res.status(500).json({ error: "Could not create account." });
-  }
+app.post("/api/auth/signup", (_req, res) => {
+  res.status(410).json({
+    error: "Email and password sign-up is disabled. Use Google sign-in.",
+  });
 });
 
 app.post("/api/auth/logout", (req, res) => {

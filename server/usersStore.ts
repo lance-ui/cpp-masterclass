@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import bcrypt from "bcryptjs";
 import { fileURLToPath } from "node:url";
 
 export type UserRole = "student" | "admin";
@@ -144,71 +143,6 @@ export function findByGoogleId(googleId: string): StoredUser | undefined {
   return readUsers().find((u) => u.googleId === googleId);
 }
 
-export async function createLocalUser(input: {
-  name: string;
-  email: string;
-  password: string;
-  role?: UserRole;
-}): Promise<{ user: PublicUser; error?: string }> {
-  const email = input.email.trim().toLowerCase();
-  if (findByEmail(email)) {
-    return {
-      user: toPublicUser(findByEmail(email)!),
-      error: "Account already exists — signed you in.",
-    };
-  }
-  const passwordHash = await bcrypt.hash(input.password, 10);
-  const user: StoredUser = {
-    id: `user-${Date.now()}`,
-    name: input.name.trim(),
-    email,
-    role: input.role ?? "student",
-    authProvider: "local",
-    passwordHash,
-    createdAt: new Date().toISOString(),
-    ...emptyProgress(),
-  };
-  const users = readUsers();
-  users.push(user);
-  writeUsers(users);
-  return { user: toPublicUser(user) };
-}
-
-export async function verifyLocalLogin(
-  email: string,
-  password: string,
-): Promise<{ user?: PublicUser; error?: string }> {
-  const found = findByEmail(email);
-  if (!found) {
-    // Auto-provision for first-time email login (matches prior UX)
-    if (
-      !password ||
-      password.length < 8 ||
-      !/[A-Za-z]/.test(password) ||
-      !/\d/.test(password)
-    ) {
-      return { error: "Incorrect email or password." };
-    }
-    const created = await createLocalUser({
-      name: email.split("@")[0] || "Learner",
-      email,
-      password,
-    });
-    return { user: created.user };
-  }
-  if (found.authProvider === "google" && !found.passwordHash) {
-    return {
-      error: "This email uses Google sign-in. Continue with Google instead.",
-    };
-  }
-  if (!found.passwordHash) {
-    return { error: "Invalid email or password." };
-  }
-  const ok = await bcrypt.compare(password, found.passwordHash);
-  if (!ok) return { error: "Invalid email or password." };
-  return { user: toPublicUser(found) };
-}
-
 export function upsertGoogleUser(profile: {
   googleId: string;
   email: string;
@@ -232,10 +166,8 @@ export function upsertGoogleUser(profile: {
     byEmail.googleId = profile.googleId;
     byEmail.avatarUrl = profile.avatarUrl || byEmail.avatarUrl;
     byEmail.name = profile.name || byEmail.name;
-    if (byEmail.authProvider === "local") {
-      // Linked account — keep local password, mark dual
-      byEmail.authProvider = "google";
-    }
+    // Link legacy email account (if any) to Google.
+    byEmail.authProvider = "google";
     writeUsers(users);
     return toPublicUser(withProgressDefaults(byEmail));
   }

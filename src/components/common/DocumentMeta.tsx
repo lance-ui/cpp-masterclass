@@ -42,10 +42,11 @@ export function DocumentMeta({ pathname }: { pathname: string }) {
     let description = DEFAULT_DESC;
     if (normalized === "/login") {
       title = `Sign in · ${SITE}`;
-      description = "Sign in to C++ MasterClass to continue learning.";
+      description = "Sign in with Google to continue learning on C++ MasterClass.";
     } else if (normalized === "/signup") {
       title = `Create account · ${SITE}`;
-      description = "Create a free C++ MasterClass account to start learning.";
+      description =
+        "Create your C++ MasterClass account with Google to start learning.";
     } else if (normalized === "/terms") {
       title = `Terms · ${SITE}`;
     } else if (normalized === "/privacy") {

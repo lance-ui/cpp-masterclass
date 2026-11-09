@@ -156,8 +156,6 @@ export default function App() {
     currentUser,
     setCurrentUser,
     allUsers,
-    login,
-    signup,
     logout,
     updateUserRole,
     authReady,
@@ -360,8 +358,6 @@ export default function App() {
           <AuthPage
             mode={authModeView === "signup" ? "signup" : "signin"}
             onModeChange={(mode) => goLogin(mode, nextPath)}
-            onLogin={login}
-            onSignup={signup}
             isDarkMode={isDarkMode}
             onToggleDarkMode={toggleDarkMode}
             googleEnabled={authConfig.googleEnabled}

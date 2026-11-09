@@ -53,8 +53,8 @@ export function PrivacyPage({ onBack }: { onBack: () => void }) {
           and short-lived runs. Submissions are not published to other students.
         </p>
         <p>
-          Authentication may use Google OAuth when enabled. We do not sell personal
-          data. Replace this page with a production policy before a public launch.
+          Authentication uses Google OAuth. We do not sell personal data. Replace
+          this page with a production policy before a public launch.
         </p>
       </div>
     </PageContainer>
