@@ -6,7 +6,15 @@ import { fileURLToPath } from "node:url";
 export type UserRole = "student" | "admin";
 export type AuthProvider = "local" | "google";
 
-export interface StoredUser {
+export interface UserProgress {
+  bookmarkedModuleIds: string[];
+  completedModuleIds: string[];
+  quizScores: Record<string, number>;
+  recentModuleIds: string[];
+  notes: Record<string, string>;
+}
+
+export interface StoredUser extends UserProgress {
   id: string;
   name: string;
   email: string;
@@ -18,7 +26,7 @@ export interface StoredUser {
   createdAt: string;
 }
 
-export interface PublicUser {
+export interface PublicUser extends UserProgress {
   id: string;
   name: string;
   email: string;
@@ -27,8 +35,16 @@ export interface PublicUser {
   avatarUrl?: string;
 }
 
+const EMPTY_PROGRESS: UserProgress = {
+  bookmarkedModuleIds: [],
+  completedModuleIds: [],
+  quizScores: {},
+  recentModuleIds: [],
+  notes: {},
+};
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dataDir = path.join(__dirname, "data");
+export const dataDir = path.join(__dirname, "data");
 const usersPath = path.join(dataDir, "users.json");
 
 function ensureStore() {
@@ -38,12 +54,56 @@ function ensureStore() {
   }
 }
 
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === "string");
+}
+
+function isNumberRecord(value: unknown): value is Record<string, number> {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value) &&
+    Object.values(value).every((item) => typeof item === "number")
+  );
+}
+
+function isStringRecord(value: unknown): value is Record<string, string> {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value) &&
+    Object.values(value).every((item) => typeof item === "string")
+  );
+}
+
+function normalizeProgress(raw: Partial<UserProgress> | undefined): UserProgress {
+  return {
+    bookmarkedModuleIds: isStringArray(raw?.bookmarkedModuleIds)
+      ? [...new Set(raw.bookmarkedModuleIds)]
+      : [],
+    completedModuleIds: isStringArray(raw?.completedModuleIds)
+      ? [...new Set(raw.completedModuleIds)]
+      : [],
+    quizScores: isNumberRecord(raw?.quizScores) ? { ...raw.quizScores } : {},
+    recentModuleIds: isStringArray(raw?.recentModuleIds)
+      ? raw.recentModuleIds.slice(0, 8)
+      : [],
+    notes: isStringRecord(raw?.notes) ? { ...raw.notes } : {},
+  };
+}
+
+function withProgressDefaults(user: StoredUser): StoredUser {
+  const progress = normalizeProgress(user);
+  return { ...user, ...progress };
+}
+
 function readUsers(): StoredUser[] {
   ensureStore();
   try {
     const raw = fs.readFileSync(usersPath, "utf8");
     const parsed = JSON.parse(raw) as unknown;
-    return Array.isArray(parsed) ? (parsed as StoredUser[]) : [];
+    if (!Array.isArray(parsed)) return [];
+    return (parsed as StoredUser[]).map(withProgressDefaults);
   } catch {
     return [];
   }
@@ -55,6 +115,7 @@ function writeUsers(users: StoredUser[]) {
 }
 
 export function toPublicUser(user: StoredUser): PublicUser {
+  const progress = normalizeProgress(user);
   return {
     id: user.id,
     name: user.name,
@@ -62,7 +123,12 @@ export function toPublicUser(user: StoredUser): PublicUser {
     role: user.role,
     authProvider: user.authProvider,
     avatarUrl: user.avatarUrl,
+    ...progress,
   };
+}
+
+export function emptyProgress(): UserProgress {
+  return { ...EMPTY_PROGRESS, quizScores: {}, notes: {} };
 }
 
 export function findByEmail(email: string): StoredUser | undefined {
@@ -100,6 +166,7 @@ export async function createLocalUser(input: {
     authProvider: "local",
     passwordHash,
     createdAt: new Date().toISOString(),
+    ...emptyProgress(),
   };
   const users = readUsers();
   users.push(user);
@@ -158,7 +225,7 @@ export function upsertGoogleUser(profile: {
     byGoogle.avatarUrl = profile.avatarUrl || byGoogle.avatarUrl;
     byGoogle.email = email;
     writeUsers(users);
-    return toPublicUser(byGoogle);
+    return toPublicUser(withProgressDefaults(byGoogle));
   }
 
   if (byEmail) {
@@ -170,7 +237,7 @@ export function upsertGoogleUser(profile: {
       byEmail.authProvider = "google";
     }
     writeUsers(users);
-    return toPublicUser(byEmail);
+    return toPublicUser(withProgressDefaults(byEmail));
   }
 
   const user: StoredUser = {
@@ -182,6 +249,7 @@ export function upsertGoogleUser(profile: {
     googleId: profile.googleId,
     avatarUrl: profile.avatarUrl,
     createdAt: new Date().toISOString(),
+    ...emptyProgress(),
   };
   users.push(user);
   writeUsers(users);
@@ -201,7 +269,68 @@ export function updateRole(
   if (!user) return undefined;
   user.role = role;
   writeUsers(users);
+  return toPublicUser(withProgressDefaults(user));
+}
+
+export function updateUserProgress(
+  userId: string,
+  progress: Partial<UserProgress>,
+): PublicUser | undefined {
+  const users = readUsers();
+  const user = users.find((u) => u.id === userId);
+  if (!user) return undefined;
+  const next = normalizeProgress({
+    bookmarkedModuleIds:
+      progress.bookmarkedModuleIds ?? user.bookmarkedModuleIds,
+    completedModuleIds:
+      progress.completedModuleIds ?? user.completedModuleIds,
+    quizScores: progress.quizScores ?? user.quizScores,
+    recentModuleIds: progress.recentModuleIds ?? user.recentModuleIds,
+    notes: progress.notes ?? user.notes,
+  });
+  Object.assign(user, next);
+  writeUsers(users);
   return toPublicUser(user);
+}
+
+/** True when the account has no learning progress yet (migration candidate). */
+export function isProgressEmpty(progress: UserProgress): boolean {
+  return (
+    progress.completedModuleIds.length === 0 &&
+    progress.bookmarkedModuleIds.length === 0 &&
+    progress.recentModuleIds.length === 0 &&
+    Object.keys(progress.quizScores).length === 0 &&
+    Object.keys(progress.notes).length === 0
+  );
+}
+
+export function parseProgressBody(body: unknown): UserProgress | null {
+  if (typeof body !== "object" || body === null || Array.isArray(body)) {
+    return null;
+  }
+  const raw = body as Record<string, unknown>;
+  if (
+    raw.bookmarkedModuleIds !== undefined &&
+    !isStringArray(raw.bookmarkedModuleIds)
+  ) {
+    return null;
+  }
+  if (
+    raw.completedModuleIds !== undefined &&
+    !isStringArray(raw.completedModuleIds)
+  ) {
+    return null;
+  }
+  if (raw.recentModuleIds !== undefined && !isStringArray(raw.recentModuleIds)) {
+    return null;
+  }
+  if (raw.quizScores !== undefined && !isNumberRecord(raw.quizScores)) {
+    return null;
+  }
+  if (raw.notes !== undefined && !isStringRecord(raw.notes)) {
+    return null;
+  }
+  return normalizeProgress(raw as Partial<UserProgress>);
 }
 
 export function googleConfigured() {

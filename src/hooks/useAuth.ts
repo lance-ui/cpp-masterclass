@@ -1,14 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { User, UserRole } from "@/types";
 import { readStoredValue, writeStoredValue } from "@/utils/storage";
 import {
   apiLogin,
   apiLogout,
+  apiSaveProgress,
   apiSignup,
+  fetchAdminUsers,
   fetchAuthConfig,
   fetchSessionUser,
   hydrateUserFromSession,
+  isProgressEmpty,
+  progressFromUser,
+  progressKey,
   type AuthConfig,
+  type SessionUser,
 } from "@/utils/authApi";
 
 const LEGACY_DEMO_IDS = new Set([
@@ -65,18 +71,29 @@ function upsertLocalUser(users: User[], next: User): User[] {
   );
   if (byEmail >= 0) {
     const copy = users.slice();
-    copy[byEmail] = {
-      ...copy[byEmail],
-      ...next,
-      bookmarkedModuleIds: copy[byEmail].bookmarkedModuleIds,
-      completedModuleIds: copy[byEmail].completedModuleIds,
-      quizScores: copy[byEmail].quizScores,
-      recentModuleIds: copy[byEmail].recentModuleIds,
-      notes: copy[byEmail].notes,
-    };
+    copy[byEmail] = { ...copy[byEmail], ...next };
     return copy;
   }
   return [...users, next];
+}
+
+function readLocalUsers(): User[] {
+  return readStoredValue(
+    "users",
+    [] as User[],
+    isUserArray,
+    "cpp_masterclass_all_users",
+  ).filter((u) => !LEGACY_DEMO_IDS.has(u.id));
+}
+
+function applySessionUser(
+  session: SessionUser,
+  locals: User[],
+): { user: User; needsMigrate: boolean } {
+  const hydrated = hydrateUserFromSession(session, locals);
+  const needsMigrate =
+    isProgressEmpty(session) && !isProgressEmpty(progressFromUser(hydrated));
+  return { user: hydrated, needsMigrate };
 }
 
 export function useAuth() {
@@ -86,15 +103,10 @@ export function useAuth() {
     googleEnabled: false,
     appUrl: typeof window !== "undefined" ? window.location.origin : "",
   });
-  const [allUsers, setAllUsers] = useState<User[]>(() => {
-    const storedUsers = readStoredValue(
-      "users",
-      [] as User[],
-      isUserArray,
-      "cpp_masterclass_all_users",
-    );
-    return storedUsers.filter((u) => !LEGACY_DEMO_IDS.has(u.id));
-  });
+  const [allUsers, setAllUsers] = useState<User[]>(() => readLocalUsers());
+
+  const lastSyncedProgressKey = useRef<string | null>(null);
+  const progressSyncTimer = useRef<number | null>(null);
 
   useEffect(() => {
     writeStoredValue("users", allUsers);
@@ -104,6 +116,32 @@ export function useAuth() {
     if (!currentUser) return;
     setAllUsers((prev) => upsertLocalUser(prev, currentUser));
   }, [currentUser]);
+
+  // Debounced persist of learning progress to the server account.
+  useEffect(() => {
+    if (!currentUser || !authReady) return;
+    const payload = progressFromUser(currentUser);
+    const key = progressKey(payload);
+    if (key === lastSyncedProgressKey.current) return;
+
+    if (progressSyncTimer.current) {
+      window.clearTimeout(progressSyncTimer.current);
+    }
+
+    progressSyncTimer.current = window.setTimeout(() => {
+      void (async () => {
+        const saved = await apiSaveProgress(payload);
+        if (!saved) return;
+        lastSyncedProgressKey.current = key;
+      })();
+    }, 450);
+
+    return () => {
+      if (progressSyncTimer.current) {
+        window.clearTimeout(progressSyncTimer.current);
+      }
+    };
+  }, [currentUser, authReady]);
 
   useEffect(() => {
     let cancelled = false;
@@ -115,28 +153,24 @@ export function useAuth() {
       if (cancelled) return;
       setAuthConfig(config);
       if (session) {
-        setCurrentUser((prev) => {
-          const locals = readStoredValue(
-            "users",
-            [] as User[],
-            isUserArray,
-            "cpp_masterclass_all_users",
-          );
-          const hydrated = hydrateUserFromSession(session, locals);
-          if (prev && prev.id === hydrated.id) {
-            return {
-              ...hydrated,
-              bookmarkedModuleIds: prev.bookmarkedModuleIds,
-              completedModuleIds: prev.completedModuleIds,
-              quizScores: prev.quizScores,
-              recentModuleIds: prev.recentModuleIds,
-              notes: prev.notes,
-            };
+        const { user, needsMigrate } = applySessionUser(
+          session,
+          readLocalUsers(),
+        );
+        lastSyncedProgressKey.current = needsMigrate
+          ? null
+          : progressKey(progressFromUser(user));
+        setCurrentUser(user);
+
+        if (user.role === "admin") {
+          const remoteUsers = await fetchAdminUsers();
+          if (!cancelled && remoteUsers.length > 0) {
+            setAllUsers(remoteUsers);
           }
-          return hydrated;
-        });
+        }
       } else {
         setCurrentUser(null);
+        lastSyncedProgressKey.current = null;
       }
       setAuthReady(true);
     })();
@@ -149,9 +183,19 @@ export function useAuth() {
     try {
       const res = await apiLogin(email, password);
       if (!res.success) return { success: false, error: res.error };
-      const hydrated = hydrateUserFromSession(res.user, allUsers);
-      setCurrentUser(hydrated);
-      setAllUsers((prev) => upsertLocalUser(prev, hydrated));
+      const { user, needsMigrate } = applySessionUser(
+        res.user,
+        readLocalUsers(),
+      );
+      lastSyncedProgressKey.current = needsMigrate
+        ? null
+        : progressKey(progressFromUser(user));
+      setCurrentUser(user);
+      setAllUsers((prev) => upsertLocalUser(prev, user));
+      if (user.role === "admin") {
+        const remoteUsers = await fetchAdminUsers();
+        if (remoteUsers.length > 0) setAllUsers(remoteUsers);
+      }
       return { success: true };
     } catch {
       return {
@@ -159,7 +203,7 @@ export function useAuth() {
         error: "Could not reach the auth server. Is it running?",
       };
     }
-  }, [allUsers]);
+  }, []);
 
   const signup = useCallback(
     async (
@@ -171,9 +215,15 @@ export function useAuth() {
       try {
         const res = await apiSignup(name, email, password);
         if (!res.success) return { success: false, error: res.error };
-        const hydrated = hydrateUserFromSession(res.user, allUsers);
-        setCurrentUser(hydrated);
-        setAllUsers((prev) => upsertLocalUser(prev, hydrated));
+        const { user, needsMigrate } = applySessionUser(
+          res.user,
+          readLocalUsers(),
+        );
+        lastSyncedProgressKey.current = needsMigrate
+          ? null
+          : progressKey(progressFromUser(user));
+        setCurrentUser(user);
+        setAllUsers((prev) => upsertLocalUser(prev, user));
         return { success: true };
       } catch {
         return {
@@ -182,13 +232,21 @@ export function useAuth() {
         };
       }
     },
-    [allUsers],
+    [],
   );
 
   const logout = useCallback(async () => {
+    if (progressSyncTimer.current) {
+      window.clearTimeout(progressSyncTimer.current);
+      progressSyncTimer.current = null;
+    }
+    if (currentUser) {
+      await apiSaveProgress(progressFromUser(currentUser));
+    }
     await apiLogout();
     setCurrentUser(null);
-  }, []);
+    lastSyncedProgressKey.current = null;
+  }, [currentUser]);
 
   const updateUserRole = useCallback((userId: string, newRole: UserRole) => {
     setAllUsers((users) =>

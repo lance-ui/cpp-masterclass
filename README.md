@@ -125,4 +125,4 @@ npm start          # production: serves dist/ + /api on PORT
 
 ## Notes data (UI removed)
 
-The Notes tab / bottom-nav entry / dashboard tile were removed from the UI. Existing notes remain in the user object (`notes` field) in `localStorage` under `cpp-masterclass:v1:users` (and the auth session hydrate path). Files that used to surface them: `LessonViewer.tsx`, `BottomNav.tsx`, `StudentDashboard.tsx`, `App.tsx` (`handleOpenNotes`).
+The Notes tab / bottom-nav entry / dashboard tile were removed from the UI. Notes remain on the user object (`notes` field) and are persisted with account progress on the server (`PATCH /api/me/progress`), with a local cache under `cpp-masterclass:v1:users`. Sessions are stored on disk under `server/data/sessions/` so logins survive API restarts.

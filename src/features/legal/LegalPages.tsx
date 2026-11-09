@@ -20,9 +20,9 @@ export function TermsPage({ onBack }: { onBack: () => void }) {
           infrastructure.
         </p>
         <p>
-          Course progress, bookmarks, and quiz scores are stored in your account
-          session. Content and branding remain the property of their respective
-          owners.
+          Course progress, bookmarks, and quiz scores are stored with your
+          account on the server. Content and branding remain the property of
+          their respective owners.
         </p>
         <p>Contact the course administrator for questions about these terms.</p>
       </div>

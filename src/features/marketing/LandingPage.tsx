@@ -87,7 +87,7 @@ const FAQ = [
   },
   {
     q: "Where is my progress stored?",
-    a: "Completion, bookmarks, and quiz scores are tied to your account and saved with the app.",
+    a: "Completion, bookmarks, and quiz scores are saved on your account on the server, so they stay with you across sessions and devices when you sign in.",
   },
   {
     q: "Do I need Google to sign in?",

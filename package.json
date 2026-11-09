@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "test": "tsx --test src/utils/courseLogic.test.ts src/utils/safeNextPath.test.ts server/run/*.test.ts server/oauthRedirect.test.ts",
+    "test": "tsx --test src/utils/courseLogic.test.ts src/utils/safeNextPath.test.ts server/run/*.test.ts server/oauthRedirect.test.ts server/sessionStore.test.ts server/usersStore.progress.test.ts",
     "test:e2e": "playwright test",
     "sandbox:build": "bash server/scripts/build-sandbox-image.sh"
   },

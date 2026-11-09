@@ -9,15 +9,19 @@ import { fileURLToPath } from "node:url";
 import { OAuth2Client } from "google-auth-library";
 import {
   createLocalUser,
+  dataDir,
   findById,
   googleConfigured,
   listPublicUsers,
+  parseProgressBody,
   toPublicUser,
   updateRole,
+  updateUserProgress,
   upsertGoogleUser,
   verifyLocalLogin,
   type PublicUser,
 } from "./usersStore.js";
+import { FileSessionStore } from "./sessionStore.js";
 import { createRunControllers, registerRunRoutes } from "./run/routes.js";
 import { attachRunWebSocket } from "./run/wsRun.js";
 import { getSandboxCapabilities } from "./run/execute.js";
@@ -105,6 +109,7 @@ const sessionMiddleware = session({
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  store: new FileSessionStore(path.join(dataDir, "sessions")),
   cookie: {
     httpOnly: true,
     secure: APP_URL.startsWith("https"),
@@ -196,6 +201,26 @@ app.post("/api/auth/logout", (req, res) => {
     res.clearCookie("cpp_mc_sid");
     res.json({ ok: true });
   });
+});
+
+/** Persist learning progress for the signed-in account (server is source of truth). */
+app.patch("/api/me/progress", (req, res) => {
+  const user = sessionUser(req);
+  if (!user) {
+    res.status(401).json({ error: "Sign in required." });
+    return;
+  }
+  const progress = parseProgressBody(req.body);
+  if (!progress) {
+    res.status(400).json({ error: "Invalid progress payload." });
+    return;
+  }
+  const updated = updateUserProgress(user.id, progress);
+  if (!updated) {
+    res.status(404).json({ error: "User not found." });
+    return;
+  }
+  res.json({ user: updated });
 });
 
 app.get("/api/auth/google", (req, res) => {
